@@ -1,6 +1,7 @@
+var tex;
 function initTexture(imageName)
 {
-	var texture = gl.createTexture();
+	texture = gl.createTexture();
 	texture.image = new Image();
 	texture.image.src = "Textures/" + imageName;
 	

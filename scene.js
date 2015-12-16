@@ -49,21 +49,22 @@ function init()
 		return;
 	}
 
-	shaders["Color3D"] = initShader("Color3D");
+	//shaders["Color3D"] = initShader("Color3D");
 	shaders["Texture3D"] = initShader("Texture3D");
 
 	textures["test.png"] = initTexture("test.png");
+	//initTexture("icon.jpg");
 
 	
 	//meshes.push(initMeshFromObj("Cube"));
 	//meshes.push(initMeshFromObj("BananaGroup"));
 	//meshes.push(initMeshFromObj("Suzanne"));
-	meshes.push(initMeshFromObj("Peperoni"));
+	//meshes.push(initMeshFromObj("Peperoni"));
 	//meshes.push(initMeshFromObj("TexturedCube"));
 	//meshes.push(initMeshFromObj("Xenomorph"));
 	//meshes.push(initCube());
 	//meshes.push(initSphere());
-	//cube = initTexturedCube();
+	cube = initTexturedCube();
 	
 
 	gl.enable(gl.DEPTH_TEST);
@@ -147,14 +148,13 @@ function drawTexturedCube(mesh)
 	sendMat4(shaders["Texture3D"], "projection", projection);
 
 	var samplerUniform = gl.getUniformLocation(shaders["Texture3D"], "uSampler");
-	console.log(samplerUniform);
 
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
 	var in_Vertex = gl.getAttribLocation(shaders["Texture3D"], "aVertexPosition");
 	gl.enableVertexAttribArray(0);
 	gl.vertexAttribPointer(in_Vertex, 3, gl.FLOAT, false, 0, 0);
 
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.textureCoordBuffer);
 	var in_textureCoordinate = gl.getAttribLocation(shaders["Texture3D"], "aTextureCoord");
 	gl.enableVertexAttribArray(1);
 	gl.vertexAttribPointer(in_textureCoordinate, 2, gl.FLOAT, false, 0, 0);
@@ -168,14 +168,15 @@ function drawTexturedCube(mesh)
 
 	gl.drawElements(gl.TRIANGLES, mesh.size, gl.UNSIGNED_SHORT, 0);
 
+	angle++;
 }
 
 function mainLoop()
 {
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
-	//drawTexturedCube(cube);
-	drawMesh(meshes[0]);
+	drawTexturedCube(cube);
+	//drawMesh(meshes[0]);
 	//drawMesh(meshes[1]);
 	//drawMesh(meshes[2]);
 
@@ -185,7 +186,6 @@ function mainLoop()
 function start()
 {
 	init();
-
 
 	mainLoop();
 }
