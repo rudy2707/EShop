@@ -37,7 +37,7 @@ function initShader(shaderName)
 	return shaderProgram;
 }
 
-
+var cube;
 function init()
 {
 	canvas = document.getElementById('webgl');
@@ -50,6 +50,8 @@ function init()
 	}
 
 	shaders["Color3D"] = initShader("Color3D");
+	shaders["Texture3D"] = initShader("Texture3D");
+
 	textures["test.png"] = initTexture("test.png");
 
 	
@@ -61,7 +63,7 @@ function init()
 	//meshes.push(initMeshFromObj("Xenomorph"));
 	//meshes.push(initCube());
 	//meshes.push(initSphere());
-	meshes.push(initTexturedCube());
+	//cube = initTexturedCube();
 	
 
 	gl.enable(gl.DEPTH_TEST);
@@ -127,10 +129,52 @@ function drawMesh(mesh)
 	angle++;
 }
 
+function drawTexturedCube(mesh)
+{
+	var model = new Matrix4();
+	var view = new Matrix4();
+	var projection = new Matrix4(); 
+
+	view.setLookAt(5, 2, 0, 0, 0, 0, 0, 1, 0);
+	projection.setPerspective(95, canvas.width / canvas.height, 1, 100);
+	
+	model.setRotate(angle, 0, 1, 0);
+
+	gl.useProgram(shaders["Texture3D"]);
+
+	sendMat4(shaders["Texture3D"], "model", model);
+	sendMat4(shaders["Texture3D"], "view", view);
+	sendMat4(shaders["Texture3D"], "projection", projection);
+
+	var samplerUniform = gl.getUniformLocation(shaders["Texture3D"], "uSampler");
+	console.log(samplerUniform);
+
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
+	var in_Vertex = gl.getAttribLocation(shaders["Texture3D"], "aVertexPosition");
+	gl.enableVertexAttribArray(0);
+	gl.vertexAttribPointer(in_Vertex, 3, gl.FLOAT, false, 0, 0);
+
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
+	var in_textureCoordinate = gl.getAttribLocation(shaders["Texture3D"], "aTextureCoord");
+	gl.enableVertexAttribArray(1);
+	gl.vertexAttribPointer(in_textureCoordinate, 2, gl.FLOAT, false, 0, 0);
+
+	gl.activeTexture(gl.TEXTURE0);
+	gl.bindTexture(gl.TEXTURE_2D, textures["test.png"]);
+	gl.uniform1i(samplerUniform, 0);
+	
+
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
+
+	gl.drawElements(gl.TRIANGLES, mesh.size, gl.UNSIGNED_SHORT, 0);
+
+}
+
 function mainLoop()
 {
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
+	//drawTexturedCube(cube);
 	drawMesh(meshes[0]);
 	//drawMesh(meshes[1]);
 	//drawMesh(meshes[2]);

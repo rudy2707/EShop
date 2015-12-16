@@ -231,8 +231,8 @@ function initTexturedCube()
 {
 	var mesh = {};
 
-	mesh.cubeVertexPositionBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.cubeVertexPositionBuffer);
+	mesh.verticesBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
 	var vertices = [
 		// Front face
 		-1.0, -1.0,  1.0,
@@ -271,11 +271,9 @@ function initTexturedCube()
 		-1.0,  1.0, -1.0,
 		];
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-	mesh.cubeVertexPositionBuffer.itemSize = 3;
-	mesh.cubeVertexPositionBuffer.numItems = 24;
 
-	mesh.cubeVertexTextureCoordBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.cubeVertexTextureCoordBuffer);
+	mesh.textureCoordBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.textureCoordBuffer);
 	var textureCoords = [
 		// Front face
 		0.0, 0.0,
@@ -313,13 +311,12 @@ function initTexturedCube()
 		1.0, 1.0,
 		0.0, 1.0,
 		];
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoords), gl.STATIC_DRAW);
-	mesh.cubeVertexTextureCoordBuffer.itemSize = 2;
-	mesh.cubeVertexTextureCoordBuffer.numItems = 24;
 
-	mesh.cubeVertexIndexBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.cubeVertexIndexBuffer);
-	var cubeVertexIndices = [
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoords), gl.STATIC_DRAW);
+
+	mesh.indicesBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
+	var indices = [
 		0, 1, 2,      0, 2, 3,    // Front face
 		4, 5, 6,      4, 6, 7,    // Back face
 		8, 9, 10,     8, 10, 11,  // Top face
@@ -327,11 +324,10 @@ function initTexturedCube()
 		16, 17, 18,   16, 18, 19, // Right face
 		20, 21, 22,   20, 22, 23  // Left face
 	];
-	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeVertexIndices), gl.STATIC_DRAW);
-	mesh.cubeVertexIndexBuffer.itemSize = 1;
-	mesh.cubeVertexIndexBuffer.numItems = 36;
+	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
 	
-	console.log(mesh);
+	mesh.size = indices.length;
 
+	console.log(mesh);
 	return mesh;
 }
