@@ -1,11 +1,11 @@
----
-header-includes:
-    - \usepackage{fancyhdr}
-    - \pagestyle{fancy}
-    - \rhead{27.10.2015}
-    - \lhead{}
-    - \fancyfoot[LE]{\thepage}
----
+# Stories
+* C'est l'histoire d'un utilisateur qui a envie d'aller a la migros qui ne veut pas sortir de chez lui mais qui a une connexion internet.
+* Le client dans le magasin veut ramasser un produit sur une etagere et le mettre dans son panier
+* Le client avec son panier veut pouvoir aller a la caisse et va payer ses courses
+* Le client ne trouve pas le produit qu'il cherche et demande a un employe du magasin de l'aider
+* Le client n'est pas content avec un de ses articles dans le panier et souhaite le retirer
+* Le client va voir dans le rayon d'a cote les produits proposes
+
 
 # Cas d'utilisation
 
@@ -38,34 +38,6 @@ Les produits doivent être référencés.
 **Exception**
 
 1. Il n'y a pas de produit disponible.
-
-
----
-
-**Cas d'utilisation**
-
-Authentification
-
-**Acteurs**
-
-Le client
-
-**But**
-
-Permettre au client de s'authentifier sur le site web.
-
-**Résumé Métier**
-
-Le client doit pouvoir être identifié pour pouvoir acheter des produits.
-
-**Scénario Nominal**
-
-**Scénario Alternatif**
-
-1. Le client n'a pas de compte utilisateur.
-2. Information de connexion erronée.
-
-**Exception**
 
 
 ---
@@ -134,5 +106,3 @@ Les produits doivent être disponibles.
 
 
 ---
-
-
