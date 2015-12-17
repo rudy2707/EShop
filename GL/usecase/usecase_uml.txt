@@ -1,0 +1,6 @@
+[Client]-(Achat de produits)
+(Achat de produits)<(Selection de produits)
+(Selection de produits)<(Visualisation de produits)
+[Visiteur]-(Selection de produits)
+[Visiteur]^[Client]
+
