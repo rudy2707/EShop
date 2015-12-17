@@ -89,6 +89,7 @@ function initSphere()
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
 
+	mesh.shaderName = "Color3D";
 	mesh.size = indices.length;
 
 	return mesh;
@@ -215,6 +216,7 @@ function initCube()
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
 
+	mesh.shaderName = "Color3D";
 	mesh.size = 36;
 
 	console.log(vertices.length);
@@ -268,8 +270,8 @@ function initTexturedCube()
 		-1.0, -1.0, -1.0,
 		-1.0, -1.0,  1.0,
 		-1.0,  1.0,  1.0,
-		-1.0,  1.0, -1.0,
-		];
+		-1.0,  1.0, -1.0
+			];
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
 	mesh.textureCoordBuffer = gl.createBuffer();
@@ -314,6 +316,46 @@ function initTexturedCube()
 
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoords), gl.STATIC_DRAW);
 
+
+	var normals = [	0, 0, 1,
+	0, 0, 1,
+	0, 0, 1,
+	0, 0, 1,
+
+	0, 0, -1,
+	0, 0, -1,
+	0, 0, -1,
+	0, 0, -1,
+
+	0, 1, 0,
+	0, 1, 0,
+	0, 1, 0,
+	0, 1, 0,
+
+	0, -1, 0,
+	0, -1, 0,
+	0, -1, 0,
+	0, -1, 0,
+
+	1, 0, 0,
+	1, 0, 0,
+	1, 0, 0,
+	1, 0, 0,
+
+	-1, 0, 0,
+	-1, 0, 0,
+	-1, 0, 0,
+	-1, 0, 0
+		];
+
+	mesh.verticesBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+
+	mesh.normalsBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normalsBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
+
 	mesh.indicesBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
 	var indices = [
@@ -326,8 +368,9 @@ function initTexturedCube()
 	];
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
 	
+	mesh.shaderName = "Texture3D";
+	mesh.textureName = "test.png";
 	mesh.size = indices.length;
 
-	console.log(mesh);
 	return mesh;
 }

@@ -8,6 +8,8 @@ function getMaterials(meshName)
 	var materials = [];
 	var currentName;
 
+	materials["(null)"] = {Kd:[0.5, 0.5, 0.5, 1.0]};
+
 	for(var i = 0; i < mtlFileLines.length; i++)
 	{
 		if(unhandledPatterns.exec(mtlFileLines[i]) == null)
@@ -69,8 +71,7 @@ function getMaterials(meshName)
 			else if(line[0] == "map_Kd")
 			{
 				textures[line[1]] = initTexture(line[1]);
-				console.log(textures);
-				materials[currentName].texture = line[1];
+				materials[currentName].textureName = line[1];
 			}
 			else
 			{
@@ -78,8 +79,6 @@ function getMaterials(meshName)
 			}
 		}
 	}
-
-	console.log(materials);
 
 	// materials[Name : {Ns, Ka, Kd, Ks, Ke, Ni, d, illum, map_Kd}]
 	return materials;
@@ -136,6 +135,7 @@ function initMeshFromObj(meshName)
 			else if(line[0] == "usemtl")
 			{
 				currentMaterial = materials[line[1]];
+
 			}
 			else if(line[0] == "f")
 			{
@@ -241,6 +241,14 @@ function initMeshFromObj(meshName)
 			UVs.push(tmpUVs[iUVs[i]][0]);
 			UVs.push(tmpUVs[iUVs[i]][1]);
 		}
+
+		mesh.shaderName = "Texture3D";
+		mesh.textureName = materials.textureName;
+		console.log(materials)
+	}
+	else
+	{
+		mesh.shaderName = "Color3D";
 	}
 
 	mesh.verticesBuffer = gl.createBuffer();
@@ -258,6 +266,7 @@ function initMeshFromObj(meshName)
 	mesh.indicesBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+
 
 	mesh.size = indices.length;
 
