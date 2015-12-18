@@ -4,6 +4,8 @@ varying vec3 fragVertex;
 varying vec2 fragTextureCoord;
 varying vec3 fragNormal;
 
+varying vec4 fragColor; //Test
+
 varying mat4 fragModel;
 
 uniform sampler2D uSampler;
@@ -14,7 +16,9 @@ void main()
 	vec3 lightColor = vec3(1.0, 1.0, 1.0);
 	float lightStrength = 100.0;
 
-	vec4 surfaceColor = texture2D(uSampler, fragTextureCoord);
+	vec4 surfaceColor = texture2D(uSampler, fragTextureCoord) + 0.1 * fragColor;    //Test
+	surfaceColor += vec4(0.5, 0.5, 0.5, 1.0);
+	//vec4 surfaceColor = texture2D(uSampler, fragTextureCoord);
 
 	vec3 normal = normalize(mat3(fragModel) * fragNormal);
 	vec3 surfacePosition = vec3(fragModel * vec4(fragVertex, 1.0));

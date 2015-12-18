@@ -1,6 +1,5 @@
 function sendMat4(shaderProgram, name, matrix)
 {
-	//console.log(shaderProgram, name, matrix);
 	var location = gl.getUniformLocation(shaderProgram, name);
 	if(!location)
 	{
@@ -30,7 +29,6 @@ function drawMesh(mesh)
 	model.transpose();*/
 
 	gl.useProgram(shaders[mesh.shaderName]);
-	//console.log(mesh.shaderName);
 
 	sendMat4(shaders[mesh.shaderName], "model", model);
 	sendMat4(shaders[mesh.shaderName], "view", view);
@@ -43,8 +41,6 @@ function drawMesh(mesh)
 		gl.enableVertexAttribArray(in_Vertex);
 		gl.vertexAttribPointer(in_Vertex, 3, gl.FLOAT, false, 0, 0);
 	}
-	else
-		console.log("vert")
 
 	var in_Normal = gl.getAttribLocation(shaders[mesh.shaderName], "in_Normal");
 	if(in_Normal >= 0)
@@ -75,12 +71,14 @@ function drawMesh(mesh)
 		gl.bindTexture(gl.TEXTURE_2D, textures["test.png"]);
 		gl.uniform1i(samplerUniform, 0);
 	}
+
+	/*console.log(in_Vertex + "ver");
+	console.log(in_Normal + "nor");
+	console.log(in_Color + "col");
+	console.log(in_TextureCoord + "tex");*/
 	
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
-
 	gl.drawElements(gl.TRIANGLES, mesh.size, gl.UNSIGNED_SHORT, 0);
-
-	angle++;
 }
 
 
@@ -89,8 +87,8 @@ function mainLoop()
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
 	drawMesh(meshes[0]);
-	drawMesh(meshes[1]);
-	//drawMesh(meshes[2]);
+
+	angle++;
 
 	requestAnimationFrame(mainLoop);
 }
@@ -103,20 +101,14 @@ function start()
 	shaders["Texture3D"] = initShader("Texture3D");
 
 	textures["test.png"] = initTexture("test.png");
-	//initTexture("icon.jpg");
-
-
 
 	//meshes.push(initMeshFromObj("Cube"));
 	//meshes.push(initMeshFromObj("BananaGroup"));
 	//meshes.push(initMeshFromObj("Suzanne"));
-	meshes.push(initMeshFromObj("Peperoni"));
-	//meshes.push(initMeshFromObj("TexturedCube"));
+	//meshes.push(initMeshFromObj("Peperoni"));
+	meshes.push(initMeshFromObj("TexturedCube"));
 	//meshes.push(initMeshFromObj("Xenomorph"));
-	//meshes.push(initCube());
-	//meshes.push(initSphere());
-	//cube = initTexturedCube();
-	meshes.push(initTexturedCube());
+	//meshes.push(initTexturedCube());
 
 	mainLoop();
 }

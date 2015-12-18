@@ -190,9 +190,9 @@ function initMeshFromObj(meshName)
 
 					if(tmpUVs.length > 0)
 					{
-						ui0 = (!isNan(parseInt(v0[1]))) ? parseInt(v0[1]) - 1 : 0;
-						ui1 = (!isNan(parseInt(v1[1]))) ? parseInt(v1[1]) - 1 : 0;
-						ui2 = (!isNan(parseInt(v2[1]))) ? parseInt(v2[1]) - 1 : 0;
+						ui0 = (!isNaN(parseInt(v0[1]))) ? parseInt(v0[1]) - 1 : 0;
+						ui1 = (!isNaN(parseInt(v1[1]))) ? parseInt(v1[1]) - 1 : 0;
+						ui2 = (!isNaN(parseInt(v2[1]))) ? parseInt(v2[1]) - 1 : 0;
 						iUVs.push(ui0, ui1, ui2);
 					}
 
@@ -235,7 +235,7 @@ function initMeshFromObj(meshName)
 
 	if(iUVs.length > 0)
 	{
-		console.log(iUVs.length)
+		//console.log(iUVs.length)
 		for(var i = 0; i < iUVs.length; i++)
 		{
 			UVs.push(tmpUVs[iUVs[i]][0]);
@@ -251,6 +251,13 @@ function initMeshFromObj(meshName)
 		mesh.shaderName = "Color3D";
 	}
 
+	console.log(vertices);
+	console.log(colors);
+	console.log(UVs.length);
+	console.log(normals);
+	console.log(indices);
+
+
 	mesh.verticesBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
@@ -258,6 +265,10 @@ function initMeshFromObj(meshName)
 	mesh.colorsBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.colorsBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+
+	mesh.textureCoordBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.textureCoordBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(UVs), gl.STATIC_DRAW);
 
 	mesh.normalsBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normalsBuffer);

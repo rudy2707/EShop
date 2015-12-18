@@ -173,7 +173,11 @@ function initCube()
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
-		var colors = [
+	mesh.normalsBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normalsBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
+
+	var colors = [
 		[1.0,  1.0,  1.0,  1.0],    // Front face: white
 		[1.0,  0.0,  0.0,  1.0],    // Back face: red
 		[0.0,  1.0,  0.0,  1.0],    // Top face: green
@@ -193,11 +197,6 @@ function initCube()
 			generatedColors = generatedColors.concat(c);
 		}
 	}
-
-	mesh.normalsBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normalsBuffer);
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
-
 
 	mesh.colorsBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.colorsBuffer);
@@ -347,6 +346,31 @@ function initTexturedCube()
 	-1, 0, 0,
 	-1, 0, 0
 		];
+
+	var colors = [
+		[1.0,  1.0,  1.0,  1.0],    // Front face: white
+		[1.0,  0.0,  0.0,  1.0],    // Back face: red
+		[0.0,  1.0,  0.0,  1.0],    // Top face: green
+		[0.0,  0.0,  1.0,  1.0],    // Bottom face: blue
+		[1.0,  1.0,  0.0,  1.0],    // Right face: yellow
+		[1.0,  0.0,  1.0,  1.0]     // Left face: purple
+	];
+
+	var generatedColors = [];
+
+	for(j = 0; j < 6; j++)
+	{
+		var c = colors[j];
+
+		for (var i = 0; i < 4; i++)
+		{
+			generatedColors = generatedColors.concat(c);
+		}
+	}
+
+	mesh.colorsBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.colorsBuffer);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(generatedColors), gl.STATIC_DRAW);
 
 	mesh.verticesBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
