@@ -1,6 +1,3 @@
-# 
-# 
-
 newmtl alienbody
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
@@ -9,7 +6,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Xenomorph_D.tga
+#map_Kd Xenomorph_D.tga
+map_Kd test.png
 
 newmtl alienhead
 Ns 96.078431
@@ -19,7 +17,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Xenomorph_D.tga
+#map_Kd Xenomorph_D.tga
+map_Kd test.png
 
 newmtl alienjaw
 Ns 96.078431
@@ -29,7 +28,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Xenomorph_D.tga
+#map_Kd Xenomorph_D.tga
+map_Kd test.png
 
 newmtl alienteeth
 Ns 96.078431
@@ -39,4 +39,5 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd Xenomorph_D.tga
+#map_Kd Xenomorph_D.tga
+map_Kd test.png

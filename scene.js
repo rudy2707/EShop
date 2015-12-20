@@ -17,7 +17,7 @@ function drawMesh(mesh)
 	var view = new Matrix4();
 	var projection = new Matrix4(); 
 
-	view.setLookAt(5, 2, 0, 0, 0, 0, 0, 1, 0);
+	view.setLookAt(3, 3, 0, 0, 3, 0, 0, 1, 0);
 	projection.setPerspective(95, canvas.width / canvas.height, 1, 100);
 	
 	model.setRotate(angle, 0, 1, 0);
@@ -72,13 +72,16 @@ function drawMesh(mesh)
 		gl.uniform1i(samplerUniform, 0);
 	}
 
-	/*console.log(in_Vertex + "ver");
-	console.log(in_Normal + "nor");
-	console.log(in_Color + "col");
-	console.log(in_TextureCoord + "tex");*/
 	
-	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
-	gl.drawElements(gl.TRIANGLES, mesh.size, gl.UNSIGNED_SHORT, 0);
+	if(typeof mesh.indicesBuffer !== "undefined")
+	{
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
+		gl.drawElements(gl.TRIANGLES, mesh.size, gl.UNSIGNED_SHORT, 0);
+	}
+	else
+	{
+		gl.drawArrays(gl.TRIANGLES, 0, mesh.size);
+	}
 }
 
 
@@ -106,8 +109,8 @@ function start()
 	//meshes.push(initMeshFromObj("BananaGroup"));
 	//meshes.push(initMeshFromObj("Suzanne"));
 	//meshes.push(initMeshFromObj("Peperoni"));
-	meshes.push(initMeshFromObj("TexturedCube"));
-	//meshes.push(initMeshFromObj("Xenomorph"));
+	//meshes.push(initMeshFromObj("TexturedCube"));
+	meshes.push(initMeshFromObj("Xenomorph"));
 	//meshes.push(initTexturedCube());
 
 	mainLoop();

@@ -87,6 +87,7 @@ function getMaterials(meshName)
 function initMeshFromObj(meshName)
 {
 	var mesh = {};
+	mesh.size = 0;
 
 	var objFileName = "Meshes/" + meshName + ".obj";
 	var objFileLines = getFileContent(objFileName).split("\n");
@@ -105,7 +106,7 @@ function initMeshFromObj(meshName)
 	var colors = [];
 	var UVs = [];
 	var normals = [];
-	var indices = [];
+	//var indices = [];
 
 	var currentMaterial = {};
 	
@@ -223,7 +224,8 @@ function initMeshFromObj(meshName)
 		vertices.push(tmpVertices[iVertices[i]][0]);
 		vertices.push(tmpVertices[iVertices[i]][1]);
 		vertices.push(tmpVertices[iVertices[i]][2]);
-		indices.push(i);
+		//indices.push(i);
+		mesh.size++;
 	}
 
 	for(var i = 0; i < iNormals.length; i++)
@@ -251,13 +253,6 @@ function initMeshFromObj(meshName)
 		mesh.shaderName = "Color3D";
 	}
 
-	console.log(vertices);
-	console.log(colors);
-	console.log(UVs.length);
-	console.log(normals);
-	console.log(indices);
-
-
 	mesh.verticesBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
@@ -274,12 +269,13 @@ function initMeshFromObj(meshName)
 	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normalsBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
 
-	mesh.indicesBuffer = gl.createBuffer();
+	/*mesh.indicesBuffer = gl.createBuffer();
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+	console.log(new Uint16Array(indices));*/
 
 
-	mesh.size = indices.length;
+	//mesh.size = indices.length;
 
 	return mesh;
 } 
