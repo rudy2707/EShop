@@ -71,7 +71,7 @@ function getMaterials(meshName)
 			else if(line[0] == "map_Kd")
 			{
 				textures[line[1]] = initTexture(line[1]);
-				materials[currentName].textureName = line[1];
+				materials.textureName = line[1];
 			}
 			else
 			{
@@ -81,6 +81,7 @@ function getMaterials(meshName)
 	}
 
 	// materials[Name : {Ns, Ka, Kd, Ks, Ke, Ni, d, illum, map_Kd}]
+	console.log(materials)
 	return materials;
 }
 

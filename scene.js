@@ -10,14 +10,20 @@ function sendMat4(shaderProgram, name, matrix)
 	gl.uniformMatrix4fv(location, false, matrix.elements);
 }
 
+//var tex1 = initTexture("Wood.jpg");
+//var tex2 = initTexture("Skybox.png");
+
 var angle = 0;
 function drawMesh(mesh)
 {
 	var model = new Matrix4();
 	var view = new Matrix4();
-	var projection = new Matrix4(); 
+	var projection = new Matrix4();
+	
+	var tex1 = initTexture("Wood.jpg");
+	//var tex2 = initTexture("Skybox.png");
 
-	view.setLookAt(3, 3, 0, 0, 3, 0, 0, 1, 0);
+	view.setLookAt(3, 3, 0, 0, 0, 0, 0, 1, 0);
 	projection.setPerspective(95, canvas.width / canvas.height, 1, 100);
 	
 	model.setRotate(angle, 0, 1, 0);
@@ -68,7 +74,10 @@ function drawMesh(mesh)
 		gl.vertexAttribPointer(in_TextureCoord, 2, gl.FLOAT, false, 0, 0);
 
 		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, textures["test.png"]);
+		gl.bindTexture(gl.TEXTURE_2D, textures["Skybox.png"]);
+		//gl.bindTexture(gl.TEXTURE_2D, textures[mesh.textureName]);
+		//gl.bindTexture(gl.TEXTURE_2D, tex1);
+		//gl.bindTexture(gl.TEXTURE_2D, lala2);
 		gl.uniform1i(samplerUniform, 0);
 	}
 
@@ -82,6 +91,8 @@ function drawMesh(mesh)
 	{
 		gl.drawArrays(gl.TRIANGLES, 0, mesh.size);
 	}
+	
+	//gl.bindTexture(gl.TEXTURE_2D, null);
 }
 
 
@@ -89,7 +100,9 @@ function mainLoop()
 {
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
-	drawMesh(meshes[0]);
+
+	if(meshes.length > 0)
+		drawMesh(meshes[0]);
 
 	angle++;
 
@@ -100,18 +113,26 @@ function start()
 {
 	init();
 
-	shaders["Color3D"] = initShader("Color3D");
+	//shaders["Color3D"] = initShader("Color3D");
+
+	shaders["Skybox"] = initShader("Skybox");
 	shaders["Texture3D"] = initShader("Texture3D");
 
-	textures["test.png"] = initTexture("test.png");
+	console.log(textures)
 
-	//meshes.push(initMeshFromObj("Cube"));
-	//meshes.push(initMeshFromObj("BananaGroup"));
-	//meshes.push(initMeshFromObj("Suzanne"));
+	//textures["Skybox.png"] = initTexture("Skybox.png");
+	//textures["Wood.jpg"] = initTexture("Wood.jpg");
+
+	//console.log(textures);
+
 	//meshes.push(initMeshFromObj("Peperoni"));
 	//meshes.push(initMeshFromObj("TexturedCube"));
 	meshes.push(initMeshFromObj("Xenomorph"));
+	//meshes.push(initMeshFromObj("Spot"));
 	//meshes.push(initTexturedCube());
+	//meshes.push(Skybox(36, 36));
+	
+	var shelf = new Shelf(10, 3);
 
 	mainLoop();
 }
