@@ -20,7 +20,6 @@ function drawMesh(mesh)
 	var view = new Matrix4();
 	var projection = new Matrix4();
 	
-	var tex1 = initTexture("Wood.jpg");
 	//var tex2 = initTexture("Skybox.png");
 
 	view.setLookAt(3, 3, 0, 0, 0, 0, 0, 1, 0);
@@ -74,10 +73,7 @@ function drawMesh(mesh)
 		gl.vertexAttribPointer(in_TextureCoord, 2, gl.FLOAT, false, 0, 0);
 
 		gl.activeTexture(gl.TEXTURE0);
-		gl.bindTexture(gl.TEXTURE_2D, textures["Skybox.png"]);
-		//gl.bindTexture(gl.TEXTURE_2D, textures[mesh.textureName]);
-		//gl.bindTexture(gl.TEXTURE_2D, tex1);
-		//gl.bindTexture(gl.TEXTURE_2D, lala2);
+		gl.bindTexture(gl.TEXTURE_2D, textures[mesh.textureName].glTex);
 		gl.uniform1i(samplerUniform, 0);
 	}
 
@@ -109,6 +105,8 @@ function mainLoop()
 	requestAnimationFrame(mainLoop);
 }
 
+var tex1;
+var tex2;
 function start()
 {
 	init();
@@ -117,6 +115,7 @@ function start()
 
 	shaders["Skybox"] = initShader("Skybox");
 	shaders["Texture3D"] = initShader("Texture3D");
+	textures["Wood.jpg"] = initTexture("Wood.jpg");
 
 	console.log(textures)
 
@@ -127,10 +126,10 @@ function start()
 
 	//meshes.push(initMeshFromObj("Peperoni"));
 	//meshes.push(initMeshFromObj("TexturedCube"));
-	meshes.push(initMeshFromObj("Xenomorph"));
+	//meshes.push(initMeshFromObj("Xenomorph"));
 	//meshes.push(initMeshFromObj("Spot"));
 	//meshes.push(initTexturedCube());
-	//meshes.push(Skybox(36, 36));
+	meshes.push(Skybox(36, 36));
 	
 	var shelf = new Shelf(10, 3);
 

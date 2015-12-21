@@ -6,7 +6,7 @@ function Skybox(slices, stacks)
 
 	var mesh = {};
 
-	//textures.push(initTexture("Skybox.png"));
+	textures["Skybox.png"] = initTexture("Skybox.png");
 	mesh.textureName = "Skybox.png";
 	mesh.shaderName = "Skybox";
 
