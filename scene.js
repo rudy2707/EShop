@@ -22,8 +22,8 @@ function drawMesh(mesh)
 	
 	//var tex2 = initTexture("Skybox.png");
 
-	view.setLookAt(3, 3, 0, 0, 0, 0, 0, 1, 0);
-	projection.setPerspective(95, canvas.width / canvas.height, 1, 100);
+	view.setLookAt(5, 0, 0, 0, 0, 1, 0, 1, 0);
+	projection.setPerspective(70, canvas.width / canvas.height, 1, 100);
 	
 	model.setRotate(angle, 0, 1, 0);
 
@@ -87,8 +87,6 @@ function drawMesh(mesh)
 	{
 		gl.drawArrays(gl.TRIANGLES, 0, mesh.size);
 	}
-	
-	//gl.bindTexture(gl.TEXTURE_2D, null);
 }
 
 
@@ -96,41 +94,38 @@ function mainLoop()
 {
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
+	var view = new Matrix4();
+	var projection = new Matrix4();
 
-	if(meshes.length > 0)
-		drawMesh(meshes[0]);
+	view.setLookAt(5, 0, 0, 0, 0, 1, 0, 1, 0);
+	projection.setPerspective(70, canvas.width / canvas.height, 1, 100);
 
-	angle++;
+	skybox.draw(projection, view);
+
+
+	drawMesh(meshes[0]);
+
+	angle += 0.1;
 
 	requestAnimationFrame(mainLoop);
 }
 
-var tex1;
-var tex2;
+var skybox;
 function start()
 {
 	init();
 
-	//shaders["Color3D"] = initShader("Color3D");
-
+	shaders["Color3D"] = initShader("Color3D");
 	shaders["Skybox"] = initShader("Skybox");
 	shaders["Texture3D"] = initShader("Texture3D");
-	textures["Wood.jpg"] = initTexture("Wood.jpg");
-
-	console.log(textures)
-
-	//textures["Skybox.png"] = initTexture("Skybox.png");
-	//textures["Wood.jpg"] = initTexture("Wood.jpg");
-
-	//console.log(textures);
 
 	//meshes.push(initMeshFromObj("Peperoni"));
 	//meshes.push(initMeshFromObj("TexturedCube"));
 	//meshes.push(initMeshFromObj("Xenomorph"));
-	//meshes.push(initMeshFromObj("Spot"));
+	meshes.push(initMeshFromObj("Spot"));
 	//meshes.push(initTexturedCube());
-	meshes.push(Skybox(36, 36));
-	
+
+	skybox = new Skybox(36, 36);
 	var shelf = new Shelf(10, 3);
 
 	mainLoop();

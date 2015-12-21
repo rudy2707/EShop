@@ -7,8 +7,8 @@ function Skybox(slices, stacks)
 	var mesh = {};
 
 	textures["Skybox.png"] = initTexture("Skybox.png");
-	mesh.textureName = "Skybox.png";
-	mesh.shaderName = "Skybox";
+	this.textureName = "Skybox.png";
+	this.shaderName = "Skybox";
 
 	var vector = new Vector3();
 
@@ -21,9 +21,9 @@ function Skybox(slices, stacks)
 			var phi = (j / stacks) * Math.PI;
 			var theta = (i / slices) * 2 * Math.PI;
 
-			var x = Math.sin(phi) * Math.cos(theta);
-			var y = -Math.cos(phi);
-			var z = Math.sin(phi) * Math.sin(theta);
+			var x = Math.sin(phi) * Math.cos(theta) * 5;
+			var y = -Math.cos(phi) * 5;
+			var z = Math.sin(phi) * Math.sin(theta) * 5;
 
 			vector.elements = [x, y, z];
 			vector.normalize();
@@ -33,7 +33,7 @@ function Skybox(slices, stacks)
 			vertices.push(z);
 
 			uvs.push(i / slices);
-			uvs.push(-j / stacks);
+			uvs.push(j / stacks);
 		}
 	}
 
@@ -56,21 +56,62 @@ function Skybox(slices, stacks)
 		}
 	}
 
-	mesh.textureCoordBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.textureCoordBuffer);
+	this.textureCoordBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, this.textureCoordBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(uvs), gl.STATIC_DRAW);
-	
-	mesh.verticesBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
+
+	this.verticesBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, this.verticesBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
-	mesh.indicesBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
+	this.indicesBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indicesBuffer);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
 
-	mesh.size = indices.length;
+	this.size = indices.length;
 
-	return mesh;
+
+	this.draw = function(projection, view)
+	{
+		var model = new Matrix4();
+	
+		model.setRotate(angle, 0, 1, 0);
+
+		gl.useProgram(shaders[this.shaderName]);
+		sendMat4(shaders[this.shaderName], "model", model);
+		sendMat4(shaders[this.shaderName], "view", view);
+		sendMat4(shaders[this.shaderName], "projection", projection);
+
+		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName], "in_Vertex");
+		if(in_Vertex >= 0)
+		{
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.verticesBuffer);
+			gl.enableVertexAttribArray(in_Vertex);
+			gl.vertexAttribPointer(in_Vertex, 3, gl.FLOAT, false, 0, 0);
+		}
+
+
+		var in_TextureCoord = gl.getAttribLocation(shaders[this.shaderName], "in_TextureCoord");
+		if(in_TextureCoord >=0)
+		{
+			var samplerUniform = gl.getUniformLocation(shaders[this.shaderName], "uSampler");
+
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.textureCoordBuffer);
+			gl.enableVertexAttribArray(in_TextureCoord);
+			gl.vertexAttribPointer(in_TextureCoord, 2, gl.FLOAT, false, 0, 0);
+
+			gl.activeTexture(gl.TEXTURE0);
+			gl.bindTexture(gl.TEXTURE_2D, textures[this.textureName].glTex);
+			gl.uniform1i(samplerUniform, 0);
+		}
+
+
+		if(typeof this.indicesBuffer !== "undefined")
+		{
+			gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indicesBuffer);
+			gl.drawElements(gl.TRIANGLES, this.size, gl.UNSIGNED_SHORT, 0);
+		}
+	}
 }
 
 
