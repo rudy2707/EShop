@@ -4,7 +4,7 @@ function getMaterials(meshName)
 {
 	var mtlFileName = "Meshes/" + meshName;
 	var mtlFileLines = getFileContent(mtlFileName).split("\n");
-	
+
 	var materials = [];
 	var currentName;
 
@@ -82,13 +82,12 @@ function getMaterials(meshName)
 
 	// materials[Name : {Ns, Ka, Kd, Ks, Ke, Ni, d, illum, map_Kd}]
 	console.log(materials)
-	return materials;
+		return materials;
 }
 
 function initMeshFromObj(meshName)
 {
-	var mesh = {};
-	mesh.size = 0;
+	this.size = 0;
 
 	var objFileName = "Meshes/" + meshName + ".obj";
 	var objFileLines = getFileContent(objFileName).split("\n");
@@ -102,18 +101,17 @@ function initMeshFromObj(meshName)
 	var iVertices = [];
 	var iUVs = [];
 	var iNormals = [];
-	
+
 	var vertices = [];
 	var colors = [];
 	var UVs = [];
 	var normals = [];
-	//var indices = [];
 
 	var currentMaterial = {};
-	
+
 	for(var i = 0; i < objFileLines.length; i++)
 	{
-		
+
 		if(unhandledPatterns.exec(objFileLines[i]) == null)
 		{
 			var line = objFileLines[i].split(" ");
@@ -166,7 +164,6 @@ function initMeshFromObj(meshName)
 						iUVs.push(ui0, ui1, ui2, ui0, ui3, ui2);
 					}
 
-
 					ni0 = parseInt(v0[2]) - 1;
 					ni1 = parseInt(v1[2]) - 1;
 					ni2 = parseInt(v2[2]) - 1;
@@ -174,7 +171,7 @@ function initMeshFromObj(meshName)
 
 					iVertices.push(vi0, vi1, vi2, vi0, vi3, vi2);
 					iNormals.push(ni0, ni1, ni2, ni0, ni3, ni2);
-					
+
 					for(var j = 0; j < 6; j++)
 					{
 						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.Kd[3]);
@@ -216,17 +213,15 @@ function initMeshFromObj(meshName)
 				console.log("Warning : unhandled parameter : \"" + line[0] + "\" in file \"" + meshName + ".obj\" on line " + parseInt(i + 1));
 			}
 		}
-
 	}
 
-	
+
 	for(var i = 0; i < iVertices.length; i++)
 	{
 		vertices.push(tmpVertices[iVertices[i]][0]);
 		vertices.push(tmpVertices[iVertices[i]][1]);
 		vertices.push(tmpVertices[iVertices[i]][2]);
-		//indices.push(i);
-		mesh.size++;
+		this.size++;
 	}
 
 	for(var i = 0; i < iNormals.length; i++)
@@ -238,45 +233,94 @@ function initMeshFromObj(meshName)
 
 	if(iUVs.length > 0)
 	{
-		//console.log(iUVs.length)
 		for(var i = 0; i < iUVs.length; i++)
 		{
 			UVs.push(tmpUVs[iUVs[i]][0]);
 			UVs.push(tmpUVs[iUVs[i]][1]);
 		}
 
-		mesh.shaderName = "Texture3D";
-		mesh.textureName = materials.textureName;
-		console.log(materials)
+		this.shaderName = "Texture3D";
+		this.textureName = materials.textureName;
 	}
 	else
 	{
-		mesh.shaderName = "Color3D";
+		this.shaderName = "Color3D";
 	}
 
-	mesh.verticesBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.verticesBuffer);
+	this.verticesBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, this.verticesBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
-	mesh.colorsBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.colorsBuffer);
+	this.colorsBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, this.colorsBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
 
-	mesh.textureCoordBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.textureCoordBuffer);
+	this.textureCoordBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, this.textureCoordBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(UVs), gl.STATIC_DRAW);
 
-	mesh.normalsBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, mesh.normalsBuffer);
+	this.normalsBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, this.normalsBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
 
-	/*mesh.indicesBuffer = gl.createBuffer();
-	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, mesh.indicesBuffer);
-	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
-	console.log(new Uint16Array(indices));*/
 
 
-	//mesh.size = indices.length;
+	this.draw = function(projection, view)
+	{
+		var model = new Matrix4();
 
-	return mesh;
+		model.setRotate(angle, 0, 1, 0);
+
+		/*if(angle %2)
+		  model.translate(3.0, 0.0, 0.0);*/
+
+		/*model.invert();
+		  model.transpose();*/
+
+		gl.useProgram(shaders[this.shaderName]);
+
+		sendMat4(shaders[this.shaderName], "model", model);
+		sendMat4(shaders[this.shaderName], "view", view);
+		sendMat4(shaders[this.shaderName], "projection", projection);
+
+		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName], "in_Vertex");
+		if(in_Vertex >= 0)
+		{
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.verticesBuffer);
+			gl.enableVertexAttribArray(in_Vertex);
+			gl.vertexAttribPointer(in_Vertex, 3, gl.FLOAT, false, 0, 0);
+		}
+
+		var in_Normal = gl.getAttribLocation(shaders[this.shaderName], "in_Normal");
+		if(in_Normal >= 0)
+		{	
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.normalsBuffer);
+			gl.enableVertexAttribArray(in_Normal);
+			gl.vertexAttribPointer(in_Normal, 3, gl.FLOAT, false, 0, 0);
+		}
+
+		var in_Color = gl.getAttribLocation(shaders[this.shaderName], "in_Color");
+		if(in_Color >= 0)
+		{
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.colorsBuffer);
+			gl.enableVertexAttribArray(in_Color);
+			gl.vertexAttribPointer(in_Color, 4, gl.FLOAT, false, 0, 0);
+		}
+
+		var in_TextureCoord = gl.getAttribLocation(shaders[this.shaderName], "in_TextureCoord");
+		if(in_TextureCoord >=0)
+		{
+			var samplerUniform = gl.getUniformLocation(shaders[this.shaderName], "uSampler");
+
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.textureCoordBuffer);
+			gl.enableVertexAttribArray(in_TextureCoord);
+			gl.vertexAttribPointer(in_TextureCoord, 2, gl.FLOAT, false, 0, 0);
+
+			gl.activeTexture(gl.TEXTURE0);
+			gl.bindTexture(gl.TEXTURE_2D, textures[this.textureName].glTex);
+			gl.uniform1i(samplerUniform, 0);
+		}
+
+		gl.drawArrays(gl.TRIANGLES, 0, this.size);
+	}
 } 
