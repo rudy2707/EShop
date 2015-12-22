@@ -20,7 +20,7 @@ function mainLoop()
 	var view = new Matrix4();
 	var projection = new Matrix4();
 
-	view.setLookAt(3, 0, 0, 0, 0, 0, 0, 1, 0);
+	view.setLookAt(0, 3, 15, 0, 0, 0, 0, 1, 0);
 	projection.setPerspective(70, canvas.width / canvas.height, 1, 100);
 
 	gl.depthMask(false);
@@ -30,8 +30,7 @@ function mainLoop()
 	gl.depthMask(true);
 
 
-	spot.draw(projection, view);
-
+	shelf.draw(projection, view);
 
 	angle += 0.1;
 
@@ -39,7 +38,7 @@ function mainLoop()
 }
 
 var skybox;
-var spot;
+var shelf;
 function start()
 {
 	init();
@@ -51,13 +50,12 @@ function start()
 	//meshes.push(initMeshFromObj("Peperoni"));
 	//meshes.push(initMeshFromObj("TexturedCube"));
 	//meshes.push(initMeshFromObj("Xenomorph"));
-	meshes.push(initMeshFromObj("Spot"));
 	//meshes.push(initTexturedCube());
 
-	spot = new initMeshFromObj("Spot");
+	meshes["spot"] = new initMeshFromObj("Spot");
 
 	skybox = new Skybox(36, 36);
-	var shelf = new Shelf(10, 3);
+	shelf = new Shelf(10, 3, [5, 5, 5]);
 
 	mainLoop();
 }

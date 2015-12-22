@@ -75,7 +75,9 @@ function Skybox(slices, stacks)
 	{
 		var model = new Matrix4();
 	
+		model.translate(0, -3, -15);
 		model.setRotate(angle, 0, 1, 0);
+
 
 		gl.useProgram(shaders[this.shaderName]);
 		sendMat4(shaders[this.shaderName], "model", model);

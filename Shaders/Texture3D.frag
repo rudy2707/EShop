@@ -12,9 +12,9 @@ uniform sampler2D uSampler;
 
 void main()
 {
-	vec3 lightPosition = vec3(10, 10, 10);
+	vec3 lightPosition = vec3(2, 5, 5);
 	vec3 lightColor = vec3(1.0, 1.0, 1.0);
-	float lightStrength = 1000.0;
+	float lightStrength = 10.0;
 
 	vec4 surfaceColor = texture2D(uSampler, fragTextureCoord);    //Test
 	//vec4 surfaceColor = texture2D(uSampler, fragTextureCoord);

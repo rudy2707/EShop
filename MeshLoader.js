@@ -81,8 +81,7 @@ function getMaterials(meshName)
 	}
 
 	// materials[Name : {Ns, Ka, Kd, Ks, Ke, Ni, d, illum, map_Kd}]
-	console.log(materials)
-		return materials;
+	return materials;
 }
 
 function initMeshFromObj(meshName)
@@ -265,11 +264,10 @@ function initMeshFromObj(meshName)
 
 
 
-	this.draw = function(projection, view)
+	this.draw = function(projection, view, model)
 	{
-		var model = new Matrix4();
 
-		model.setRotate(angle, 0, 1, 0);
+		//model.setRotate(angle, 0, 1, 0);
 
 		/*if(angle %2)
 		  model.translate(3.0, 0.0, 0.0);*/
