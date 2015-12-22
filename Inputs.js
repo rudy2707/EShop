@@ -1,8 +1,5 @@
 function Inputs()
 {
-	this.x = 0;
-	this.y = 0;
-
 	this.relX = 0;
 	this.relY = 0;
 
@@ -22,22 +19,12 @@ function Inputs()
 		}
 	}
 
-	document.onkeyup= function(e)
+	document.onkeyup = function(e)
 	{
 		if(typeof inputs.keys[e["key"]] != "undefined")
 		{
 			inputs.keys[e["key"].toLowerCase()] = false;
 		}
-	}
-	
-	canvas.onmousemove = function(e)
-	{
-		//console.log(e);
-		inputs.relX = e.layerX - inputs.x;
-		inputs.relY = (e.layerY - inputs.y);
-
-		inputs.x = e.layerX;
-		inputs.y = e.layerY;
 	}
 
 	this.mouseMoves = function()
@@ -45,6 +32,12 @@ function Inputs()
 		return (this.relX != 0 || this.relY != 0)
 	}
 
+	this.updateMouse = function(relX, relY)
+	{
+		this.relX = relX;
+		this.relY = relY;
+	}	
+	
 	this.update = function()
 	{
 		this.relX = 0;	

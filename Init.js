@@ -37,6 +37,50 @@ function initShader(shaderName)
 	return shaderProgram;
 }
 
+function initWindowCapture()
+{
+	canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
+
+	document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock || document.webkitExitPointerLock; 
+
+	canvas.onclick = function()
+	{
+		canvas.requestPointerLock()
+	}
+	
+	document.addEventListener('pointerlockchange', lockChangeAlert, false);
+	document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
+	document.addEventListener('webkitpointerlockchange', lockChangeAlert, false);
+
+	function getMouseMoves(mouse)
+	{
+		inputs.updateMouse(mouse);
+	}
+	
+	function lockChangeAlert()
+	{
+		if(document.pointerLockElement === canvas || document.mozPointerLockElement === canvas || document.webkitPointerLockElement === canvas)
+		{
+			console.log('The pointer lock status is now locked');
+			document.addEventListener("mousemove", mouseFunction, false);
+		}
+		else
+		{
+			document.removeEventListener("mousemove", mouseFunction, false);
+			console.log('The pointer lock status is now unlocked');
+		}
+	}
+	
+	mouseFunction = function(e)
+	{
+		var relX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
+		var relY = e.movementY || e.mozMovementY || e.webkitMovementY || 0;
+
+		inputs.updateMouse(relX, relY);
+	}
+}
+
+
 
 function init()
 {
@@ -48,6 +92,10 @@ function init()
 		console.log('Failed to get the rendering context for WebGL');
 		return;
 	}
+
+
+	initWindowCapture();
+
 
 
 	gl.enable(gl.DEPTH_TEST);

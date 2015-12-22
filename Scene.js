@@ -23,18 +23,18 @@ function mainLoop()
 	camera.lookAt();
 	inputs.update();
 
-
-	//view.setLookAt(0, 3, 15, 0, 0, 0, 0, 1, 0);
 	projection.setPerspective(70, canvas.width / canvas.height, 1, 100);
 
 	gl.depthMask(false);
-	//skyBox.setPosition(camera.position());
-	//skyBox.display(projection, view);
 	skybox.draw(projection, view);
 	gl.depthMask(true);
 
 
 	shelf.draw(projection, view);
+
+	var model = new Matrix4();
+	model.rotate(90, 0, 1, 0);
+	meshes["Xenomorph"].draw(projection, view, model);
 
 	//angle += 0.1;
 
@@ -53,7 +53,6 @@ function start()
 
 	view = new Matrix4();
 	inputs = new Inputs();
-	console.log(inputs)
 
 	shaders["Color3D"] = initShader("Color3D");
 	shaders["Skybox"] = initShader("Skybox");
@@ -65,9 +64,10 @@ function start()
 	//meshes.push(initTexturedCube());
 
 	meshes["spot"] = new initMeshFromObj("Spot");
+	meshes["Xenomorph"] = new initMeshFromObj("Xenomorph");
 
 	skybox = new Skybox(36, 36);
-	shelf = new Shelf(10, 3, [5, 5, 5]);
+	shelf = new Shelf(10, 3, [0, 0, -5]);
 
 	var test1 = new Vector3([10, 10, 10]);
 	var test2 = new Vector3([2, 3, 4]);
