@@ -39,9 +39,13 @@ function mainLoop()
 
 var skybox;
 var shelf;
+var inputs;
 function start()
 {
 	init();
+
+	inputs = new Inputs();
+	console.log(inputs)
 
 	shaders["Color3D"] = initShader("Color3D");
 	shaders["Skybox"] = initShader("Skybox");

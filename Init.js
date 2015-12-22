@@ -49,6 +49,7 @@ function init()
 		return;
 	}
 
+
 	gl.enable(gl.DEPTH_TEST);
 	gl.clearColor(0.5, 0.5, 0.5, 1.0);
 }
