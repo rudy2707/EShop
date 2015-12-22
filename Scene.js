@@ -11,21 +11,20 @@ function sendMat4(shaderProgram, name, matrix)
 }
 
 var angle = 0;
-
+var view;
 
 function mainLoop()
 {
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
-	var view = new Matrix4();
 	var projection = new Matrix4();
 
-	//camera.orientate(inputs.relX, inputs.relY);
 	camera.displace(inputs);
+	camera.lookAt();
 	inputs.update();
 
 
-	view.setLookAt(0, 3, 15, 0, 0, 0, 0, 1, 0);
+	//view.setLookAt(0, 3, 15, 0, 0, 0, 0, 1, 0);
 	projection.setPerspective(70, canvas.width / canvas.height, 1, 100);
 
 	gl.depthMask(false);
@@ -37,7 +36,7 @@ function mainLoop()
 
 	shelf.draw(projection, view);
 
-	angle += 0.1;
+	//angle += 0.1;
 
 	requestAnimationFrame(mainLoop);
 }
@@ -52,6 +51,7 @@ function start()
 	init();
 	camera = new Camera();
 
+	view = new Matrix4();
 	inputs = new Inputs();
 	console.log(inputs)
 
@@ -70,8 +70,7 @@ function start()
 	shelf = new Shelf(10, 3, [5, 5, 5]);
 
 	var test1 = new Vector3([10, 10, 10]);
-	test1 = 3;
-	console.log(test1)
+	var test2 = new Vector3([2, 3, 4]);
 
 	//var text3 = Matrix4.cross(test1, test2)
 

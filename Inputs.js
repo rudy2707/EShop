@@ -18,7 +18,6 @@ function Inputs()
 	{
 		if(typeof inputs.keys[e["key"]] != "undefined")
 		{
-			console.log(e["key"].toLowerCase());
 			inputs.keys[e["key"].toLowerCase()] = true;
 		}
 	}
@@ -27,23 +26,18 @@ function Inputs()
 	{
 		if(typeof inputs.keys[e["key"]] != "undefined")
 		{
-			console.log(e["key"].toLowerCase());
 			inputs.keys[e["key"].toLowerCase()] = false;
 		}
 	}
 	
-	console.log(canvas)
-
 	canvas.onmousemove = function(e)
 	{
 		//console.log(e);
 		inputs.relX = e.layerX - inputs.x;
-		inputs.relY = -(e.layerY - inputs.y);
+		inputs.relY = (e.layerY - inputs.y);
 
 		inputs.x = e.layerX;
 		inputs.y = e.layerY;
-
-		//console.log(inputs.x, inputs.y, inputs.relX, inputs.relY)
 	}
 
 	this.mouseMoves = function()
@@ -54,7 +48,7 @@ function Inputs()
 	this.update = function()
 	{
 		this.relX = 0;	
-		this.relY = 0;	
+		this.relY = 0;
 	}
 
 }

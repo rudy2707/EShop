@@ -14,8 +14,7 @@ function Shelf(width, height, position)
 
 
 	this.position = position;
-	console.log(position)
-
+	
 	// Place item at given position
 	this.emplace = function(x, y, item)
 	{
@@ -66,9 +65,6 @@ function Shelf(width, height, position)
 	{
 		this.spots[x][y] = null;
 	}
-	console.log(this.position)
-
-
 
 	this.draw = function(projection, view)
 	{

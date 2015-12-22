@@ -4,7 +4,8 @@ function Skybox(slices, stacks)
 	var uvs = [];
 	var indices = [];
 
-	var mesh = {};
+	this.model;
+
 
 	textures["Skybox.png"] = initTexture("Skybox.png");
 	this.textureName = "Skybox.png";
@@ -73,14 +74,14 @@ function Skybox(slices, stacks)
 
 	this.draw = function(projection, view)
 	{
-		var model = new Matrix4();
-	
-		model.translate(0, -3, -15);
-		model.setRotate(angle, 0, 1, 0);
+		this.model = new Matrix4()
+		this.model.translate(camera.position[0], camera.position[1], camera.position[2]);
+		//this.model.setRotate(angle, 0, 1, 0);
+		//this.model.rotate(angle, 0, 1, 0);
 
 
 		gl.useProgram(shaders[this.shaderName]);
-		sendMat4(shaders[this.shaderName], "model", model);
+		sendMat4(shaders[this.shaderName], "model", this.model);
 		sendMat4(shaders[this.shaderName], "view", view);
 		sendMat4(shaders[this.shaderName], "projection", projection);
 
