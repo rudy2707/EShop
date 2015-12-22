@@ -20,6 +20,11 @@ function mainLoop()
 	var view = new Matrix4();
 	var projection = new Matrix4();
 
+	//camera.orientate(inputs.relX, inputs.relY);
+	camera.displace(inputs);
+	inputs.update();
+
+
 	view.setLookAt(0, 3, 15, 0, 0, 0, 0, 1, 0);
 	projection.setPerspective(70, canvas.width / canvas.height, 1, 100);
 
@@ -40,9 +45,12 @@ function mainLoop()
 var skybox;
 var shelf;
 var inputs;
+var camera;
+
 function start()
 {
 	init();
+	camera = new Camera();
 
 	inputs = new Inputs();
 	console.log(inputs)
@@ -60,6 +68,12 @@ function start()
 
 	skybox = new Skybox(36, 36);
 	shelf = new Shelf(10, 3, [5, 5, 5]);
+
+	var test1 = new Vector3([10, 10, 10]);
+	test1 = 3;
+	console.log(test1)
+
+	//var text3 = Matrix4.cross(test1, test2)
 
 	mainLoop();
 }
