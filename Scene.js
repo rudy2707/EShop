@@ -37,6 +37,11 @@ function mainLoop()
 	model.scale(0.5, 0.5, 0.5);
 	meshes["Xenomorph"].draw(projection, view, model);
 	model = new Matrix4();
+
+	shop.draw(projection, view);
+
+
+
 	meshes["Floor"].draw(projection, view, model);
 	meshes["Ceiling"].draw(projection, view, model);
 
@@ -49,11 +54,13 @@ var skybox;
 var shelf;
 var inputs;
 var camera;
+var shop;
 
 function start()
 {
 	init();
 	camera = new Camera();
+	shop = new Shop();
 
 	view = new Matrix4();
 	inputs = new Inputs();
@@ -70,7 +77,8 @@ function start()
 
 	meshes["Xenomorph"] = new initMeshFromObj("Xenomorph");
 	meshes["spot"] = new initMeshFromObj("Spot");
-	meshes["wall"] = new initMeshFromObj("Wall");
+	meshes["Wall"] = new initMeshFromObj("Wall");
+	meshes["ShowCase"] = new initMeshFromObj("ShowCase");
 	meshes["Floor"] = new initMeshFromObj("Floor");
 	meshes["Ceiling"] = new initMeshFromObj("Ceiling");
 

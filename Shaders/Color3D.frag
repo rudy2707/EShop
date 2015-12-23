@@ -39,6 +39,7 @@ void main()
 	/*
 	gl_FragColor = vec4(pow(linearColor, gamma), surfaceColor.a);
 	/*/
+	//gl_FragColor = vec4(linearColor, surfaceColor.a);
 	gl_FragColor = vec4(linearColor, surfaceColor.a);
 	//*/
 }

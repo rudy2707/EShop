@@ -40,7 +40,7 @@ function getMaterials(meshName)
 				materials[currentName].Kd.push(parseFloat(line[1]));
 				materials[currentName].Kd.push(parseFloat(line[2]));
 				materials[currentName].Kd.push(parseFloat(line[3]));
-				materials[currentName].Kd.push(1.0);
+				//materials[currentName].Kd.push(1.0);
 			}
 			else if(line[0] == "Ks")
 			{
@@ -173,7 +173,8 @@ function initMeshFromObj(meshName)
 
 					for(var j = 0; j < 6; j++)
 					{
-						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.Kd[3]);
+						//colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.Kd[3]);
+						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
 					}
 				}
 				else
