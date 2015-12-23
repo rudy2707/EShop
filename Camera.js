@@ -7,12 +7,12 @@ function Camera()
 	this.vAxis = [0, 1, 0];
 
 	this.lateralMove = [0, 0, 0]
-	this.position = [0, 0, 0];
+	this.position = [0, 1, 0];
 
 	this.targetPoint = [1, 0, 0]
 
 	this.sensivity = 0.5;
-	this.speed = 0.5;
+	this.speed = 0.05;
 
 	this.orientate = function(relX, relY)
 	{
@@ -73,9 +73,13 @@ function Camera()
 		//TODO : config file for keyboard layout
 		if(inputs.keys["w"])
 		{
-			this.position[0] += (this.orientation[0] * this.speed);
-			this.position[1] += (this.orientation[1] * this.speed);
-			this.position[2] += (this.orientation[2] * this.speed);
+			var norm = Math.sqrt(Math.pow(this.orientation[0], 2.0) + Math.pow(this.orientation[2], 2.0))
+
+			//console.log(norm)
+
+			this.position[0] += ((this.orientation[0] / norm) * this.speed);
+			//this.position[1] += (this.orientation[1] * this.speed);
+			this.position[2] += ((this.orientation[2] / norm) * this.speed);
 
 			this.targetPoint[0] = this.position[0] + this.orientation[0];
 			this.targetPoint[1] = this.position[1] + this.orientation[1];
@@ -85,7 +89,7 @@ function Camera()
 		if(inputs.keys["s"])
 		{
 			this.position[0] -= (this.orientation[0] * this.speed);
-			this.position[1] -= (this.orientation[1] * this.speed);
+			//this.position[1] -= (this.orientation[1] * this.speed);
 			this.position[2] -= (this.orientation[2] * this.speed);
 
 			this.targetPoint[0] = this.position[0] + this.orientation[0];
@@ -96,7 +100,7 @@ function Camera()
 		if(inputs.keys["a"])
 		{
 			this.position[0] += (this.lateralMove[0] * this.speed);
-			this.position[1] += (this.lateralMove[1] * this.speed);
+			//this.position[1] += (this.lateralMove[1] * this.speed);
 			this.position[2] += (this.lateralMove[2] * this.speed);
 
 			this.targetPoint[0] = this.position[0] + this.orientation[0];
@@ -107,7 +111,7 @@ function Camera()
 		if(inputs.keys["d"])
 		{
 			this.position[0] -= this.lateralMove[0] * this.speed;
-			this.position[1] -= this.lateralMove[1] * this.speed;
+			//this.position[1] -= this.lateralMove[1] * this.speed;
 			this.position[2] -= this.lateralMove[2] * this.speed;
 
 			this.targetPoint[0] = this.position[0] + this.orientation[0];

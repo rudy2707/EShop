@@ -13,6 +13,7 @@ function Inputs()
 
 	document.onkeydown = function(e)
 	{
+		//console.log(e["key"].toLowerCase());
 		if(typeof inputs.keys[e["key"]] != "undefined")
 		{
 			inputs.keys[e["key"].toLowerCase()] = true;
@@ -21,6 +22,7 @@ function Inputs()
 
 	document.onkeyup = function(e)
 	{
+		//console.log(e["key"].toLowerCase());
 		if(typeof inputs.keys[e["key"]] != "undefined")
 		{
 			inputs.keys[e["key"].toLowerCase()] = false;

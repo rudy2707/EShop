@@ -23,18 +23,22 @@ function mainLoop()
 	camera.lookAt();
 	inputs.update();
 
-	projection.setPerspective(70, canvas.width / canvas.height, 1, 100);
+	projection.setPerspective(70, canvas.width / canvas.height, 0.5, 100);
 
 	gl.depthMask(false);
 	skybox.draw(projection, view);
 	gl.depthMask(true);
 
 
-	shelf.draw(projection, view);
+	//shelf.draw(projection, view);
 
 	var model = new Matrix4();
-	model.rotate(90, 0, 1, 0);
+	//model.rotate(90, 0, 1, 0);
+	model.scale(0.5, 0.5, 0.5);
 	meshes["Xenomorph"].draw(projection, view, model);
+	model = new Matrix4();
+	meshes["Floor"].draw(projection, view, model);
+	meshes["Ceiling"].draw(projection, view, model);
 
 	//angle += 0.1;
 
@@ -58,13 +62,18 @@ function start()
 	shaders["Skybox"] = initShader("Skybox");
 	shaders["Texture3D"] = initShader("Texture3D");
 
+
 	//meshes.push(initMeshFromObj("Peperoni"));
 	//meshes.push(initMeshFromObj("TexturedCube"));
 	//meshes.push(initMeshFromObj("Xenomorph"));
 	//meshes.push(initTexturedCube());
 
-	meshes["spot"] = new initMeshFromObj("Spot");
 	meshes["Xenomorph"] = new initMeshFromObj("Xenomorph");
+	meshes["spot"] = new initMeshFromObj("Spot");
+	meshes["wall"] = new initMeshFromObj("Wall");
+	meshes["Floor"] = new initMeshFromObj("Floor");
+	meshes["Ceiling"] = new initMeshFromObj("Ceiling");
+
 
 	skybox = new Skybox(36, 36);
 	shelf = new Shelf(10, 3, [0, 0, -5]);
