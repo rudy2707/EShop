@@ -71,11 +71,9 @@ function Camera()
 		}
 
 		//TODO : config file for keyboard layout
-		if(inputs.keys["w"])
+		if(inputs.keys[87])
 		{
 			var norm = Math.sqrt(Math.pow(this.orientation[0], 2.0) + Math.pow(this.orientation[2], 2.0))
-
-			//console.log(norm)
 
 			this.position[0] += ((this.orientation[0] / norm) * this.speed);
 			//this.position[1] += (this.orientation[1] * this.speed);
@@ -86,7 +84,18 @@ function Camera()
 			this.targetPoint[2] = this.position[2] + this.orientation[2];
 		}
 
-		if(inputs.keys["s"])
+		if(inputs.keys[65])
+		{
+			this.position[0] += (this.lateralMove[0] * this.speed);
+			//this.position[1] += (this.lateralMove[1] * this.speed);
+			this.position[2] += (this.lateralMove[2] * this.speed);
+
+			this.targetPoint[0] = this.position[0] + this.orientation[0];
+			this.targetPoint[1] = this.position[1] + this.orientation[1];
+			this.targetPoint[2] = this.position[2] + this.orientation[2];
+		}
+		
+		if(inputs.keys[83])
 		{
 			this.position[0] -= (this.orientation[0] * this.speed);
 			//this.position[1] -= (this.orientation[1] * this.speed);
@@ -97,18 +106,9 @@ function Camera()
 			this.targetPoint[2] = this.position[2] + this.orientation[2];
 		}
 
-		if(inputs.keys["a"])
-		{
-			this.position[0] += (this.lateralMove[0] * this.speed);
-			//this.position[1] += (this.lateralMove[1] * this.speed);
-			this.position[2] += (this.lateralMove[2] * this.speed);
 
-			this.targetPoint[0] = this.position[0] + this.orientation[0];
-			this.targetPoint[1] = this.position[1] + this.orientation[1];
-			this.targetPoint[2] = this.position[2] + this.orientation[2];
-		}
 
-		if(inputs.keys["d"])
+		if(inputs.keys[68])
 		{
 			this.position[0] -= this.lateralMove[0] * this.speed;
 			//this.position[1] -= this.lateralMove[1] * this.speed;
