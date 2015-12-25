@@ -23,7 +23,7 @@ function mainLoop()
 	camera.lookAt();
 	inputs.update();
 
-	projection.setPerspective(70, canvas.width / canvas.height, 0.5, 100);
+	projection.setPerspective(70, canvas.width / canvas.height, 0.1, 100);
 
 	gl.depthMask(false);
 	skybox.draw(projection, view);

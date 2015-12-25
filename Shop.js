@@ -6,18 +6,20 @@ function Shop()
 	meshes["ShowCase"] = new initMeshFromObj("ShowCase");
 	meshes["Floor"] = new initMeshFromObj("Floor");
 	meshes["Ceiling"] = new initMeshFromObj("Ceiling");
-	meshes["Pepperoni"] = new initMeshFromObj("Pepperoni");
+	meshes["Pepper"] = new initMeshFromObj("Pepper");
 	meshes["Carrot"] = new initMeshFromObj("Carrot");
 	meshes["BananaGroup"] = new initMeshFromObj("BananaGroup");
 	meshes["Condom"] = new initMeshFromObj("Condom");
+	meshes["ParisBiatch"] = new initMeshFromObj("ParisBiatch");
 
 
 	shelf = new Shelf(10, 3, [-5, 0, -7.90]);
 
 
-	shelf.push("Pepperoni");
+	shelf.push("Pepper");
 	shelf.push("Carrot");
 	shelf.push("BananaGroup");
+	shelf.push("ParisBiatch");
 	shelf.emplace(9, 1, "Condom");
 
 
