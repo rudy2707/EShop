@@ -1,6 +1,10 @@
-function Shelf(width, height, position = [0, 0, 0])
+function Shelf(width, height, position)
 {
-	this.position = position;
+	console.log(position)
+	if(typeof position === "undefined")
+		this.position = [0,0,0];
+	else
+		this.position = position;
 
 	this.spots = new Array(width);
 

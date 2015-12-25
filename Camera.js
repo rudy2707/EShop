@@ -72,6 +72,7 @@ function Camera()
 
 		//TODO : config file for keyboard layout
 		if(inputs.keys[87])
+		//if(inputs.keys[inputs.keyCodes["forward"]])
 		{
 			var norm = Math.sqrt(Math.pow(this.orientation[0], 2.0) + Math.pow(this.orientation[2], 2.0))
 
@@ -85,6 +86,7 @@ function Camera()
 		}
 
 		if(inputs.keys[65])
+		//if(inputs.keys[inputs.keyCodes["left"]])
 		{
 			this.position[0] += (this.lateralMove[0] * this.speed);
 			//this.position[1] += (this.lateralMove[1] * this.speed);
@@ -96,6 +98,7 @@ function Camera()
 		}
 		
 		if(inputs.keys[83])
+		//if(inputs.keys[inputs.keyCodes["backward"]])
 		{
 			this.position[0] -= (this.orientation[0] * this.speed);
 			//this.position[1] -= (this.orientation[1] * this.speed);
@@ -106,9 +109,8 @@ function Camera()
 			this.targetPoint[2] = this.position[2] + this.orientation[2];
 		}
 
-
-
 		if(inputs.keys[68])
+		//if(inputs.keys[inputs.keyCodes["right"]])
 		{
 			this.position[0] -= this.lateralMove[0] * this.speed;
 			//this.position[1] -= this.lateralMove[1] * this.speed;

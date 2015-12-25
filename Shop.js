@@ -12,16 +12,13 @@ function Shop()
 	meshes["Condom"] = new initMeshFromObj("Condom");
 	meshes["ParisBiatch"] = new initMeshFromObj("ParisBiatch");
 
+	this.shelf = new Shelf(10, 3, [-4.5, 0, -7.9]);
 
-	shelf = new Shelf(10, 3, [-5, 0, -7.90]);
-
-
-	shelf.push("Pepper");
-	shelf.push("Carrot");
-	shelf.push("BananaGroup");
-	shelf.push("ParisBiatch");
-	shelf.emplace(9, 1, "Condom");
-
+	this.shelf.push("Pepper");
+	this.shelf.push("Carrot");
+	this.shelf.push("BananaGroup");
+	this.shelf.push("ParisBiatch");
+	this.shelf.emplace(9, 1, "Condom");
 
 	this.elements = [];
 	
@@ -44,7 +41,7 @@ function Shop()
 	this.elements.push({type : 0, meshName : "Wall", position : [-0, -2, 8], yAngle : 0});
 	this.elements.push({type : 0, meshName : "Wall", position : [4, -2, 8], yAngle : 0});
 
-	this.elements.push({type : 1, mesh : shelf, yAngle : 90});
+	this.elements.push({type : 1, mesh : this.shelf, yAngle : 90});
 	
 
 	this.draw = function(projection, view)

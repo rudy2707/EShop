@@ -86,6 +86,12 @@ function getMaterials(meshName)
 
 function initMeshFromObj(meshName)
 {
+	if(typeof meshes[meshName] !== "undefined")
+	{
+		console.log("Warning : ignoring already loaded mesh : " + meshName);
+		return meshes[meshName];
+	}
+
 	this.size = 0;
 
 	var objFileName = "Meshes/" + meshName + ".obj";

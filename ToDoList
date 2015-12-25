@@ -1,0 +1,30 @@
+Not done yet :
+
+Controls in GET parameters (default WASD)
+LightSource class (currently hardcoded in shaders)
+Manage many lightSources
+Item picking
+Shopping cart
+
+(not important)
+Glass alpha
+Cast shadows
+
+//////////////////////////////////////////////////
+done :
+
+GLo-World
+Basic shaders
+Load files
+Parse obj files
+Parse mtl files
+Load textures
+Texture shaders
+Automatic shader selection for meshes
+Display skybox
+Mouse/keyboard inputs
+Camera
+Displaying meshes at given positions
+Webkit-proof keyboard controls
+
+

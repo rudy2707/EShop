@@ -52,11 +52,6 @@ function initWindowCapture()
 	document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
 	document.addEventListener('webkitpointerlockchange', lockChangeAlert, false);
 
-	function getMouseMoves(mouse)
-	{
-		inputs.updateMouse(mouse);
-	}
-	
 	function lockChangeAlert()
 	{
 		if(document.pointerLockElement === canvas || document.mozPointerLockElement === canvas || document.webkitPointerLockElement === canvas)
@@ -76,16 +71,40 @@ function initWindowCapture()
 		var relX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
 		var relY = e.movementY || e.mozMovementY || e.webkitMovementY || 0;
 
-		inputs.updateMouse(relX, relY);
+		inputs.relX = relX
+		inputs.relY = relY;
 	}
 }
 
+function getParameters()
+{
+	var query = window.location.search.substring(1);
+	var parameters = {};
+	
+	if(query != "")
+	{
+		var params = query.split("&");
 
+		for(var i = 0; i < params.length; i++)
+		{
+			var pair = params[i].split('=');
+			parameters[pair[0]] = pair[1];		
+		}
+	}
+
+	if(typeof parameters["page"] === "undefined")
+	{
+		parameters["page"] = "home";
+	}
+
+	return parameters;
+}
 
 function init()
 {
 	canvas = document.getElementById('webgl');
 	gl = getWebGLContext(canvas);
+	httpParams = getParameters();
 
 	if(!gl)
 	{
@@ -93,10 +112,13 @@ function init()
 		return;
 	}
 
+	shaders["Color3D"] = initShader("Color3D");
+	shaders["Skybox"] = initShader("Skybox");
+	shaders["Texture3D"] = initShader("Texture3D");
 
 	initWindowCapture();
-
-
+	//inputs = new Inputs(getParameters["controls"]);
+	inputs = new Inputs(httpParams["keys"]);
 
 	gl.enable(gl.DEPTH_TEST);
 	gl.clearColor(0.5, 0.5, 0.5, 1.0);
