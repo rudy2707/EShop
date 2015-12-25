@@ -33,7 +33,8 @@ function mainLoop()
 	//shelf.draw(projection, view);
 
 	var model = new Matrix4();
-	//model.rotate(90, 0, 1, 0);
+	model.translate(-6, 0, 0);
+	model.rotate(270, 0, 1, 0);
 	model.scale(0.5, 0.5, 0.5);
 	meshes["Xenomorph"].draw(projection, view, model);
 	model = new Matrix4();
@@ -42,10 +43,7 @@ function mainLoop()
 
 
 
-	meshes["Floor"].draw(projection, view, model);
-	meshes["Ceiling"].draw(projection, view, model);
-
-	//angle += 0.1;
+	angle += 0.02;
 
 	requestAnimationFrame(mainLoop);
 }
@@ -70,21 +68,7 @@ function start()
 	shaders["Texture3D"] = initShader("Texture3D");
 
 
-	//meshes.push(initMeshFromObj("Peperoni"));
-	//meshes.push(initMeshFromObj("TexturedCube"));
-	//meshes.push(initMeshFromObj("Xenomorph"));
-	//meshes.push(initTexturedCube());
-
-	meshes["Xenomorph"] = new initMeshFromObj("Xenomorph");
-	meshes["spot"] = new initMeshFromObj("Spot");
-	meshes["Wall"] = new initMeshFromObj("Wall");
-	meshes["ShowCase"] = new initMeshFromObj("ShowCase");
-	meshes["Floor"] = new initMeshFromObj("Floor");
-	meshes["Ceiling"] = new initMeshFromObj("Ceiling");
-
-
 	skybox = new Skybox(36, 36);
-	shelf = new Shelf(10, 3, [0, 0, -5]);
 
 	var test1 = new Vector3([10, 10, 10]);
 	var test2 = new Vector3([2, 3, 4]);

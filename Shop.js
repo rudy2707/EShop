@@ -1,21 +1,48 @@
 function Shop()
 {
-	this.elements = []
+	meshes["Xenomorph"] = new initMeshFromObj("Xenomorph");
+	meshes["spot"] = new initMeshFromObj("Spot");
+	meshes["Wall"] = new initMeshFromObj("Wall");
+	meshes["ShowCase"] = new initMeshFromObj("ShowCase");
+	meshes["Floor"] = new initMeshFromObj("Floor");
+	meshes["Ceiling"] = new initMeshFromObj("Ceiling");
+	meshes["Pepperoni"] = new initMeshFromObj("Pepperoni");
+	meshes["Carrot"] = new initMeshFromObj("Carrot");
+	meshes["BananaGroup"] = new initMeshFromObj("BananaGroup");
+	meshes["Condom"] = new initMeshFromObj("Condom");
 
+
+	shelf = new Shelf(10, 3, [-5, 0, -7.90]);
+
+
+	shelf.push("Pepperoni");
+	shelf.push("Carrot");
+	shelf.push("BananaGroup");
+	shelf.emplace(9, 1, "Condom");
+
+
+	this.elements = [];
+	
 	//element = {meshName, position[], yAngle}
+	this.elements.push({type : 0, meshName : "Floor", position : [0, 0, 0], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Ceiling", position : [0, 0, 0], yAngle : 90});
 
-	this.elements.push({meshName : "Wall", position : [-8, 0, -4], yAngle : 90});
-	this.elements.push({meshName : "Wall", position : [-8, 0, 0], yAngle : 90});
-	this.elements.push({meshName : "Wall", position : [-8, 0, 4], yAngle : 90});
-	this.elements.push({meshName : "Wall", position : [-8, 0, 8], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, -4], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 0], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 4], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 8], yAngle : 90});
 
-	this.elements.push({meshName : "Wall", position : [8, 0, -4], yAngle : 90});
-	this.elements.push({meshName : "Wall", position : [8, 0, 0], yAngle : 90});
-	this.elements.push({meshName : "Wall", position : [8, 0, 4], yAngle : 90});
-	this.elements.push({meshName : "Wall", position : [8, 0, 8], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [8, 0, -4], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [8, 0, 0], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [8, 0, 4], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [8, 0, 8], yAngle : 90});
 
-	this.elements.push({meshName : "ShowCase", position : [2, 0, 1], yAngle : 90, alpha : true});
+	this.elements.push({type : 0, meshName : "Wall", position : [-8, -2, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [-4, -2, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [-0, -2, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [4, -2, 8], yAngle : 0});
 
+	this.elements.push({type : 1, mesh : shelf, yAngle : 90});
 	
 
 	this.draw = function(projection, view)
@@ -24,22 +51,19 @@ function Shop()
 
 		for(var i = 0; i < this.elements.length; i++)
 		{
-			if(this.elements[i].alpha === true)
-			{
-				gl.disable(gl.DEPTH_TEST);
-				gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
-				gl.enable(gl.BLEND);
-			}
-
-
 			var model = new Matrix4();
-			model.translate(this.elements[i].position[0], this.elements[i].position[1], this.elements[i].position[2]);
-			model.rotate(this.elements[i].yAngle, 0, 1, 0);
-			meshes[this.elements[i].meshName].draw(projection, view, model);
-			//console.log(meshes[this.elements[i].meshName]);
-			gl.enable(gl.DEPTH_TEST);
-			gl.disable(gl.BLEND);
+
+			if(this.elements[i].type == 0)
+			{
+				model.translate(this.elements[i].position[0], this.elements[i].position[1], this.elements[i].position[2]);
+				model.rotate(this.elements[i].yAngle, 0, 1, 0);
+				meshes[this.elements[i].meshName].draw(projection, view, model);
+			}
+			else
+			{
+				model.rotate(this.elements[i].yAngle, 0, 1, 0);
+				this.elements[i].mesh.draw(projection, view, model);
+			}
 		}
-		
 	}
 }

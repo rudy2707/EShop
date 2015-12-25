@@ -19,7 +19,7 @@ function Inputs()
 
 	document.onkeydown = function(e)
 	{
-		console.log(inputs.keys[e.keyCode]);
+		//console.log(inputs.keys[e.keyCode]);
 		//if(typeof inputs.keys[e["key"]] != "undefined")
 		if(typeof inputs.keys[e.keyCode] != "undefined")
 		{
@@ -30,7 +30,7 @@ function Inputs()
 	document.onkeyup = function(e)
 	{
 		//console.log(e["key"].toLowerCase());
-		console.log(inputs.keys[e.keyCode]);
+		//console.log(inputs.keys[e.keyCode]);
 		if(typeof inputs.keys[e.keyCode] != "undefined")
 		{
 			inputs.keys[e.keyCode] = false;

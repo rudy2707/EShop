@@ -92,6 +92,7 @@ function initMeshFromObj(meshName)
 	var objFileLines = getFileContent(objFileName).split("\n");
 
 	var materials;
+	this.meshName = meshName;
 
 	var tmpVertices = [];
 	var tmpUVs = [];
@@ -320,6 +321,18 @@ function initMeshFromObj(meshName)
 			gl.uniform1i(samplerUniform, 0);
 		}
 
+		if(this.meshName == "ShowCase")
+		{
+			gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+			gl.enable(gl.BLEND);
+			gl.disable(gl.DEPTH_TEST);	
+		}
+		else
+		{
+			gl.disable(gl.BLEND);
+			gl.enable(gl.DEPTH_TEST);
+		}
+		
 		gl.drawArrays(gl.TRIANGLES, 0, this.size);
 	}
 } 
