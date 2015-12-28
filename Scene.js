@@ -1,20 +1,10 @@
-function sendMat4(shaderProgram, name, matrix)
-{
-	var location = gl.getUniformLocation(shaderProgram, name);
-	if(!location)
-	{
-		console.log("Failed to get the storage location of " + name);
-		return;
-	}
 
-	gl.uniformMatrix4fv(location, false, matrix.elements);
-}
 
 var skybox;
-var camera;
 var shop;
 var projection;
 var view;
+var lightSource
 
 function start()
 {
@@ -23,6 +13,17 @@ function start()
 	camera = new Camera();
 	skybox = new Skybox(36, 36);
 	shop = new Shop();
+	meshes["Xenomorph"] = new initMeshFromObj("Xenomorph");
+
+	light1 = new LightSource([10, 0, 0]);
+	light1.color = [0, 1, 1];
+
+	light2 = new LightSource([-10, 0, 0]);
+	light2.color = [1, 0, 0];
+
+	//lightSource.color = [0, 0, 1];
+	lightSources.push(light1);
+	lightSources.push(light2);
 
 	view = new Matrix4();
 	projection = new Matrix4();
@@ -47,10 +48,11 @@ function mainLoop()
 	gl.depthMask(true);
 
 	var model = new Matrix4();
-	model.translate(-6, 0, 0);
+	//model.translate(-6, 0, 0);
+	model.translate(0, 0, 0);
 	model.rotate(270, 0, 1, 0);
 	model.scale(0.5, 0.5, 0.5);
-	meshes["Xenomorph"].draw(projection, view, model);
+	meshes["Xenomorph"].draw(projection, view, model/*, lightSources*/);
 
 	shop.draw(projection, view);
 

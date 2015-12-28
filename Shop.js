@@ -1,6 +1,5 @@
 function Shop()
 {
-	meshes["Xenomorph"] = new initMeshFromObj("Xenomorph");
 	meshes["spot"] = new initMeshFromObj("Spot");
 	meshes["Wall"] = new initMeshFromObj("Wall");
 	meshes["ShowCase"] = new initMeshFromObj("ShowCase");
@@ -13,12 +12,13 @@ function Shop()
 	meshes["ParisBiatch"] = new initMeshFromObj("ParisBiatch");
 
 	this.shelf = new Shelf(10, 3, [-4.5, 0, -7.9]);
+	//this.shelf = new Shelf(10, 3);
 
-	this.shelf.push("Pepper");
-	this.shelf.push("Carrot");
-	this.shelf.push("BananaGroup");
+	//this.shelf.push("Pepper");
+	//this.shelf.push("Carrot");
+	//this.shelf.push("BananaGroup");
 	this.shelf.push("ParisBiatch");
-	this.shelf.emplace(9, 1, "Condom");
+	//this.shelf.emplace(9, 1, "Condom");
 
 	this.elements = [];
 	

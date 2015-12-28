@@ -289,6 +289,16 @@ function initMeshFromObj(meshName)
 		sendMat4(shaders[this.shaderName], "view", view);
 		sendMat4(shaders[this.shaderName], "projection", projection);
 
+		sendInt(shaders[this.shaderName], "lightSourcesQuantity", lightSources.length)
+
+		for(var i = 0; i < lightSources.length; i++)
+		{
+			sendVec3(shaders[this.shaderName], "lightSources["+ i +"].position", lightSources[i].position)
+			sendVec3(shaders[this.shaderName], "lightSources["+ i +"].color", lightSources[i].color)
+			sendFloat(shaders[this.shaderName], "lightSources["+ i +"].intensity", lightSources[i].intensity)
+		}
+
+
 		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName], "in_Vertex");
 		if(in_Vertex >= 0)
 		{

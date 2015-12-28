@@ -76,6 +76,55 @@ function initWindowCapture()
 	}
 }
 
+//TODO : Shader class
+function sendMat4(shaderProgram, name, matrix)
+{
+	var location = gl.getUniformLocation(shaderProgram, name);
+	if(!location)
+	{
+		console.log("Failed to get the storage location of " + name);
+		return;
+	}
+
+	gl.uniformMatrix4fv(location, false, matrix.elements);
+}
+
+function sendVec3(shaderProgram, name, vector)
+{
+	var location = gl.getUniformLocation(shaderProgram, name);
+	if(!location)
+	{
+		console.log("Failed to get the storage location of " + name);
+		return;
+	}
+
+	gl.uniform3fv(location, vector);
+}
+
+function sendFloat(shaderProgram, name, value)
+{
+	var location = gl.getUniformLocation(shaderProgram, name);
+	if(!location)
+	{
+		console.log("Failed to get the storage location of " + name);
+		return;
+	}
+
+	gl.uniform1f(location, value);
+}
+
+function sendInt(shaderProgram, name, value)
+{
+	var location = gl.getUniformLocation(shaderProgram, name);
+	if(!location)
+	{
+		console.log("Failed to get the storage location of " + name);
+		return;
+	}
+
+	gl.uniform1i(location, value);
+}
+
 function getParameters()
 {
 	var query = window.location.search.substring(1);
