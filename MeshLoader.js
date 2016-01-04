@@ -180,8 +180,8 @@ function initMeshFromObj(meshName)
 
 					for(var j = 0; j < 6; j++)
 					{
-						//colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.Kd[3]);
-						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
+						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], 1.0);
+						//colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
 					}
 				}
 				else
@@ -211,7 +211,8 @@ function initMeshFromObj(meshName)
 
 					for(var j = 0; j < 3; j++)
 					{	
-						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.Kd[3]);
+						//colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.Kd[3]);
+						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
 					}
 				}
 			}
@@ -259,6 +260,7 @@ function initMeshFromObj(meshName)
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
 	this.colorsBuffer = gl.createBuffer();
+	console.log(colors);
 	gl.bindBuffer(gl.ARRAY_BUFFER, this.colorsBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
 
@@ -274,31 +276,22 @@ function initMeshFromObj(meshName)
 
 	this.draw = function(projection, view, model)
 	{
-
-		//model.setRotate(angle, 0, 1, 0);
-
-		/*if(angle %2)
-		  model.translate(3.0, 0.0, 0.0);*/
-
-		/*model.invert();
-		  model.transpose();*/
-
 		gl.useProgram(shaders[this.shaderName]);
 
 		sendMat4(shaders[this.shaderName], "model", model);
 		sendMat4(shaders[this.shaderName], "view", view);
 		sendMat4(shaders[this.shaderName], "projection", projection);
 
+		
 		sendInt(shaders[this.shaderName], "lightSourcesQuantity", lightSources.length)
 
 		for(var i = 0; i < lightSources.length; i++)
 		{
-			sendVec3(shaders[this.shaderName], "lightSources["+ i +"].position", lightSources[i].position)
-			sendVec3(shaders[this.shaderName], "lightSources["+ i +"].color", lightSources[i].color)
-			sendFloat(shaders[this.shaderName], "lightSources["+ i +"].intensity", lightSources[i].intensity)
+			sendVec3(shaders[this.shaderName], "lightSources["+ i +"].position", lightSources[i].position);
+			sendVec3(shaders[this.shaderName], "lightSources["+ i +"].color", lightSources[i].color);
+			sendFloat(shaders[this.shaderName], "lightSources["+ i +"].intensity", lightSources[i].intensity);
 		}
-
-
+		
 		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName], "in_Vertex");
 		if(in_Vertex >= 0)
 		{
@@ -337,7 +330,7 @@ function initMeshFromObj(meshName)
 			gl.uniform1i(samplerUniform, 0);
 		}
 
-		if(this.meshName == "ShowCase")
+		/*if(this.meshName == "ShowCase")
 		{
 			gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
 			gl.enable(gl.BLEND);
@@ -347,7 +340,7 @@ function initMeshFromObj(meshName)
 		{
 			gl.disable(gl.BLEND);
 			gl.enable(gl.DEPTH_TEST);
-		}
+		}*/
 		
 		gl.drawArrays(gl.TRIANGLES, 0, this.size);
 	}

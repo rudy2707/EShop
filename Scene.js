@@ -14,14 +14,16 @@ function start()
 	skybox = new Skybox(36, 36);
 	shop = new Shop();
 	meshes["Xenomorph"] = new initMeshFromObj("Xenomorph");
+	meshes["Cube"] = new initMeshFromObj("Cube");
+	meshes["TexturedCube"] = new initMeshFromObj("TexturedCube");
 
-	light1 = new LightSource([10, 0, 0]);
-	light1.color = [0, 1, 1];
+	var light1 = new LightSource([3.0, 10.0, 3.0]);
+	light1.color = [0.0, 1.0, 1.0];
+	light1.intensity = 10.0;
 
-	light2 = new LightSource([-10, 0, 0]);
-	light2.color = [1, 0, 0];
+	light2 = new LightSource([-5.0, 3.0, 0.0]);
+	light2.color = [1.0, 1.0, 0.5];
 
-	//lightSource.color = [0, 0, 1];
 	lightSources.push(light1);
 	lightSources.push(light2);
 
@@ -52,7 +54,12 @@ function mainLoop()
 	model.translate(0, 0, 0);
 	model.rotate(270, 0, 1, 0);
 	model.scale(0.5, 0.5, 0.5);
-	meshes["Xenomorph"].draw(projection, view, model/*, lightSources*/);
+	meshes["Xenomorph"].draw(projection, view, model);
+	//meshes["Cube"].draw(projection, view, model);
+	model.rotate(angle, 0, 1, 0);
+	meshes["Cube"].draw(projection, view, model);
+	//meshes["TexturedCube"].draw(projection, view, model);
+	
 
 	shop.draw(projection, view);
 
