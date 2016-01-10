@@ -1,0 +1,15 @@
+
+[Visiteur]^[Internaute]
+[Visiteur]-(Créer un compte client)
+[Internaute]-(Recherche de produits)
+[Internaute]-(Gérer son panier)
+[Client]^[Internaute]
+[Client]-(Achat de produits)
+(Achat de produits)<(Gérer son panier)
+(Achat de produits)>(S'authentifier)
+[Client]-(Gérer son compte client)
+(Gérer son compte client)>(S'authentifier)
+[Client]-(Consulter ses commandes)
+(Consulter ses commandes)>(S'authentifier)
+(Selection de produits)<(Visualisation de produits)
+(Gérer son panier)<(Selection de produits)
