@@ -1,0 +1,234 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Axel Fahy
+% 10.01.2016
+% Eshop
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[myheadings]{fullpage}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx, wrapfig, subcaption, setspace, booktabs}
+\usepackage[T1]{fontenc}
+\usepackage[font=small, labelfont=bf]{caption}
+\usepackage{fourier}
+\usepackage[protrusion=true, expansion=true]{microtype}
+\usepackage[english]{babel}
+\usepackage{sectsty}
+\usepackage{url, lipsum}
+\usepackage{parskip}                                                  % Remove identation
+\usepackage{caption}
+\usepackage{hhline}
+
+% Tables alignement with fix sized
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+%-------------------------------------------------------------------------------
+% CODE FORMAT
+%-------------------------------------------------------------------------------
+\usepackage{listings}                                                 % Code listings
+\usepackage{listingsutf8}
+\lstset{inputencoding=utf8/latin1}
+\usepackage{color}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{bggray}{rgb}{0.95, 0.95, 0.95}
+\lstset{ %
+    %backgroundcolor=\color{bggray},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+    basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+    breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+    breaklines=true,                 % sets automatic line breaking
+    captionpos=b,                    % sets the caption-position to bottom
+    %commentstyle=\color{mygreen},    % comment style
+    deletekeywords={...},            % if you want to delete keywords from the given language
+    escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+    extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+    frame=none,                    % adds a frame around the code
+    frameround=tttt                  % tttt for having the corner round.
+    keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+    keywordstyle=\color{blue},       % keyword style
+    language=html,                 % the language of the code
+    morekeywords={*,...},            % if you want to add more keywords to the set
+    numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+    numbersep=5pt,                   % how far the line-numbers are from the code
+    numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+    rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+    showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+    showstringspaces=false,          % underline spaces within strings only
+    showtabs=false,                  % show tabs within strings adding particular underscores
+    stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+    %stringstyle=\color{mymauve},     % string literal style
+    tabsize=2,                       % sets default tabsize to 2 spaces
+    %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\onehalfspacing
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+% Remove the 'Chapter' before each chapter.
+%\usepackage{titlesec}
+%\titleformat{\chapter}{}{}{0em}{\bf\LARGE}
+
+%\makeatletter
+%\renewcommand{\@makechapterhead}[1]{%
+%\vspace*{0 pt}%
+%\bfseries\Huge\thechapter.\ #1
+%\par\nobreak\vspace{40 pt}}}
+%\makeatother
+
+%-------------------------------------------------------------------------------
+% HEADER & FOOTER
+%-------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\setlength\headheight{15pt}
+\fancyhead[L]{}
+\fancyhead[R]{\textsl{EShop}}
+\fancyfoot[R]{\textsl{Page \thepage\ of \pageref{LastPage}}}
+
+%-------------------------------------------------------------------------------
+% TITLE PAGE
+%-------------------------------------------------------------------------------
+\begin{document}
+
+\title{ \normalsize \textsc{Projet logiciel}
+        \\ [2.0cm]
+        \HRule{0.5pt} \\
+        \LARGE \textbf{\uppercase{EShop}}
+        \HRule{2pt} \\ [0.5cm]
+        \normalsize \today \vspace*{5\baselineskip}}
+
+\date{}
+
+\author{
+    Axel Fahy / Rudolf Höhn / Benjamin Ganty / Robin Chappatte / Pierre-Yves Kugler\\
+    hepia - ITI}
+
+\clearpage
+\maketitle
+\thispagestyle{empty} % Remove the number on page title.
+\newpage
+\tableofcontents
+\newpage
+
+%-------------------------------------------------------------------------------
+% Section title formatting
+\sectionfont{\scshape}
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% BODY
+%-------------------------------------------------------------------------------
+
+\section{\textit{User Stories}}
+
+\center
+\begin{tabular}{ | L{13cm} || C{2cm} | }
+    \hline
+    \textbf{Description} & \textbf{Priorité}\\
+    \hhline{|=||=|}
+    C'est l'histoire d'un utilisateur qui a envie d'aller a la migros et qui ne veut pas sortir de chez lui mais qui a une connexion internet & 1\\
+    \hline
+    Le client dans le magasin veut ramasser un produit sur une etagere et le mettre dans son panier & 3\\
+    \hline
+    Le client avec son panier veut pouvoir aller a la caisse et va payer ses courses & 5\\
+    \hline
+    Le client ne trouve pas le produit qu'il cherche et demande a un employe du magasin de l'aider & 6\\
+    \hline
+    Le client n'est pas content avec un de ses articles dans le panier et souhaite le retirer & 4\\
+    \hline
+    Le client va voir dans le rayon d'a cote les produits proposes & 2\\
+    \hline
+    Le client veut modifier la quantite d'un element situe dans le panier & X\\
+    \hline
+    Le client veut vider son panier & X\\
+    \hline
+    Un client veut supprimer un element du panier & X\\
+    \hline
+    Un client veut ajouter au panier en le selectionnant avec la souris & X\\
+    \hline
+    Le client veut avoir la description du produit en cliquant dessus & X\\
+    \hline
+    Le client veut connaitre le solde total de son panier & X\\
+    \hline
+    Le client veut rentrer ses informations de paiement et payer & X\\
+    \hline
+    Le client veut modifier son compte (nom, mot de passe, adresse) & X\\
+    \hline
+    Le client veut supprimer son compte & X\\
+    \hline
+    Le client veut payer mais il doit d'abord s'authentifier & X\\
+    \hline
+    Le client veut revenir au choix des categories & X\\
+    \hline
+    Le client veut pouvoir filtrer les produits par categories & X\\
+    \hline
+    Le client veut sortir du magasin & X\\
+    \hline
+    Le client veut voir son panier & X\\
+    \hline
+    Le client veut se deconnecter de son compte & X\\
+    \hline
+\end{tabular}
+
+\section{\textit{Use case}}
+
+\subsection{Diagramme}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.33]{../Diagrams/UseCaseDiagrams/usecase_global.png}
+    \caption*{Diagramme UML des \textit{use case}}
+\end{figure}
+
+\subsection{Détails}
+
+\section{Activités}
+
+\subsection{Recherche}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Diagrams/ActivityDiagrams/recherche.png}
+    \caption*{Diagramme UML de la recherche d'un produit}
+\end{figure}
+
+\subsection{Gestion du panier}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.4]{../Diagrams/ActivityDiagrams/panier.png}
+    \caption*{Diagramme UML de la gestion du panier}
+\end{figure}
+
+\subsection{Commande d'un produit}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.55]{../Diagrams/ActivityDiagrams/commande_global.png}
+    \caption*{Diagramme UML de l'accès à la commande d'un produit}
+\end{figure}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.45]{../Diagrams/ActivityDiagrams/commande_en_cours.png}
+    \caption*{Diagramme UML d'une commande}
+\end{figure}
+
+\section{\textit{Sprint}}
+
+\end{document}
