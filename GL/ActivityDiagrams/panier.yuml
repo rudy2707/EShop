@@ -1,0 +1,2 @@
+
+(start)->(Page d'accueil)-><accueil>,<accueil>->(Rayon)-><rayon>,<rayon>->(Details du produit), <rayon>[mettre dans le panier]->(Panier),<accueil>->(Recherche)-><recherche>,<recherche>->(Aucun resultat)[retour]->(Recherche),<recherche>->(Resultats de la recherche)-><resultat>,<resultat>[mettre dans le panier]->(Panier),<resultat>->(Details du produit)[mettre dans le panier]->(Panier)->(end)

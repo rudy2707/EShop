@@ -1,0 +1,2 @@
+
+(start)->(Page d'accueil)-><accueil>,<accueil>->(Ajout dans le panier)->(Panier),<accueil>->(Panier)[calcul du panier]->(Panier)->(Commande)-(end)

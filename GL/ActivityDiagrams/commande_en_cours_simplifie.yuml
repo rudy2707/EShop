@@ -1,0 +1,2 @@
+
+(start)[commander]->(Identification)[Tant que identification KO]->(Identification)[saisie]->(Infos client)[modif infos]->(Infos client)->(Paiement)-><paiement>,<paiement>[Paiement KO]->(Paiement),<paiement>->(Commande OK)->(end)
