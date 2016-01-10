@@ -33,6 +33,26 @@
 
 
 %-------------------------------------------------------------------------------
+% USE CASE FORMAT
+%-------------------------------------------------------------------------------
+\usepackage{booktabs}
+\newcommand\addrow[2]{#1 &#2\\ }
+
+\newcommand\addheading[2]{\textbf{#1} &#2\\ \hline}
+\newcommand\tabularhead{\begin{tabular}{lp{11cm}}
+\hline
+}
+
+\newcommand\addmulrow[2]{ \begin{minipage}[t][][t]{3.5cm}#1\end{minipage}%
+    &\begin{minipage}[t][][t]{11cm}
+    \begin{enumerate} #2   \end{enumerate}
+    \end{minipage}\\ }
+
+\newenvironment{usecase}{\tabularhead}
+{\hline\end{tabular}}
+
+
+%-------------------------------------------------------------------------------
 % CODE FORMAT
 %-------------------------------------------------------------------------------
 \usepackage{listings}                                                 % Code listings
@@ -136,55 +156,57 @@
 
 \section{\textit{User Stories}}
 
-\center
-\begin{tabular}{ | L{13cm} || C{2cm} | }
-    \hline
-    \textbf{Description} & \textbf{Priorité}\\
-    \hhline{|=||=|}
-    C'est l'histoire d'un utilisateur qui a envie d'aller a la migros et qui ne veut pas sortir de chez lui mais qui a une connexion internet & 1\\
-    \hline
-    Le client dans le magasin veut ramasser un produit sur une etagere et le mettre dans son panier & 3\\
-    \hline
-    Le client avec son panier veut pouvoir aller a la caisse et va payer ses courses & 5\\
-    \hline
-    Le client ne trouve pas le produit qu'il cherche et demande a un employe du magasin de l'aider & 6\\
-    \hline
-    Le client n'est pas content avec un de ses articles dans le panier et souhaite le retirer & 4\\
-    \hline
-    Le client va voir dans le rayon d'a cote les produits proposes & 2\\
-    \hline
-    Le client veut modifier la quantite d'un element situe dans le panier & X\\
-    \hline
-    Le client veut vider son panier & X\\
-    \hline
-    Un client veut supprimer un element du panier & X\\
-    \hline
-    Un client veut ajouter au panier en le selectionnant avec la souris & X\\
-    \hline
-    Le client veut avoir la description du produit en cliquant dessus & X\\
-    \hline
-    Le client veut connaitre le solde total de son panier & X\\
-    \hline
-    Le client veut rentrer ses informations de paiement et payer & X\\
-    \hline
-    Le client veut modifier son compte (nom, mot de passe, adresse) & X\\
-    \hline
-    Le client veut supprimer son compte & X\\
-    \hline
-    Le client veut payer mais il doit d'abord s'authentifier & X\\
-    \hline
-    Le client veut revenir au choix des categories & X\\
-    \hline
-    Le client veut pouvoir filtrer les produits par categories & X\\
-    \hline
-    Le client veut sortir du magasin & X\\
-    \hline
-    Le client veut voir son panier & X\\
-    \hline
-    Le client veut se deconnecter de son compte & X\\
-    \hline
-\end{tabular}
+\begin{center}
+    \begin{tabular}{ | L{13cm} || C{2cm} | }
+        \hline
+        \textbf{Description} & \textbf{Priorité}\\
+        \hhline{|=||=|}
+        C'est l'histoire d'un utilisateur qui a envie d'aller a la migros et qui ne veut pas sortir de chez lui mais qui a une connexion internet & 1\\
+        \hline
+        Le client dans le magasin veut ramasser un produit sur une etagere et le mettre dans son panier & 3\\
+        \hline
+        Le client avec son panier veut pouvoir aller a la caisse et va payer ses courses & 5\\
+        \hline
+        Le client ne trouve pas le produit qu'il cherche et demande a un employe du magasin de l'aider & 6\\
+        \hline
+        Le client n'est pas content avec un de ses articles dans le panier et souhaite le retirer & 4\\
+        \hline
+        Le client va voir dans le rayon d'a cote les produits proposes & 2\\
+        \hline
+        Le client veut modifier la quantite d'un element situe dans le panier & X\\
+        \hline
+        Le client veut vider son panier & X\\
+        \hline
+        Un client veut supprimer un element du panier & X\\
+        \hline
+        Un client veut ajouter au panier en le selectionnant avec la souris & X\\
+        \hline
+        Le client veut avoir la description du produit en cliquant dessus & X\\
+        \hline
+        Le client veut connaitre le solde total de son panier & X\\
+        \hline
+        Le client veut rentrer ses informations de paiement et payer & X\\
+        \hline
+        Le client veut modifier son compte (nom, mot de passe, adresse) & X\\
+        \hline
+        Le client veut supprimer son compte & X\\
+        \hline
+        Le client veut payer mais il doit d'abord s'authentifier & X\\
+        \hline
+        Le client veut revenir au choix des categories & X\\
+        \hline
+        Le client veut pouvoir filtrer les produits par categories & X\\
+        \hline
+        Le client veut sortir du magasin & X\\
+        \hline
+        Le client veut voir son panier & X\\
+        \hline
+        Le client veut se deconnecter de son compte & X\\
+        \hline
+    \end{tabular}
+\end{center}
 
+\newpage
 \section{\textit{Use case}}
 
 \subsection{Diagramme}
@@ -197,6 +219,42 @@
 
 \subsection{Détails}
 
+\begin{usecase}
+    \addheading{Titre}{Visualisation des produits}
+    \addrow{Acteur}{Client}
+    \addrow{But}{Permettre au client de connaître les produits à disposition.}
+    \addrow{Pré-condition}{Le client accède à l'application web et voit les produits.}
+    \addrow{Scénario alternatif}{Le client recherche un article en particulier.}
+    \addrow{Exception}{Il n'y a pas de produit disponible.}
+\end{usecase}
+
+\begin{usecase}
+    \addheading{Titre}{Sélection de produits}
+    \addrow{Acteur}{Client}
+    \addrow{But}{Permettre au client de sélectionner des produits.}
+    \addrow{Résumé métier}{Le client doit pouvoir séléctionner le(s) produit(s) à acheter et les mettre dans son panier.}
+    \addrow{Pré-condition}{Le client doit être authentifié.}
+\end{usecase}
+
+\begin{usecase}
+    \addheading{Titre}{Achat de produits}
+    \addrow{Acteur}{Client}
+    \addrow{But}{Permettre au client d'acheter des produits.}
+    \addrow{Résumé métier}{Le client doit pouvoir séléctionner le(s) produit(s) à acheter.}
+    \addmulrow{Pré-conditions}{
+    \item Le client doit être authentifié.
+    \item Les produits doivent être disponibles.
+    }
+    \addmulrow{Scénario alternatif}{
+    \item Acheter plusieurs produits d'un coup.
+    \item Avoir plusieurs fois le même produit.
+    }
+    \addmulrow{Exception}{
+    \item Les produits ne sont pas en stock.
+    }
+\end{usecase}
+
+\newpage
 \section{Activités}
 
 \subsection{Recherche}
@@ -229,6 +287,7 @@
     \caption*{Diagramme UML d'une commande}
 \end{figure}
 
-\section{\textit{Sprint}}
+\newpage
+\section{\textit{Sprints}}
 
 \end{document}
