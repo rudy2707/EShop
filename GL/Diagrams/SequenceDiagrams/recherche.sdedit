@@ -1,0 +1,19 @@
+Internaute:Actor
+Database:Node
+
+[c:loop]
+  Internaute:Database.recherche()
+  [c:alt Echec]
+    [c:break]
+    Database:Internaute.Aucun résultat
+    [/c]
+    --[Succès]
+    Database:Internaute.Résultat trouvé
+  [/c]
+  Internaute:Database.sélectionProduit(p)
+  Database:Internaute.détails du produit
+  [c:opt]
+    Internaute:Database.Mettre dans le panier
+  [/c]
+[/c]
+  
