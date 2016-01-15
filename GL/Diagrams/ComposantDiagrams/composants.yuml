@@ -1,0 +1,6 @@
+// Axel Fahy - 15.01.2016
+// Composants diagram for EShop
+[Database MySQL{bg:slategray}]-[Application Server PHP{bg:steelblue}]
+[Web Server Apache{bg:lightblue}]-[Application Server PHP]
+[Web Server Apache]-AJAX(JSon)>[Web Page{bg:mediumturquoise}]
+[Graphic library{bg:burlywood}]->[Web Page]
