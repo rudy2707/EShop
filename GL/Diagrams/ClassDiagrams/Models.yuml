@@ -1,0 +1,3 @@
+[CI_Model]^-[Order_model||+getById(id);+getByCustomerId(id);+insert(data)]
+[CI_Model]^-[Product_model||+getById(id);+getList(n)]
+[CI_Model]^-[Customer_model||+getById(id);+getByEmail(email);+insert(data)]
