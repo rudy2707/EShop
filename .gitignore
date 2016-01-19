@@ -41,3 +41,5 @@
 *.fdb_latexmk
 *.fls
 *.toc
+
+*.pdf
