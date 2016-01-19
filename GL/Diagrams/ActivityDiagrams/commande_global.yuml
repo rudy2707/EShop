@@ -1,2 +1,2 @@
 
-(start)->(Page d'accueil)-><accueil>,<accueil>->(Ajout dans le panier)->(Panier),<accueil>->(Panier)[calcul du panier]->(Panier)->(Commande)-(end)
+(start)->(Magasin 3D)-><magasin>,<magasin>->(Ajout dans le panier)->(Panier),<magasin>->(Panier)[calcul du panier]->(Panier)->(Commande)-(end)

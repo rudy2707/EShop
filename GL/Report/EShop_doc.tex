@@ -253,8 +253,78 @@
 \end{usecase}
 
 \newpage
+\section{Maquettes}
 
-\section{Architecure}
+Voici les différents écrans de l'applicaiton.
+
+\subsection{Inscription}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Maquettes/inscription.jpeg}
+    \caption*{Inscription dans le EShop}
+\end{figure}
+
+\subsection{Page d'accueil}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Maquettes/page_accueil.jpeg}
+    \caption*{Page d'accueil du EShop}
+\end{figure}
+
+\subsection{Visualisation du panier}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Maquettes/visualisation_panier.jpeg}
+    \caption*{Visualisation du panier du EShop}
+\end{figure}
+
+\subsection{Compte client}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Maquettes/compte_client.jpeg}
+    \caption*{Compte client du EShop}
+\end{figure}
+
+\subsection{Informations client}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Maquettes/compte_client_adresse.jpeg}
+    \caption*{Information du client du EShop}
+\end{figure}
+
+\subsection{Règlement à domicile}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Maquettes/reglement_domicile.jpeg}
+    \caption*{Règlement à domicile de la commande}
+\end{figure}
+
+\subsection{Règlement online}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Maquettes/reglement_online.jpeg}
+    \caption*{Règlement online}
+\end{figure}
+
+
+\subsection{Navigation 3D}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.6]{../Maquettes/nav_3D.jpeg}
+    \caption*{Navigation 3D du EShop}
+\end{figure}
+
+
+\newpage
+\section{Architecture}
 Nous avons décidé de développer l'application en utilisant WebGL (Front-end), PHP (Front+Back end) et MySQL (Database).
 Le diagramme de composants ci-dessous montre le système complet.
 \begin{figure}[ht]
@@ -266,7 +336,12 @@ Le diagramme de composants ci-dessous montre le système complet.
 \newpage
 \section{Activités}
 
+Voici les différents diagrammes d'activités de notre application.
+
 \subsection{Recherche}
+
+La recherche est accessible depuis le magasin 3D. Elle peut retourner soit une réponse positive,
+avec le résultat de la recherche, soit aucun résultat, en revenant à la recherche.
 
 \begin{figure}[ht]
     \center
@@ -276,6 +351,10 @@ Le diagramme de composants ci-dessous montre le système complet.
 
 \subsection{Gestion du panier}
 
+Depuis le magasin 3D, on peut mettre un produit soit en allant le chercher directement dans le rayon,
+soit en faisant une recherche pour un produit. Dès que l'on a trouvé un produit, on a la possibilité d'accéder
+à sa description et de le mettre dans le panier.
+
 \begin{figure}[ht]
     \center
     \includegraphics[scale=0.4]{../Diagrams/ActivityDiagrams/panier.png}
@@ -284,11 +363,19 @@ Le diagramme de composants ci-dessous montre le système complet.
 
 \subsection{Commande d'un produit}
 
+La commande d'un produit est accessible depuis la page de gestion de panier et
+le paiement se fait par un intervenant externe.
+
 \begin{figure}[ht]
     \center
     \includegraphics[scale=0.55]{../Diagrams/ActivityDiagrams/commande_global.png}
     \caption*{Diagramme UML de l'accès à la commande d'un produit}
 \end{figure}
+
+Pour pouvoir effectuer une commande, il faut être identifié.
+Le client doit rentrer ses informations clients et de paiement.
+A tout moment avant le paiement, le client peut annuler et retourner à la visualisation du panier.
+La partie du paiment avec informations bancaires est externalisée.
 
 \begin{figure}[ht]
     \center
@@ -299,13 +386,52 @@ Le diagramme de composants ci-dessous montre le système complet.
 \newpage
 \section{Séquences}
 
+Voici les diagrammes de séquences de l'application.
+
 \subsection{Recherche}
+
+L'internaute peut faire la recherche d'un produit.
+Celle-ci peut se terminer avec un échec s'il y a aucun résultat ou
+avec un succès, en retournant les produits trouvés.
+Il peut ensuite sélectionner les produits et avoir accès à leur description et
+éventuellement les mettre dans le panier.
 
 \begin{figure}[ht]
     \center
-    \includegraphics[scale=0.6]{../Diagrams/SequenceDiagrams/recherche.png}
+    \includegraphics[scale=0.7]{../Diagrams/SequenceDiagrams/recherche.png}
     \caption*{Diagramme UML de la recherche d'un produit}
 \end{figure}
+
+\subsection{Gestion du panier}
+
+Après la recherche, l'utilisateur peut mettre les produits dans son panier.
+Tant qu'il est sur l'affichage du panier, il peut modifier la quantité des produits et les supprimer de son panier.
+Le panier est ensuite mis à jour.
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.7]{../Diagrams/SequenceDiagrams/panier.png}
+    \caption*{Diagramme UML de la gestion du panier}
+\end{figure}
+
+
+\section{Modèle relationnel}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.7]{../Diagrams/ClassDiagrams/Database.png}
+    \caption*{Modèle relationnel de la base de donnée}
+\end{figure}
+
+\section{Diagramme de classes}
+
+\begin{figure}[ht]
+    \center
+    \includegraphics[scale=0.7]{../Diagrams/ClassDiagrams/Models.png}
+    \caption*{Diagramme de classe de l'application}
+\end{figure}
+
+
 
 
 \newpage
@@ -315,7 +441,7 @@ Un sprint dure entre 2 et 4 semaines. Le deuxième semestre dure 8 semaines (san
 \subsection{Sprint 1 - Architecture et 3D}
 Dans ce sprint, on va mettre en place tout le système, développer le serveur PHP, très basique, et mettre en place la base données.
 Notre but est de faire fonctionner le lien entre la partie 3D et la base de données.
-À partir de ce moment-là, nous passerons à la visualisation des produits stockés dans la base de données. Cette tâche répond au usecase de "Visualisation de produits".\\\\
+À partir de ce moment là, nous passerons à la visualisation des produits stockés dans la base de données. Cette tâche répond au usecase de "Visualisation de produits".\\\\
 Le deuxième usecase traité dans ce sprint est "Afficher la description d'un produit". Cela permettra de tester le fonctionnement de l'architecture mise en place.
 A la fin du premier sprint, nous avons donc déjà un produit fonctionnel.
 
