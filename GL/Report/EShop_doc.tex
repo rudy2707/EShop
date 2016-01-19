@@ -161,45 +161,45 @@
         \hline
         \textbf{Description} & \textbf{Priorité}\\
         \hhline{|=||=|}
-        C'est l'histoire d'un utilisateur qui a envie d'aller a la migros et qui ne veut pas sortir de chez lui mais qui a une connexion internet & 1\\
+        Le client veut voir les produits du magasin & 1\\
         \hline
-        Le client dans le magasin veut ramasser un produit sur une étagere et le mettre dans son panier & 3\\
+        Le client veut avoir la description du produit en cliquant dessus & 2\\
         \hline
-        Le client avec son panier veut pouvoir aller à la caisse et va payer ses courses & 5\\
+        Le client va voir dans le rayon d'à cote les produits proposés & 3\\
+        \hline
+        Le client veut pouvoir filtrer les produits par catégories & 4\\
+        \hline
+        Le client veut revenir au choix des catégories & 5\\
         \hline
         Le client ne trouve pas le produit qu'il cherche et demande a un employe du magasin de l'aider & 6\\
         \hline
-        Le client n'est pas content avec un de ses articles dans le panier et souhaite le retirer & 4\\
+        Le client dans le magasin veut ramasser un produit sur une étagere et le mettre dans son panier & 7\\
         \hline
-        Le client va voir dans le rayon d'a cote les produits proposés & 2\\
+        Le client veut voir son panier & 8\\
         \hline
-        Le client veut modifier la quantité d'un element situé dans le panier & X\\
+        Le client n'est pas content avec un de ses articles dans le panier et souhaite le retirer & 9\\
         \hline
-        Le client veut vider son panier & X\\
+        Le client veut modifier la quantité d'un element situé dans le panier & 10\\
         \hline
-        Le client veut supprimer un element du panier & X\\
+        Le client veut vider son panier & 11\\
         \hline
-        Le client veut avoir la description du produit en cliquant dessus & X\\
+        Le client veut supprimer un element du panier & 12\\
         \hline
-        Le client veut connaitre le solde total de son panier & X\\
+        Le client veut connaitre le solde total de son panier & 13\\
         \hline
-        Le client veut rentrer ses informations de paiement et payer & X\\
+        Le client avec son panier veut pouvoir aller à la caisse et va payer ses courses & 14\\
         \hline
-        Le client veut modifier son compte (nom, mot de passe, adresse) & X\\
+        Le client veut rentrer ses informations de paiement et payer & 15\\
         \hline
-        Le client veut supprimer son compte & X\\
+        Le client veut se créer un compte & 16\\
         \hline
-        Le client veut payer mais il doit d'abord s'authentifier & X\\
+        Le client veut payer mais il doit d'abord s'authentifier & 17\\
         \hline
-        Le client veut revenir au choix des catégories & X\\
+        Le client veut modifier son compte (nom, mot de passe, adresse) & 18\\
         \hline
-        Le client veut pouvoir filtrer les produits par catégories & X\\
+        Le client veut supprimer son compte & 19\\
         \hline
-        Le client veut sortir du magasin & X\\
-        \hline
-        Le client veut voir son panier & X\\
-        \hline
-        Le client veut se déconnecter de son compte & X\\
+        Le client veut se déconnecter de son compte & 20\\
         \hline
     \end{tabular}
 \end{center}
@@ -250,6 +250,30 @@
     \addmulrow{Exception}{
     \item Les produits ne sont pas en stock.
     }
+\end{usecase}
+
+\begin{usecase}
+    \addheading{Titre}{Gestion de panier}
+    \addrow{Acteur}{Client}
+    \addrow{But}{Permettre au client de modifier, supprimer un élément du panier}
+    \addrow{Résumé métier}{Le client doit pouvoir modifier la quantité d'un élément de son panier et de le supprimer}
+    \addrow{Pré-condition}{Avoir des produits dans son panier}
+\end{usecase}
+
+\begin{usecase}
+    \addheading{Titre}{Gestion de son compte client}
+    \addrow{Acteur}{Client}
+    \addrow{But}{Permettre au client de modifier, supprimer son compte}
+    \addrow{Résumé métier}{Le client doit pouvoir modifier ses informations de facturations, de paiements ou de supprimer son compte}
+    \addrow{Pré-condition}{Etre authentifié}
+\end{usecase}
+
+\begin{usecase}
+    \addheading{Titre}{Consultation des commandes}
+    \addrow{Acteur}{Client}
+    \addrow{But}{Permettre au client de voir ses commandes en cours}
+    \addrow{Résumé métier}{Le client doit pouvoir voir l'état de ses commandes}
+    \addrow{Pré-condition}{Etre authentifié}
 \end{usecase}
 
 \newpage
