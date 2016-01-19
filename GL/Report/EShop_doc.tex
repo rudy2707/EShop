@@ -253,12 +253,14 @@
 \end{usecase}
 
 \newpage
-\section{Composants}
 
+\section{Architecure}
+Nous avons décidé de développer l'application en utilisant WebGL (Front-end), PHP (Front+Back end) et MySQL (Database).
+Le diagramme de composants ci-dessous montre le système complet.
 \begin{figure}[ht]
     \center
     \includegraphics[scale=0.6]{../Diagrams/ComposantDiagrams/composants.png}
-    \caption*{Diagramme UML des composants}
+    \caption*{Diagramme UML de composants}
 \end{figure}
 
 \newpage
@@ -308,5 +310,27 @@
 
 \newpage
 \section{\textit{Sprints}}
+Un sprint dure entre 2 et 4 semaines. Le deuxième semestre dure 8 semaines (sans compter les vacances de Pâques), donc nous avons décidé de prévoir 4 sprints.
+
+\subsection{Sprint 1 - Architecture et 3D}
+Dans ce sprint, on va mettre en place tout le système, développer le serveur PHP, très basique, et mettre en place la base données.
+Notre but est de faire fonctionner le lien entre la partie 3D et la base de données.
+À partir de ce moment-là, nous passerons à la visualisation des produits stockés dans la base de données. Cette tâche répond au usecase de "Visualisation de produits".\\\\
+Le deuxième usecase traité dans ce sprint est "Afficher la description d'un produit". Cela permettra de tester le fonctionnement de l'architecture mise en place.
+
+\subsection{Sprint 2 - Navigation, filtres et recherche}
+Dans ce 2ème sprint, nous allons mettre en place la vue par catégories des produits, le filtre des produits et la recherche des produits.
+
+\subsection{Sprint 3 - Panier}
+Comme le titre du sprint l'indique, la gestion du panier se fera ici. Maintenant que l'utilisateur peut choisir ses produits en les filtrant, en naviguant
+par catégories et faisant des recherches, il pourra après ce sprint, ajouter des produits dans son panier, modifier son panier et enfin accéder au système de paiement.
+La partie de sélection de produit se faire via la 3D, mais toute la gestion se fera de manière classique.
+Le système de paiement étant externe à notre logiciel, le client sera juste redirigé vers la page du site partenaire.
+Le panier est géré par cookies, et donc la gestion des utilisateurs n'est pas requise à cette étape du projet.
+
+\subsection{Sprint 4 - Utilisateurs}
+Le dernier sprint n'est pas la partie la plus dure du projet, c'est pour cela qu'elle est à la fin.
+Dans les comptes utilisateurs, nous pourrons stocker les adresses de facturation, les données clientes, et les informations de paiement.
+
 
 \end{document}
