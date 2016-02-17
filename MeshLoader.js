@@ -1,5 +1,6 @@
 var unhandledPatterns = /^($|#)/;
 
+// Parse materials file
 function getMaterials(meshName)
 {
 	var mtlFileName = "Meshes/" + meshName;
@@ -40,7 +41,7 @@ function getMaterials(meshName)
 				materials[currentName].Kd.push(parseFloat(line[1]));
 				materials[currentName].Kd.push(parseFloat(line[2]));
 				materials[currentName].Kd.push(parseFloat(line[3]));
-				//materials[currentName].Kd.push(1.0);
+				materials[currentName].Kd.push(0.5);
 			}
 			else if(line[0] == "Ks")
 			{
@@ -84,6 +85,7 @@ function getMaterials(meshName)
 	return materials;
 }
 
+// Parse object file
 function initMeshFromObj(meshName)
 {
 	if(typeof meshes[meshName] !== "undefined")
@@ -115,9 +117,9 @@ function initMeshFromObj(meshName)
 
 	var currentMaterial = {};
 
+	// Get vertices / normals / uv
 	for(var i = 0; i < objFileLines.length; i++)
 	{
-
 		if(unhandledPatterns.exec(objFileLines[i]) == null)
 		{
 			var line = objFileLines[i].split(" ");
@@ -149,7 +151,7 @@ function initMeshFromObj(meshName)
 
 				nData = line.length;
 
-				if(nData == 4)
+				if(nData == 4) // Quad faces
 				{
 					var v0 = line[0].split("/");
 					var v1 = line[1].split("/");
@@ -180,11 +182,11 @@ function initMeshFromObj(meshName)
 
 					for(var j = 0; j < 6; j++)
 					{
-						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], 1.0);
-						//colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
+						//colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], 1.0);
+						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
 					}
 				}
-				else
+				else if(nData == 3)	// Triangle face
 				{
 					var v0 = line[0].split("/");
 					var v1 = line[1].split("/");
@@ -215,6 +217,10 @@ function initMeshFromObj(meshName)
 						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
 					}
 				}
+				else
+				{
+					console.log("Unhandled "+ nData +"-goned face");
+				}
 			}
 			else
 			{
@@ -223,7 +229,7 @@ function initMeshFromObj(meshName)
 		}
 	}
 
-
+	// vertices indices association
 	for(var i = 0; i < iVertices.length; i++)
 	{
 		vertices.push(tmpVertices[iVertices[i]][0]);
@@ -232,6 +238,7 @@ function initMeshFromObj(meshName)
 		this.size++;
 	}
 
+	// normals indices association
 	for(var i = 0; i < iNormals.length; i++)
 	{
 		normals.push(tmpNormals[iNormals[i]][0]);
@@ -239,6 +246,7 @@ function initMeshFromObj(meshName)
 		normals.push(tmpNormals[iNormals[i]][2]);
 	}
 
+	// UVs indices association
 	if(iUVs.length > 0)
 	{
 		for(var i = 0; i < iUVs.length; i++)
@@ -273,26 +281,25 @@ function initMeshFromObj(meshName)
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
 
 
-
+	// Making-coffee drawing function. Handle any case of buffer
 	this.draw = function(projection, view, model)
 	{
-		gl.useProgram(shaders[this.shaderName]);
+		gl.useProgram(shaders[this.shaderName].shaderProgram);
 
-		sendMat4(shaders[this.shaderName], "model", model);
-		sendMat4(shaders[this.shaderName], "view", view);
-		sendMat4(shaders[this.shaderName], "projection", projection);
+		shaders[this.shaderName].sendMat4("model", model);
+		shaders[this.shaderName].sendMat4("view", view);
+		shaders[this.shaderName].sendMat4("projection", projection);
 
-		
-		sendInt(shaders[this.shaderName], "lightSourcesQuantity", lightSources.length)
+		shaders[this.shaderName].sendInt("lightSourcesQuantity", lightSources.length);
 
 		for(var i = 0; i < lightSources.length; i++)
 		{
-			sendVec3(shaders[this.shaderName], "lightSources["+ i +"].position", lightSources[i].position);
-			sendVec3(shaders[this.shaderName], "lightSources["+ i +"].color", lightSources[i].color);
-			sendFloat(shaders[this.shaderName], "lightSources["+ i +"].intensity", lightSources[i].intensity);
+			shaders[this.shaderName].sendVec3("lightSources["+ i +"].position", lightSources[i].position);
+			shaders[this.shaderName].sendVec3("lightSources["+ i +"].color", lightSources[i].color);
+			shaders[this.shaderName].sendFloat("lightSources["+ i +"].intensity", lightSources[i].intensity);
 		}
 		
-		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName], "in_Vertex");
+		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName].shaderProgram, "in_Vertex");
 		if(in_Vertex >= 0)
 		{
 			gl.bindBuffer(gl.ARRAY_BUFFER, this.verticesBuffer);
@@ -300,7 +307,7 @@ function initMeshFromObj(meshName)
 			gl.vertexAttribPointer(in_Vertex, 3, gl.FLOAT, false, 0, 0);
 		}
 
-		var in_Normal = gl.getAttribLocation(shaders[this.shaderName], "in_Normal");
+		var in_Normal = gl.getAttribLocation(shaders[this.shaderName].shaderProgram, "in_Normal");
 		if(in_Normal >= 0)
 		{	
 			gl.bindBuffer(gl.ARRAY_BUFFER, this.normalsBuffer);
@@ -308,7 +315,7 @@ function initMeshFromObj(meshName)
 			gl.vertexAttribPointer(in_Normal, 3, gl.FLOAT, false, 0, 0);
 		}
 
-		var in_Color = gl.getAttribLocation(shaders[this.shaderName], "in_Color");
+		var in_Color = gl.getAttribLocation(shaders[this.shaderName].shaderProgram, "in_Color");
 		if(in_Color >= 0)
 		{
 			gl.bindBuffer(gl.ARRAY_BUFFER, this.colorsBuffer);
@@ -316,10 +323,10 @@ function initMeshFromObj(meshName)
 			gl.vertexAttribPointer(in_Color, 4, gl.FLOAT, false, 0, 0);
 		}
 
-		var in_TextureCoord = gl.getAttribLocation(shaders[this.shaderName], "in_TextureCoord");
+		var in_TextureCoord = gl.getAttribLocation(shaders[this.shaderName].shaderProgram, "in_TextureCoord");
 		if(in_TextureCoord >=0)
 		{
-			var samplerUniform = gl.getUniformLocation(shaders[this.shaderName], "uSampler");
+			var samplerUniform = gl.getUniformLocation(shaders[this.shaderName].shaderProgram, "uSampler");
 
 			gl.bindBuffer(gl.ARRAY_BUFFER, this.textureCoordBuffer);
 			gl.enableVertexAttribArray(in_TextureCoord);
@@ -330,18 +337,19 @@ function initMeshFromObj(meshName)
 			gl.uniform1i(samplerUniform, 0);
 		}
 
-		/*if(this.meshName == "ShowCase")
+		if(this.meshName == "ShowCase")
 		{
 			gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
 			gl.enable(gl.BLEND);
 			gl.disable(gl.DEPTH_TEST);	
+			gl.drawArrays(gl.TRIANGLES, 0, this.size);
+			gl.disable(gl.BLEND);
+			gl.enable(gl.DEPTH_TEST);
 		}
 		else
 		{
-			gl.disable(gl.BLEND);
-			gl.enable(gl.DEPTH_TEST);
-		}*/
+			gl.drawArrays(gl.TRIANGLES, 0, this.size);
+		}
 		
-		gl.drawArrays(gl.TRIANGLES, 0, this.size);
 	}
 } 

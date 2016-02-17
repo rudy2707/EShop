@@ -31,7 +31,7 @@ void main()
 		{
 			vec3 surfaceToLight = normalize(lightSources[i].position - surfacePosition);
 
-			vec3 ambient = vec3(0.1, 0.1, 0.1) * surfaceColor.rgb * lightSources[i].color;
+			vec3 ambient = vec3(0.01, 0.01, 0.01) * surfaceColor.rgb * lightSources[i].color;
 
 			float diffuseCoefficient = max(0.0, dot(normal, surfaceToLight));
 			vec3 diffuseColor = diffuseCoefficient * surfaceColor.rgb * lightSources[i].color * lightSources[i].intensity;
@@ -48,7 +48,7 @@ void main()
 
 	vec3 gamma = vec3(1.0 / 2.2);
 
-	/*
+	//*
 	gl_FragColor = vec4(pow(linearColor, gamma), surfaceColor.a);
 	/*/
 	gl_FragColor = vec4(linearColor, surfaceColor.a);

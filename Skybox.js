@@ -6,7 +6,6 @@ function Skybox(slices, stacks)
 
 	this.model;
 
-
 	textures["Skybox.png"] = initTexture("Skybox.png");
 	this.textureName = "Skybox.png";
 	this.shaderName = "Skybox";
@@ -14,6 +13,7 @@ function Skybox(slices, stacks)
 	var vector = new Vector3();
 
 
+	// Sphere coordinates
 	for(var i = 0; i <= slices; i++)
 	{
 		for(var j = 0; j <= stacks; j++)
@@ -38,6 +38,7 @@ function Skybox(slices, stacks)
 		}
 	}
 
+	// Ordering vertices
 	for(var i = 0; i < slices; i++)
 	{
 		for(var j = 0; j < stacks; j++)
@@ -76,16 +77,13 @@ function Skybox(slices, stacks)
 	{
 		this.model = new Matrix4()
 		this.model.translate(camera.position[0], camera.position[1], camera.position[2]);
-		//this.model.setRotate(angle, 0, 1, 0);
-		//this.model.rotate(angle, 0, 1, 0);
 
+		gl.useProgram(shaders[this.shaderName].shaderProgram);
+		shaders[this.shaderName].sendMat4("model", this.model);
+		shaders[this.shaderName].sendMat4("view", view);
+		shaders[this.shaderName].sendMat4("projection", projection);
 
-		gl.useProgram(shaders[this.shaderName]);
-		sendMat4(shaders[this.shaderName], "model", this.model);
-		sendMat4(shaders[this.shaderName], "view", view);
-		sendMat4(shaders[this.shaderName], "projection", projection);
-
-		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName], "in_Vertex");
+		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName].shaderProgram, "in_Vertex");
 		if(in_Vertex >= 0)
 		{
 			gl.bindBuffer(gl.ARRAY_BUFFER, this.verticesBuffer);
@@ -94,10 +92,10 @@ function Skybox(slices, stacks)
 		}
 
 
-		var in_TextureCoord = gl.getAttribLocation(shaders[this.shaderName], "in_TextureCoord");
+		var in_TextureCoord = gl.getAttribLocation(shaders[this.shaderName].shaderProgram, "in_TextureCoord");
 		if(in_TextureCoord >=0)
 		{
-			var samplerUniform = gl.getUniformLocation(shaders[this.shaderName], "uSampler");
+			var samplerUniform = gl.getUniformLocation(shaders[this.shaderName].shaderProgram, "uSampler");
 
 			gl.bindBuffer(gl.ARRAY_BUFFER, this.textureCoordBuffer);
 			gl.enableVertexAttribArray(in_TextureCoord);

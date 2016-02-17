@@ -1,13 +1,9 @@
-function Shelf(width, height, position = [0, 0, 0])
+function Shelf(width, height, position)
 {
 	this.position = position;
-	//console.log(position)
-	/*if(typeof position === "undefined")
-		this.position = [0,0,0];
-	else
-		this.position = position;*/
 
 	this.spots = new Array(width);
+	this.mesh = new initMeshFromObj("Spot");
 
 	for(var x = 0; x < width; x++)
 	{
@@ -34,17 +30,15 @@ function Shelf(width, height, position = [0, 0, 0])
 	// Place item at the first non-null position
 	this.push = function(item)
 	{
-		var x = 0;
-		for(var y = this.spots[x].length -1; y > 0; y--)
+		for(var y = this.spots[0].length -1; y >= 0; y--)
 		{
-			while(x < this.spots.length -1)
+			for(var x = 0; x < this.spots.length; x++)
 			{
 				if(this.spots[x][y] == null)
 				{
 					this.spots[x][y] = item;
 					return true;
 				}
-				x++
 			}
 		}
 
@@ -94,7 +88,7 @@ function Shelf(width, height, position = [0, 0, 0])
 
 				model.translate(this.position[0] + x * 0.5, this.position[1] + y * 0.5, this.position[2]);
 
-				meshes["spot"].draw(projection, view, model);
+				this.mesh.draw(projection, view, model);
 
 				if(this.spots[x][y] != null)
 				{

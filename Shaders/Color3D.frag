@@ -48,7 +48,7 @@ void main()
 
 	vec3 gamma = vec3(1.0 / 2.2);
 
-	/*
+	//*
 	gl_FragColor = vec4(pow(linearColor, gamma), surfaceColor.a);
 	/*/
 	gl_FragColor = vec4(linearColor, surfaceColor.a);

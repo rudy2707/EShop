@@ -1,42 +1,4 @@
-function initShader(shaderName)
-{
-	var vShaderSource = getFileContent("Shaders/" + shaderName + ".vert");
-	var fShaderSource = getFileContent("Shaders/" + shaderName + ".frag");
-	
-	var vertexShader = gl.createShader(gl.VERTEX_SHADER);
-	gl.shaderSource(vertexShader, vShaderSource);
-	gl.compileShader(vertexShader);
-
-	if(!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS))
-	{
-		console.log("Failed to compile vertex shader");
-		return;
-	}
-
-	var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-	gl.shaderSource(fragmentShader, fShaderSource);
-	gl.compileShader(fragmentShader);
-
-	if(!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS))
-	{
-		console.log("Failed to compile fragment shader");
-		return;
-	}
-
-	var shaderProgram = gl.createProgram();
-	gl.attachShader(shaderProgram, vertexShader);
-	gl.attachShader(shaderProgram, fragmentShader);
-	gl.linkProgram(shaderProgram);
-
-	if(!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS))
-	{
-		console.log("Failed to link shader program");
-		return;
-	}
-
-	return shaderProgram;
-}
-
+// Initialization of browserproof mouse-grabbing 
 function initWindowCapture()
 {
 	canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
@@ -76,55 +38,7 @@ function initWindowCapture()
 	}
 }
 
-//TODO : Shader class
-function sendMat4(shaderProgram, name, matrix)
-{
-	var location = gl.getUniformLocation(shaderProgram, name);
-	if(!location)
-	{
-		console.log("Failed to get the storage location of " + name);
-		return;
-	}
-
-	gl.uniformMatrix4fv(location, false, matrix.elements);
-}
-
-function sendVec3(shaderProgram, name, vector)
-{
-	var location = gl.getUniformLocation(shaderProgram, name);
-	if(!location)
-	{
-		console.log("Failed to get the storage location of " + name);
-		return;
-	}
-
-	gl.uniform3fv(location, vector);
-}
-
-function sendFloat(shaderProgram, name, value)
-{
-	var location = gl.getUniformLocation(shaderProgram, name);
-	if(!location)
-	{
-		console.log("Failed to get the storage location of " + name);
-		return;
-	}
-
-	gl.uniform1f(location, value);
-}
-
-function sendInt(shaderProgram, name, value)
-{
-	var location = gl.getUniformLocation(shaderProgram, name);
-	if(!location)
-	{
-		console.log("Failed to get the storage location of " + name);
-		return;
-	}
-
-	gl.uniform1i(location, value);
-}
-
+// Parsing URL parameters
 function getParameters()
 {
 	var query = window.location.search.substring(1);
@@ -141,15 +55,11 @@ function getParameters()
 		}
 	}
 
-	if(typeof parameters["page"] === "undefined")
-	{
-		parameters["page"] = "home";
-	}
-
 	return parameters;
 }
 
-function init()
+// Init 3D context from canvas
+function initGL()
 {
 	canvas = document.getElementById('webgl');
 	gl = getWebGLContext(canvas);
@@ -161,14 +71,16 @@ function init()
 		return;
 	}
 
-	shaders["Color3D"] = initShader("Color3D");
-	shaders["Skybox"] = initShader("Skybox");
-	shaders["Texture3D"] = initShader("Texture3D");
+	// Init shaders
+	shaders["Skybox"] = new Shader("Skybox");
+	shaders["Color3D"] = new Shader("Color3D");
+	shaders["Texture3D"] = new Shader("Texture3D");
 
+	// Init controls
 	initWindowCapture();
-	//inputs = new Inputs(getParameters["controls"]);
 	inputs = new Inputs(httpParams["keys"]);
 
+	// Define GL options
 	gl.enable(gl.DEPTH_TEST);
 	gl.clearColor(0.0, 0.0, 0.0, 1.0);
 }

@@ -1,8 +1,5 @@
 Not done yet :
 
-Controls in GET parameters (default WASD)
-LightSource class (currently hardcoded in shaders)
-Manage many lightSources
 Item picking
 Shopping cart
 
@@ -26,5 +23,6 @@ Mouse/keyboard inputs
 Camera
 Displaying meshes at given positions
 Webkit-proof keyboard controls
-
-
+Controls in GET parameters (default WASD)
+LightSource class (currently hardcoded in shaders)
+Manage many lightSources
