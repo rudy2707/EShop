@@ -9,19 +9,22 @@ function Shop()
 	meshes["Pepper"] = new initMeshFromObj("Pepper");
 	meshes["Carrot"] = new initMeshFromObj("Carrot");
 	meshes["Apple"] = new initMeshFromObj("Apple");
+	meshes["Chocolate"] = new initMeshFromObj("Chocolate");
 	meshes["BananaGroup"] = new initMeshFromObj("BananaGroup");
 	meshes["Condom"] = new initMeshFromObj("Condom");
+	meshes["Steak"] = new initMeshFromObj("Steak");
 	meshes["ParisBiatch"] = new initMeshFromObj("ParisBiatch");
 	meshes["CashDesk"] = new initMeshFromObj("CashDesk");
 
 	this.shelf = new Shelf(4, 3, [-4.5, 0, -7.9]);
-	//this.shelf = new Shelf(10, 3);
 
 	this.shelf.push("Pepper");
 	this.shelf.push("Carrot");
 	this.shelf.push("BananaGroup");
 	this.shelf.push("ParisBiatch");
 	this.shelf.push("Apple");
+	this.shelf.push("Chocolate");
+	this.shelf.push("Steak");
 
 
 	this.elements = [];
@@ -52,11 +55,11 @@ function Shop()
 	this.elements.push({type : 1, mesh : this.shelf, yAngle : 90});
 	
 	var light1 = new LightSource([3.0, 3.0, 3.0]);
-	light1.setColor(0.0, 1.0, 1.0);
+	light1.setColor(1.0, 1.0, 0.8);
 	light1.intensity = 5.0;
 
 	var light2 = new LightSource([-5.0, 3.0, 0.0]);
-	light2.setColor(1.0, 1.0, 0.5);
+	light2.setColor(1.0, 1.0, 0.8);
     light2.setIntensity(5.0);
 
 	lightSources.push(light1);

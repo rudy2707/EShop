@@ -182,8 +182,8 @@ function initMeshFromObj(meshName)
 
 					for(var j = 0; j < 6; j++)
 					{
-						//colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], 1.0);
 						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
+						//colors.push(0.0, 0.0, 0.0, 1.0);
 					}
 				}
 				else if(nData == 3)	// Triangle face
@@ -213,8 +213,8 @@ function initMeshFromObj(meshName)
 
 					for(var j = 0; j < 3; j++)
 					{	
-						//colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.Kd[3]);
 						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
+						//colors.push(0.0, 0.0, 0.0, 1.0);
 					}
 				}
 				else
@@ -337,7 +337,11 @@ function initMeshFromObj(meshName)
 			gl.uniform1i(samplerUniform, 0);
 		}
 
-		if(this.meshName == "ShowCase")
+		if(this.meshName != "ShowCase")
+		{
+			gl.drawArrays(gl.TRIANGLES, 0, this.size);
+		}
+		else
 		{
 			gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
 			gl.enable(gl.BLEND);
@@ -345,10 +349,6 @@ function initMeshFromObj(meshName)
 			gl.drawArrays(gl.TRIANGLES, 0, this.size);
 			gl.disable(gl.BLEND);
 			gl.enable(gl.DEPTH_TEST);
-		}
-		else
-		{
-			gl.drawArrays(gl.TRIANGLES, 0, this.size);
 		}
 		
 	}
