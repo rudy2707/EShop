@@ -3,7 +3,8 @@ function Shelf(width, height, position)
 	this.position = position;
 
 	this.spots = new Array(width);
-	this.mesh = new initMeshFromObj("Spot");
+	this.spotMesh = new initMeshFromObj("Spot");
+	this.shelfSocleMesh = new initMeshFromObj("ShelfSocle");
 
 	for(var x = 0; x < width; x++)
 	{
@@ -85,10 +86,17 @@ function Shelf(width, height, position)
 			for(var y = 0; y < this.spots[x].length; y++)
 			{
 				model.set(modelBak);
-
+				
 				model.translate(this.position[0] + x * 0.5, this.position[1] + y * 0.5, this.position[2]);
 
-				this.mesh.draw(projection, view, model);
+				if(y == 0)
+				{
+					this.shelfSocleMesh.draw(projection, view, model);
+				}
+
+				model.translate(0, 0.25, 0);
+
+				this.spotMesh.draw(projection, view, model);
 
 				if(this.spots[x][y] != null)
 				{

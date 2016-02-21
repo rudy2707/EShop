@@ -88,6 +88,7 @@ function getMaterials(meshName)
 // Parse object file
 function initMeshFromObj(meshName)
 {
+	console.log("test");
 	if(typeof meshes[meshName] !== "undefined")
 	{
 		console.log("Warning : ignoring already loaded mesh : " + meshName);
