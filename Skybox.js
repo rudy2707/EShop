@@ -6,8 +6,14 @@ function Skybox(slices, stacks)
 
 	this.model;
 
-	textures["Skybox.png"] = initTexture("Skybox.png");
-	this.textureName = "Skybox.png";
+	//textures["Skybox.png"] = initTexture("Skybox.png");
+	//this.textureName = "Skybox.png";
+	//textures["Panorama.jpg"] = initTexture("Panorama.jpg");
+	//this.textureName = "Panorama.jpg";
+
+	textures["Skybox.jpg"] = initTexture("Skybox.jpg");
+	this.textureName = "Skybox.jpg";
+	
 	this.shaderName = "Skybox";
 
 	var vector = new Vector3();

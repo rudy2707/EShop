@@ -54,7 +54,7 @@ function Inputs(keySettings)
 		this.relX = relX;
 		this.relY = relY;
 	}	
-	
+
 	this.update = function()
 	{
 		this.relX = 0;	

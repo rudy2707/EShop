@@ -19,12 +19,14 @@ function Shop()
 	meshes["Condom"] = new initMeshFromObj("Condom");
 	meshes["Steak"] = new initMeshFromObj("Steak");
 	meshes["ParisBiatch"] = new initMeshFromObj("ParisBiatch");
+	meshes["Lolipop"] = new initMeshFromObj("Lolipop");
+	meshes["Doughnut"] = new initMeshFromObj("Doughnut");
 
 	this.shelf = [];
 	this.shelf.push(new Shelf(3, 2, [-4, 0, -7.9]));	//Fruits
 	this.shelf.push(new Shelf(3, 2, [-1, 0, -7.9]));	// Vegetables
-	this.shelf.push(new Shelf(3, 2, [2, 0, -7.9]));	// Meat
-	this.shelf.push(new Shelf(3, 2, [6, 0, -7.9]));	// Sweets 
+	this.shelf.push(new Shelf(2, 2, [2, 0, -7.9]));	// Meat
+	this.shelf.push(new Shelf(2, 2, [6, 0, -7.9]));	// Sweets 
 
 	this.shelf[0].push("BananaGroup");
 	this.shelf[0].push("Apple");
@@ -36,6 +38,8 @@ function Shop()
 	this.shelf[2].push("Fish");
 
 	this.shelf[3].push("Chocolate");
+	this.shelf[3].push("Lolipop");
+	this.shelf[3].push("Doughnut");
 
 	//this.shelf.push("ParisBiatch");
 
@@ -46,8 +50,8 @@ function Shop()
 	this.elements.push({type : 0, meshName : "Floor", position : [0, 0, 0], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Ceiling", position : [0, 0, 0], yAngle : 90});
 
-	//this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, -4], yAngle : 90});
-	this.elements.push({type : 0, meshName : "ShowCase", position : [-8, 0, -4], yAngle : 90});
+	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, -4], yAngle : 90});
+	//this.elements.push({type : 0, meshName : "ShowCase", position : [-8, 0, -4], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 0], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 4], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 8], yAngle : 90});
@@ -57,15 +61,25 @@ function Shop()
 	this.elements.push({type : 0, meshName : "Wall", position : [8, 0, 4], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Wall", position : [8, 0, 8], yAngle : 90});
 
-	this.elements.push({type : 0, meshName : "Wall", position : [-8, -2, 8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [-4, -2, 8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [-0, -2, 8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [4, -2, 8], yAngle : 0});
+	//Back
+	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [-4, -3, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [-4, 3, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [0, -3, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [0, 3, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [4, 0, 8], yAngle : 0});
 
-	this.elements.push({type : 0, meshName : "CashDesk", position : [6, 0, -6], yAngle : 90});
-	this.elements.push({type : 0, meshName : "CashDesk", position : [3, 0, -6], yAngle : 90});
-	this.elements.push({type : 0, meshName : "CashDesk", position : [0, 0, -6], yAngle : 90});
-	this.elements.push({type : 0, meshName : "CashDesk", position : [-3, 0, -6], yAngle : 90});
+	//Front
+	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, -8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [-4, 3, -8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [0, 3, -8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [4, 0, -8], yAngle : 0});
+
+	this.elements.push({type : 0, meshName : "CashDesk", position : [6, 0, -5], yAngle : 90});
+	this.elements.push({type : 0, meshName : "CashDesk", position : [3, 0, -5], yAngle : 90});
+	this.elements.push({type : 0, meshName : "CashDesk", position : [0, 0, -5], yAngle : 90});
+	this.elements.push({type : 0, meshName : "CashDesk", position : [-3, 0, -5], yAngle : 90})
+	this.elements.push({type : 0, meshName : "CashDesk", position : [-6, 0, -5], yAngle : 90})
 
 	this.elements.push({type : 1, mesh : this.shelf[0], yAngle : 90});
 	this.elements.push({type : 1, mesh : this.shelf[1], yAngle : 90});
