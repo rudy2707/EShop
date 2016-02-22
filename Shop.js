@@ -21,27 +21,47 @@ function Shop()
 	meshes["ParisBiatch"] = new initMeshFromObj("ParisBiatch");
 	meshes["Lolipop"] = new initMeshFromObj("Lolipop");
 	meshes["Doughnut"] = new initMeshFromObj("Doughnut");
+	meshes["YoghurtApple"] = new initMeshFromObj("YoghurtApple");
+	meshes["YoghurtStrawberry"] = new initMeshFromObj("YoghurtStrawberry");
+	meshes["YoghurtVanilla"] = new initMeshFromObj("YoghurtVanilla");
+	meshes["YoghurtNature"] = new initMeshFromObj("YoghurtNature");
+	meshes["Gruyere"] = new initMeshFromObj("Gruyere");
+	meshes["Emmental"] = new initMeshFromObj("Emmental");
+	meshes["GreenMilk"] = new initMeshFromObj("GreenMilk");
+	meshes["RedMilk"] = new initMeshFromObj("RedMilk");
+	meshes["BlueMilk"] = new initMeshFromObj("BlueMilk");
 
-	this.shelf = [];
-	this.shelf.push(new Shelf(3, 2, [-4, 0, -7.9]));	//Fruits
-	this.shelf.push(new Shelf(3, 2, [-1, 0, -7.9]));	// Vegetables
-	this.shelf.push(new Shelf(2, 2, [2, 0, -7.9]));	// Meat
-	this.shelf.push(new Shelf(2, 2, [6, 0, -7.9]));	// Sweets 
+	this.shelves = [];
+	this.shelves.push(new Shelf(3, 2, [-4, 0, -7.9]));	//Fruits
+	this.shelves.push(new Shelf(3, 2, [-1, 0, -7.9]));	// Vegetables
+	this.shelves.push(new Shelf(2, 2, [2, 0, -7.9]));	// Meat
+	this.shelves.push(new Shelf(2, 2, [6, 0, -7.9]));	// Sweets 
+	this.shelves.push(new Shelf(6, 2, [1, 0, -7.9]));	// Milk Products
 
-	this.shelf[0].push("BananaGroup");
-	this.shelf[0].push("Apple");
-	this.shelf[1].push("Pepper");
-	this.shelf[1].push("Carrot");
-	this.shelf[1].push("Pumpkin");
-	this.shelf[2].push("Steak");
-	this.shelf[2].push("Ham");
-	this.shelf[2].push("Fish");
+	this.shelves[0].push("BananaGroup");
+	this.shelves[0].push("Apple");
+	this.shelves[1].push("Pepper");
+	this.shelves[1].push("Carrot");
+	this.shelves[1].push("Pumpkin");
+	this.shelves[2].push("Steak");
+	this.shelves[2].push("Ham");
+	this.shelves[2].push("Fish");
 
-	this.shelf[3].push("Chocolate");
-	this.shelf[3].push("Lolipop");
-	this.shelf[3].push("Doughnut");
+	this.shelves[3].push("Chocolate");
+	this.shelves[3].push("Lolipop");
+	this.shelves[3].push("Doughnut");
 
-	//this.shelf.push("ParisBiatch");
+	this.shelves[4].push("Emmental");
+	this.shelves[4].push("Gruyere");
+	this.shelves[4].push("YoghurtApple");
+	this.shelves[4].push("YoghurtStrawberry");
+	this.shelves[4].push("YoghurtVanilla");
+	this.shelves[4].push("YoghurtNature");
+	this.shelves[4].push("GreenMilk");
+	this.shelves[4].push("RedMilk");
+	this.shelves[4].push("BlueMilk");
+
+	//this.shelves.push("ParisBiatch");
 
 
 	this.elements = [];
@@ -51,7 +71,6 @@ function Shop()
 	this.elements.push({type : 0, meshName : "Ceiling", position : [0, 0, 0], yAngle : 90});
 
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, -4], yAngle : 90});
-	//this.elements.push({type : 0, meshName : "ShowCase", position : [-8, 0, -4], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 0], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 4], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 8], yAngle : 90});
@@ -63,16 +82,16 @@ function Shop()
 
 	//Back
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, 8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [-4, -3, 8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [-4, 3, 8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [0, -3, 8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [0, 3, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [-4, -2.5, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [-4, 3.5, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [0, -2.5, 8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [0, 3.5, 8], yAngle : 0});
 	this.elements.push({type : 0, meshName : "Wall", position : [4, 0, 8], yAngle : 0});
 
 	//Front
 	this.elements.push({type : 0, meshName : "Wall", position : [-8, 0, -8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [-4, 3, -8], yAngle : 0});
-	this.elements.push({type : 0, meshName : "Wall", position : [0, 3, -8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [-4, 3.5, -8], yAngle : 0});
+	this.elements.push({type : 0, meshName : "Wall", position : [0, 3.5, -8], yAngle : 0});
 	this.elements.push({type : 0, meshName : "Wall", position : [4, 0, -8], yAngle : 0});
 
 	this.elements.push({type : 0, meshName : "CashDesk", position : [6, 0, -5], yAngle : 90});
@@ -81,10 +100,11 @@ function Shop()
 	this.elements.push({type : 0, meshName : "CashDesk", position : [-3, 0, -5], yAngle : 90})
 	this.elements.push({type : 0, meshName : "CashDesk", position : [-6, 0, -5], yAngle : 90})
 
-	this.elements.push({type : 1, mesh : this.shelf[0], yAngle : 90});
-	this.elements.push({type : 1, mesh : this.shelf[1], yAngle : 90});
-	this.elements.push({type : 1, mesh : this.shelf[2], yAngle : 90});
-	this.elements.push({type : 1, mesh : this.shelf[3], yAngle : 180});
+	this.elements.push({type : 1, mesh : this.shelves[0], yAngle : 90});
+	this.elements.push({type : 1, mesh : this.shelves[1], yAngle : 90});
+	this.elements.push({type : 1, mesh : this.shelves[2], yAngle : 90});
+	this.elements.push({type : 1, mesh : this.shelves[3], yAngle : 180});
+	this.elements.push({type : 1, mesh : this.shelves[4], yAngle : 180});
 	
 	var light1 = new LightSource([5.0, 3.0, 5.0]);
 	light1.setColor(1.0, 1.0, 0.8);
