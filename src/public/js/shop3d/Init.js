@@ -73,6 +73,7 @@ function initGL()
 	shaders["Skybox"] = new Shader("Skybox");
 	shaders["Color3D"] = new Shader("Color3D");
 	shaders["Texture3D"] = new Shader("Texture3D");
+	shaders["ColorPicking"] = new Shader("ColorPicking");
 
 	// Init controls
 	initWindowCapture();

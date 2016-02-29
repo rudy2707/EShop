@@ -1,10 +1,11 @@
 var canvas;
 var gl;
 
-var locked = false;
+var pixelValue;
 
 var Camera;
 var inputs;
+var shop;
 
 var angle = 0;
 

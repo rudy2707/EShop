@@ -40,12 +40,12 @@ function Shop()
 	meshes["ToiletPaper"] = new initMeshFromObj("ToiletPaper");
 
 	this.shelves = [];
-	this.shelves.push(new Shelf(3, 2, [-4, 0, -7.9]));	//Fruits
-	this.shelves.push(new Shelf(3, 2, [-1, 0, -7.9]));	// Vegetables
-	this.shelves.push(new Shelf(2, 2, [2, 0, -7.9]));	// Meat
-	this.shelves.push(new Shelf(3, 2, [6, 0, -7.9]));	// Sweets 
-	this.shelves.push(new Shelf(6, 2, [1, 0, -7.9]));	// Milk Products
-	this.shelves.push(new Shelf(4, 2, [-3, 0, -7.9]));	// paper products
+	this.shelves.push(new Shelf(3, 2, [-4, 0, -7.9], this.shelves.length));	//Fruits
+	this.shelves.push(new Shelf(3, 2, [-1, 0, -7.9], this.shelves.length));	// Vegetables
+	this.shelves.push(new Shelf(2, 2, [2, 0, -7.9], this.shelves.length));	// Meat
+	this.shelves.push(new Shelf(3, 2, [6, 0, -7.9], this.shelves.length));	// Sweets 
+	this.shelves.push(new Shelf(6, 2, [1, 0, -7.9], this.shelves.length));	// Milk Products
+	this.shelves.push(new Shelf(4, 2, [-3, 0, -7.9], this.shelves.length));	// paper products
 
 	this.shelves[0].push("BananaGroup");
 	this.shelves[0].push("Apple");
@@ -149,11 +149,22 @@ function Shop()
 	lightSources.push(light3);
 	lightSources.push(light4);
 
+	this.preDraw = function(projection, view)
+	{
+		for(var i = 0; i < this.elements.length; i++)
+		{
+			var model = new Matrix4();
+
+			if(this.elements[i].type == 1)
+			{
+				model.rotate(this.elements[i].yAngle, 0, 1, 0);
+				this.elements[i].mesh.preDraw(projection, view, model);
+			}
+		}
+	}
 
 	this.draw = function(projection, view)
 	{
-		//var model = new Matrix4();
-
 		for(var i = 0; i < this.elements.length; i++)
 		{
 			var model = new Matrix4();

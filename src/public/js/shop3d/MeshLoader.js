@@ -353,4 +353,36 @@ function initMeshFromObj(meshName)
 		}
 		
 	}
+
+
+
+
+	//For spots only
+	this.preDraw = function(projection, view, model, shelfId, spotId)
+	{
+		var shaderName = "ColorPicking";
+		gl.useProgram(shaders[shaderName].shaderProgram);
+
+		shaders[shaderName].sendMat4("model", model);
+		shaders[shaderName].sendMat4("view", view);
+		shaders[shaderName].sendMat4("projection", projection);
+
+		shaders[shaderName].sendFloat("shelfId", shelfId);
+		shaders[shaderName].sendFloat("spotId", spotId);
+
+		var in_Vertex = gl.getAttribLocation(shaders[shaderName].shaderProgram, "in_Vertex");
+		if(in_Vertex >= 0)
+		{
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.verticesBuffer);
+			gl.enableVertexAttribArray(in_Vertex);
+			gl.vertexAttribPointer(in_Vertex, 3, gl.FLOAT, false, 0, 0);
+		}
+
+		gl.drawArrays(gl.TRIANGLES, 0, this.size);
+
+		
+	}
+
+
+
 } 

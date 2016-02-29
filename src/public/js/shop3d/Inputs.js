@@ -24,6 +24,30 @@ function Inputs(keySettings)
 	this.keys[this.keyCodes["backward"]] = false;
 	this.keys[this.keyCodes["right"]] = false;
 
+	this.downColor = new Uint8Array(3);
+	this.upColor = new Uint8Array(3);
+
+	this.checkColor = function()
+	{
+		for(var i = 0; i < 3; i++)
+		{
+			if(this.downColor[i] != this.upColor[i])
+			{
+				this.upColor[0] = -1;
+				this.upColor[1] = -1;
+				this.upColor[2] = -1;
+
+				return;
+			}
+		}
+
+		if(this.downColor[0] + this.downColor[1] + this.downColor[2] > 0)
+		{
+			var itemName = shop.shelves[this.downColor[0]].getItemAt(this.downColor[1]);
+			console.log(itemName);
+		}
+	}
+
 	// key events
 	document.onkeypress = function(e)
 	{
@@ -40,6 +64,30 @@ function Inputs(keySettings)
 		if(typeof inputs.keys[letter] !== "undefined")
 		{
 			inputs.keys[letter] = false;
+		}
+	}
+
+
+	//
+	document.body.onmousedown = function(e)
+	{
+		if(e.buttons == 1)
+		{
+			inputs.downColor[0] = pixelValue[0];
+			inputs.downColor[1] = pixelValue[1];
+			inputs.downColor[2] = pixelValue[2];
+		}
+	}
+
+	document.body.onmouseup = function(e)
+	{
+		if(e.buttons == 1)
+		{
+			inputs.upColor[0] = pixelValue[0];
+			inputs.upColor[1] = pixelValue[1];
+			inputs.upColor[2] = pixelValue[2];
+
+			inputs.checkColor();
 		}
 	}
 
@@ -60,5 +108,7 @@ function Inputs(keySettings)
 		this.relX = 0;	
 		this.relY = 0;
 	}
+
+
 
 }

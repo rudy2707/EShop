@@ -1,10 +1,11 @@
-function Shelf(width, height, position)
+function Shelf(width, height, position, id)
 {
 	this.position = position;
 
 	this.spots = new Array(width);
 	this.spotMesh = new initMeshFromObj("Spot");
 	this.shelfSocleMesh = new initMeshFromObj("ShelfSocle");
+	this.id = id;
 
 	for(var x = 0; x < width; x++)
 	{
@@ -72,6 +73,46 @@ function Shelf(width, height, position)
 	{
 		this.spots[x][y] = null;
 	}
+
+
+	this.getItemAt = function(position)
+	{
+		var x = Math.floor(position / this.spots[0].length);
+		var y = position % this.spots[0].length;
+
+		return this.spots[x][y];
+	}
+
+
+	this.preDraw = function(projection, view, model)
+	{
+		var modelBak = new Matrix4();
+		modelBak.set(model);
+
+		var floatingHeight = Math.sin(angle) / 30;
+		var floatingAngle = angle * 10;
+
+		var spotId = 0;
+
+		for(var x = 0; x <this.spots.length; x++)
+		{
+			for(var y = 0; y < this.spots[x].length; y++)
+			{
+
+				model.set(modelBak);
+				
+				model.translate(this.position[0] + x * 0.5, this.position[1] + y * 0.5, this.position[2]);
+
+				model.translate(0, 0.25, 0);
+
+				this.spotMesh.preDraw(projection, view, model, this.id, spotId);
+				spotId++;
+			}
+		}
+	}
+
+
+
 
 	this.draw = function(projection, view, model)
 	{
