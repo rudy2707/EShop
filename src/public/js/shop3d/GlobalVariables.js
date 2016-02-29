@@ -1,6 +1,8 @@
 var canvas;
 var gl;
 
+var locked = false;
+
 var Camera;
 var inputs;
 

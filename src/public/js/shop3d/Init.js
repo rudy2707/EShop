@@ -18,13 +18,11 @@ function initWindowCapture()
 	{
 		if(document.pointerLockElement === canvas || document.mozPointerLockElement === canvas || document.webkitPointerLockElement === canvas)
 		{
-			console.log('The pointer lock status is now locked');
 			document.addEventListener("mousemove", mouseFunction, false);
 		}
 		else
 		{
 			document.removeEventListener("mousemove", mouseFunction, false);
-			console.log('The pointer lock status is now unlocked');
 		}
 	}
 	

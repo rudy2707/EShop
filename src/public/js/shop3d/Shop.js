@@ -152,7 +152,7 @@ function Shop()
 
 	this.draw = function(projection, view)
 	{
-		var model = new Matrix4();
+		//var model = new Matrix4();
 
 		for(var i = 0; i < this.elements.length; i++)
 		{

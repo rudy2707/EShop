@@ -2,7 +2,7 @@ var skybox;
 var shop;
 var projection;
 var view;
-var lightSource
+var reticle;
 
 function start()
 {
@@ -11,6 +11,7 @@ function start()
 	camera = new Camera();
 	skybox = new Skybox(36, 36);
 	shop = new Shop();
+	reticle = new Reticle();
 
 	view = new Matrix4();
 	projection = new Matrix4();
@@ -33,7 +34,9 @@ function mainLoop()
 	skybox.draw(projection, view);
 	gl.depthMask(true);
 
+
 	shop.draw(projection, view);
+	reticle.draw();
 
 	angle += 0.02;
 
