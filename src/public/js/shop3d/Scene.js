@@ -51,3 +51,5 @@ function mainLoop()
 
 	requestAnimationFrame(mainLoop);
 }
+
+start();

@@ -1,92 +1,102 @@
 function Shop()
 {
 	// Meshes declaration
-	meshes["spot"] = new initMeshFromObj("Spot");
-	meshes["Wall"] = new initMeshFromObj("Wall");
-	meshes["ShowCase"] = new initMeshFromObj("ShowCase");
-	meshes["Floor"] = new initMeshFromObj("Floor");
-	meshes["Ceiling"] = new initMeshFromObj("Ceiling");
-	meshes["Pepper"] = new initMeshFromObj("Pepper");
-	meshes["CashDesk"] = new initMeshFromObj("CashDesk");
+	meshes["spot"] = new initMeshFromObj("Spot.obj");
+	meshes["Wall"] = new initMeshFromObj("Wall.obj");
+	meshes["ShowCase"] = new initMeshFromObj("ShowCase.obj");
+	meshes["Floor"] = new initMeshFromObj("Floor.obj");
+	meshes["Ceiling"] = new initMeshFromObj("Ceiling.obj");
+	meshes["Pepper"] = new initMeshFromObj("Pepper.obj");
+	meshes["CashDesk"] = new initMeshFromObj("CashDesk.obj");
 
-	meshes["Carrot"] = new initMeshFromObj("Carrot");
-	meshes["Apple"] = new initMeshFromObj("Apple");
-	meshes["Pumpkin"] = new initMeshFromObj("Pumpkin");
-	meshes["Ham"] = new initMeshFromObj("Ham");
-	meshes["Fish"] = new initMeshFromObj("Fish");
-	meshes["Chocolate"] = new initMeshFromObj("Chocolate");
-	meshes["BananaGroup"] = new initMeshFromObj("BananaGroup");
-	meshes["Condom"] = new initMeshFromObj("Condom");
-	meshes["Steak"] = new initMeshFromObj("Steak");
-	meshes["ParisBiatch"] = new initMeshFromObj("ParisBiatch");
-	meshes["Lolipop"] = new initMeshFromObj("Lolipop");
-	meshes["Toblerone"] = new initMeshFromObj("Toblerone");
-	meshes["ChocolateDoughnut"] = new initMeshFromObj("ChocolateDoughnut");
-	meshes["CaramelDoughnut"] = new initMeshFromObj("CaramelDoughnut");
-	meshes["JamDoughnut"] = new initMeshFromObj("JamDoughnut");
-	meshes["YoghurtApple"] = new initMeshFromObj("YoghurtApple");
-	meshes["YoghurtStrawberry"] = new initMeshFromObj("YoghurtStrawberry");
-	meshes["YoghurtVanilla"] = new initMeshFromObj("YoghurtVanilla");
-	meshes["YoghurtNature"] = new initMeshFromObj("YoghurtNature");
-	meshes["Gruyere"] = new initMeshFromObj("Gruyere");
-	meshes["Emmental"] = new initMeshFromObj("Emmental");
-	meshes["GreenMilk"] = new initMeshFromObj("GreenMilk");
-	meshes["RedMilk"] = new initMeshFromObj("RedMilk");
-	meshes["BlueMilk"] = new initMeshFromObj("BlueMilk");
-	meshes["BrownEgg"] = new initMeshFromObj("BrownEgg");
-	meshes["WhiteEgg"] = new initMeshFromObj("WhiteEgg");
-	meshes["Scotch"] = new initMeshFromObj("Scotch");
-	meshes["PaperTowel"] = new initMeshFromObj("PaperTowel");
-	meshes["ToiletPaper"] = new initMeshFromObj("ToiletPaper");
+    this.shelves = [];
+    this.shelves.push(new Shelf(14, 2, [-4, 0, -7.9], this.shelves.length));	
 
-	this.shelves = [];
-	this.shelves.push(new Shelf(3, 2, [-4, 0, -7.9], this.shelves.length));	//Fruits
-	this.shelves.push(new Shelf(3, 2, [-1, 0, -7.9], this.shelves.length));	// Vegetables
-	this.shelves.push(new Shelf(2, 2, [2, 0, -7.9], this.shelves.length));	// Meat
-	this.shelves.push(new Shelf(3, 2, [6, 0, -7.9], this.shelves.length));	// Sweets 
-	this.shelves.push(new Shelf(6, 2, [1, 0, -7.9], this.shelves.length));	// Milk Products
-	this.shelves.push(new Shelf(4, 2, [-3, 0, -7.9], this.shelves.length));	// paper products
+	var request = new XMLHttpRequest();
+	request.open("GET", EShop.siteUrl + "/shop3d/productList", false);  // `false` makes the request synchronous
+	request.send(null);
 
-	this.shelves[0].push("BananaGroup");
-	this.shelves[0].push("Apple");
+	if (request.status === 200)
+	{
+        EShop.productList = JSON.parse(request.responseText);
 
-	this.shelves[1].push("Pepper");
-	this.shelves[1].push("Carrot");
-	this.shelves[1].push("Pumpkin");
-	
-	this.shelves[2].push("Steak");
-	this.shelves[2].push("Ham");
-	this.shelves[2].push("Fish");
+        for (var id in EShop.productList)
+        {
+            meshes[id] = new initMeshFromObj(EShop.productList[id].meshName); 
 
+	        this.shelves[0].push(id);
+        }
+	}
 
-	this.shelves[3].push("Toblerone");
-	this.shelves[3].push("ChocolateDoughnut");
-	this.shelves[3].push("JamDoughnut");
-	this.shelves[3].push("CaramelDoughnut");
-	this.shelves[3].push("Chocolate");
-	this.shelves[3].push("Lolipop");
+	//meshes["Carrot"] = new initMeshFromObj("Carrot.obj");
+	//meshes["Apple"] = new initMeshFromObj("Apple");
+	//meshes["Pumpkin"] = new initMeshFromObj("Pumpkin");
+	//meshes["Ham"] = new initMeshFromObj("Ham");
+	//meshes["Fish"] = new initMeshFromObj("Fish");
+	//meshes["Chocolate"] = new initMeshFromObj("Chocolate");
+	//meshes["BananaGroup"] = new initMeshFromObj("BananaGroup");
+	//meshes["Condom"] = new initMeshFromObj("Condom");
+	//meshes["Steak"] = new initMeshFromObj("Steak");
+	//meshes["ParisBiatch"] = new initMeshFromObj("ParisBiatch");
+	//meshes["Lolipop"] = new initMeshFromObj("Lolipop");
+	//meshes["Toblerone"] = new initMeshFromObj("Toblerone");
+	//meshes["ChocolateDoughnut"] = new initMeshFromObj("ChocolateDoughnut");
+	//meshes["CaramelDoughnut"] = new initMeshFromObj("CaramelDoughnut");
+	//meshes["JamDoughnut"] = new initMeshFromObj("JamDoughnut");
+	//meshes["YoghurtApple"] = new initMeshFromObj("YoghurtApple");
+	//meshes["YoghurtStrawberry"] = new initMeshFromObj("YoghurtStrawberry");
+	//meshes["YoghurtVanilla"] = new initMeshFromObj("YoghurtVanilla");
+	//meshes["YoghurtNature"] = new initMeshFromObj("YoghurtNature");
+	//meshes["Gruyere"] = new initMeshFromObj("Gruyere");
+	//meshes["Emmental"] = new initMeshFromObj("Emmental");
+	//meshes["GreenMilk"] = new initMeshFromObj("GreenMilk");
+	//meshes["RedMilk"] = new initMeshFromObj("RedMilk");
+	//meshes["BlueMilk"] = new initMeshFromObj("BlueMilk");
+	//meshes["BrownEgg"] = new initMeshFromObj("BrownEgg");
+	//meshes["WhiteEgg"] = new initMeshFromObj("WhiteEgg");
+	//meshes["Scotch"] = new initMeshFromObj("Scotch");
+	//meshes["PaperTowel"] = new initMeshFromObj("PaperTowel");
+	//meshes["ToiletPaper"] = new initMeshFromObj("ToiletPaper");
 
-	this.shelves[4].push("Emmental");
-	this.shelves[4].push("Gruyere");
-	this.shelves[4].push("YoghurtApple");
-	this.shelves[4].push("YoghurtStrawberry");
-	this.shelves[4].push("YoghurtVanilla");
-	this.shelves[4].push("YoghurtNature");
-	this.shelves[4].push("GreenMilk");
-	this.shelves[4].push("RedMilk");
-	this.shelves[4].push("BlueMilk");
-	this.shelves[4].push("BrownEgg");
-	this.shelves[4].push("WhiteEgg");
+	//this.shelves[0].push("BananaGroup");
+	//this.shelves[0].push("Apple");
 
-	this.shelves[5].push("PaperTowel");
-	this.shelves[5].push("ToiletPaper");
-	this.shelves[5].push("Scotch");
+	//this.shelves[1].push("Pepper");
+	//this.shelves[1].push("Carrot");
+	//this.shelves[1].push("Pumpkin");
+
+	//this.shelves[2].push("Steak");
+	//this.shelves[2].push("Ham");
+	//this.shelves[2].push("Fish");
+
+	//this.shelves[3].push("Toblerone");
+	//this.shelves[3].push("ChocolateDoughnut");
+	//this.shelves[3].push("JamDoughnut");
+	//this.shelves[3].push("CaramelDoughnut");
+	//this.shelves[3].push("Chocolate");
+	//this.shelves[3].push("Lolipop");
+
+	//this.shelves[4].push("Emmental");
+	//this.shelves[4].push("Gruyere");
+	//this.shelves[4].push("YoghurtApple");
+	//this.shelves[4].push("YoghurtStrawberry");
+	//this.shelves[4].push("YoghurtVanilla");
+	//this.shelves[4].push("YoghurtNature");
+	//this.shelves[4].push("GreenMilk");
+	//this.shelves[4].push("RedMilk");
+	//this.shelves[4].push("BlueMilk");
+	//this.shelves[4].push("BrownEgg");
+	//this.shelves[4].push("WhiteEgg");
+
+	//this.shelves[5].push("PaperTowel");
+	//this.shelves[5].push("ToiletPaper");
+	//this.shelves[5].push("Scotch");
 
 	//this.shelves.push("ParisBiatch");
 
 
 	this.elements = [];
-	
+
 	//element = {meshName, position[], yAngle}
 	this.elements.push({type : 0, meshName : "Floor", position : [0, 0, 0], yAngle : 90});
 	this.elements.push({type : 0, meshName : "Ceiling", position : [0, 0, 0], yAngle : 90});
@@ -122,12 +132,12 @@ function Shop()
 	this.elements.push({type : 0, meshName : "CashDesk", position : [-6, 0, -5], yAngle : 90})
 
 	this.elements.push({type : 1, mesh : this.shelves[0], yAngle : 90});
-	this.elements.push({type : 1, mesh : this.shelves[1], yAngle : 90});
-	this.elements.push({type : 1, mesh : this.shelves[2], yAngle : 90});
-	this.elements.push({type : 1, mesh : this.shelves[3], yAngle : 180});
-	this.elements.push({type : 1, mesh : this.shelves[4], yAngle : 180});
-	this.elements.push({type : 1, mesh : this.shelves[5], yAngle : 180});
-	
+	//this.elements.push({type : 1, mesh : this.shelves[1], yAngle : 90});
+	//this.elements.push({type : 1, mesh : this.shelves[2], yAngle : 90});
+	//this.elements.push({type : 1, mesh : this.shelves[3], yAngle : 180});
+	//this.elements.push({type : 1, mesh : this.shelves[4], yAngle : 180});
+	//this.elements.push({type : 1, mesh : this.shelves[5], yAngle : 180});
+
 	var light1 = new LightSource([5.0, 3.0, 5.0]);
 	light1.setColor(1.0, 1.0, 0.8);
 	light1.intensity = 5.0;

@@ -3,8 +3,8 @@ function Shelf(width, height, position, id)
 	this.position = position;
 
 	this.spots = new Array(width);
-	this.spotMesh = new initMeshFromObj("Spot");
-	this.shelfSocleMesh = new initMeshFromObj("ShelfSocle");
+	this.spotMesh = new initMeshFromObj("Spot.obj");
+	this.shelfSocleMesh = new initMeshFromObj("ShelfSocle.obj");
 	this.id = id;
 
 	for(var x = 0; x < width; x++)

@@ -97,7 +97,7 @@ function initMeshFromObj(meshName)
 
 	this.size = 0;
 
-	var objFileName = "Meshes/" + meshName + ".obj";
+	var objFileName = "Meshes/" + meshName;
 	var objFileLines = getFileContent(objFileName).split("\n");
 
 	var materials;

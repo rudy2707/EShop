@@ -3,7 +3,7 @@ function initTexture(imageName)
 	var texture = {};
 	texture.glTex = gl.createTexture();
 	texture.image = new Image();
-	
+
 	texture.image.onload = function()
 	{
 		handleLoadedTexture(texture);
@@ -14,7 +14,7 @@ function initTexture(imageName)
 		console.log("error happened while loading texture : \"" + texture.image.src + "\"");
 	}
 
-	texture.image.src = "Textures/" + imageName;
+	texture.image.src = EShop.baseUrl + 'public/js/shop3d/Textures/' + imageName;
 
 	return texture;
 }
