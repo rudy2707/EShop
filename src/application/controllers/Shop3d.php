@@ -13,21 +13,9 @@ class Shop3d extends CI_Controller {
 
     public function productList()
     {
-        $this->load->database();
-        $query = $this->db->query("SELECT * FROM tblProduct;");
+        $this->load->model('Products_model');
 
-        $result = array();
-
-        foreach ($query->result() as $row)
-        {
-            $result[$row->prodId] = new stdClass();
-            $result[$row->prodId]->name = $row->prodName;
-            $result[$row->prodId]->description = $row->prodDescription;
-            $result[$row->prodId]->stock = $row->prodStock;
-            $result[$row->prodId]->price = $row->prodPrice;
-            $result[$row->prodId]->meshName = $row->prodMeshName;
-        }
-        echo(json_encode($result));
+        echo(json_encode($this->Products_model->getProductsList()));
         $this->output->set_content_type('application/json');
     }
 }
