@@ -38,7 +38,8 @@ require_once('credentials/config_cred.php');
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+// Included in credentials
+//$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
