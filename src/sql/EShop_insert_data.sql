@@ -15,7 +15,6 @@ INSERT INTO `shop_test`.`tblCategory` (`catId`, `catLabel`) VALUES
 -- -----------------------------------------------------
 -- Data for table `shop_test`.`tblProduct`
 -- -----------------------------------------------------
---INSERT INTO `shop_test`.`tblProduct` (`prodId`, `prodName`, `prodDescription`, `prodCategory`, `prodStock`, `prodPrice`, `prodMeshName`) VALUES (DEFAULT, 'Apple', 'This is just a fuckin'' apple', 5, 1, 1, 'Apple.obj');
 DELETE FROM `shop_test`.`tblProduct`;
 INSERT INTO `shop_test`.`tblProduct` (`prodName`, `prodDescription`, `prodCategory`, `prodStock`, `prodPrice`, `prodMeshName`) VALUES
 ('Apple', 'This is just a fuckin'' apple', 5, 1, 1, 'Apple.obj'),
@@ -46,3 +45,10 @@ INSERT INTO `shop_test`.`tblProduct` (`prodName`, `prodDescription`, `prodCatego
 ('YoghurtNature', 'Nature and yoghurt', 3, 1, 1, 'YoghurtNature.obj'),
 ('YoghurtStrawberry', 'Straw and berry and yoghurt', 3, 1, 1, 'YoghurtStrawberry.obj'),
 ('YoghurtVanilla', 'Vanilla Ice yoghurt', 3, 1, 1, 'YoghurtVanilla.obj');
+
+-- -----------------------------------------------------
+-- Data for table `shop_test`.`tblCustomer`
+-- -----------------------------------------------------
+DELETE FROM `shop_test`.`tblCustomer`;
+INSERT INTO `shop_test`.`tblCustomer` (`cusFirstName`, `cusLastName`, `cusGender`, `cusEmail`, `cusPhone`, `cusPassword`) VALUES
+('Tux', 'Torvalds', 'M', 'root', '007', 'root');
