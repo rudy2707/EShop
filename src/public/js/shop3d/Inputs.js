@@ -6,6 +6,9 @@ function Inputs(keySettings)
 	{
 		keySettings = "wasd";
 	}
+	var that = this;
+	this.mouseX = 1;
+	this.mouseY = 1;
 
 	this.relX = 0;
 	this.relY = 0;
@@ -48,39 +51,45 @@ function Inputs(keySettings)
 		}
 	}
 
-	// key events
-	document.onkeypress = function(e)
-	{
+	// DOM Events
+	document.addEventListener('keypress', function(e) {
 		var letter = String.fromCharCode(e.charCode);
 		if(typeof inputs.keys[letter] !== "undefined")
 		{
 			inputs.keys[letter] = true;
 		}
-	}
+	});
 
-	document.onkeyup = function(e)
-	{
+	document.addEventListener('keyup', function(e) {
 		var letter = String.fromCharCode(e.keyCode + 32);
 		if(typeof inputs.keys[letter] !== "undefined")
 		{
 			inputs.keys[letter] = false;
 		}
-	}
+	});
 
+	canvas.addEventListener('mousemove', function(e) {
+		that.mouseX = e.clientX - canvas.offsetLeft;
+		that.mouseY = e.clientY - canvas.offsetTop;
+	});
 
-	//
-	document.body.onmousedown = function(e)
-	{
+	canvas.addEventListener('click', function(e) {
+		var itemName = shop.shelves[pixelValue[0]].getItemAt(pixelValue[1]);
+		console.log(itemName);
+	});
+	/*
+	canvas.addEventListener('mousedown', function(e) {
 		if(e.buttons == 1)
 		{
+			alert('down');
 			inputs.downColor[0] = pixelValue[0];
 			inputs.downColor[1] = pixelValue[1];
 			inputs.downColor[2] = pixelValue[2];
 		}
-	}
+	});
 
-	document.body.onmouseup = function(e)
-	{
+	canvas.addEventListener('mouseup', function(e) {
+		console.log(e);
 		if(e.buttons == 1)
 		{
 			inputs.upColor[0] = pixelValue[0];
@@ -89,7 +98,8 @@ function Inputs(keySettings)
 
 			inputs.checkColor();
 		}
-	}
+	});
+	*/
 
 	// Compute mouse moves
 	this.mouseMoves = function()

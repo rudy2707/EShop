@@ -15,6 +15,28 @@ function Camera()
 	this.sensivity = 0.5;			// Mouse sensivity
 	this.speed = 0.05;				// Displacement speed
 
+	this.setOrientation = function(orientation) {
+		this.orientation = orientation;
+		this.targetPoint[0] = this.position[0] + orientation[0];
+		this.targetPoint[1] = this.position[1] + orientation[1];
+		this.targetPoint[2] = this.position[2] + orientation[2];
+	};
+
+	this.setPosition = function(position) {
+		this.position = position;
+		this.targetPoint[0] = this.position[0] + this.orientation[0];
+		this.targetPoint[1] = this.position[1] + this.orientation[1];
+		this.targetPoint[2] = this.position[2] + this.orientation[2];
+	};
+
+	this.move = function(distances) {
+		this.setPosition([
+			this.position[0] + distances[0],
+			this.position[1] + distances[1],
+			this.position[2] + distances[2]
+		]);
+	};
+
 	this.orientate = function(relX, relY)
 	{
 		this.theta -= (relX * this.sensivity);	// Compute theta angle from mouse x delta
@@ -99,7 +121,7 @@ function Camera()
 			this.targetPoint[1] = this.position[1] + this.orientation[1];
 			this.targetPoint[2] = this.position[2] + this.orientation[2];
 		}
-		
+
 		// Compute position for backward key
 		if(inputs.keys[inputs.keyCodes["backward"]])
 		{

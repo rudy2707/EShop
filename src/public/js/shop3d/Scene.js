@@ -18,6 +18,9 @@ function start()
 
 	pixelValue = new Uint8Array(4);
 
+	camera.setOrientation([-1, -0.4, 0]);
+	camera.setPosition([-6.367749440946494, 1.2, 2.8850427570520005]);
+
 	mainLoop();
 }
 
@@ -27,16 +30,15 @@ function mainLoop()
 {
 	gl.clear(gl.COLOR_BUFFER_BIT);
 
-	camera.displace();
+	//camera.displace();
 	camera.lookAt();
 	inputs.update();
 
-	
 	shop.preDraw(projection, view);
-	
-	gl.readPixels(canvas.width / 2, canvas.height / 2, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixelValue);
 
-	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); 
+	gl.readPixels(inputs.mouseX, inputs.mouseY, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixelValue);
+
+	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 	gl.depthMask(false);
 	skybox.draw(projection, view);
@@ -44,8 +46,6 @@ function mainLoop()
 
 
 	shop.draw(projection, view);
-
-	reticle.draw();
 
 	angle += 0.02;
 

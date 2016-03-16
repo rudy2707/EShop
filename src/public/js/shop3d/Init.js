@@ -76,7 +76,7 @@ function initGL()
 	shaders["ColorPicking"] = new Shader("ColorPicking");
 
 	// Init controls
-	initWindowCapture();
+	//initWindowCapture();
 	inputs = new Inputs(httpParams["keys"]);
 
 	// Define GL options
