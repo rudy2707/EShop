@@ -111,14 +111,11 @@ function Inputs(keySettings)
 	{
 		this.relX = relX;
 		this.relY = relY;
-	}	
+	}
 
 	this.update = function()
 	{
-		this.relX = 0;	
+		this.relX = 0;
 		this.relY = 0;
 	}
-
-
-
 }

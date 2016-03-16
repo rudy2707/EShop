@@ -38,10 +38,10 @@ function Reticle()
 
 
 		gl.useProgram(this.shader.shaderProgram);
-		
+
 		var model = new Matrix4();
 
-		
+
 		model.scale((canvas.height / 40) / canvas.width, 0.025, 1);
 
 		this.shader.sendMat4("model", model);
@@ -73,7 +73,7 @@ function Reticle()
 
 		gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
 		gl.enable(gl.BLEND);
-		gl.disable(gl.DEPTH_TEST);	
+		gl.disable(gl.DEPTH_TEST);
 		gl.drawElements(gl.TRIANGLES, this.size, gl.UNSIGNED_SHORT, 0);
 		gl.disable(gl.BLEND);
 		gl.enable(gl.DEPTH_TEST);

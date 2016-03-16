@@ -36,7 +36,6 @@ function initSphere()
 			normals.push(vector.elements[1]);
 			normals.push(vector.elements[2]);
 
-			//if((i + j) %2)
 			if(j % 2)
 			{
 				colors.push(1.0);
@@ -386,7 +385,7 @@ function initTexturedCube()
 		20, 21, 22,   20, 22, 23  // Left face
 	];
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
-	
+
 	mesh.shaderName = "Texture3D";
 	mesh.textureName = "test.png";
 	mesh.size = indices.length;

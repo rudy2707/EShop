@@ -212,7 +212,7 @@ function initMeshFromObj(meshName)
 					iNormals.push(ni0, ni1, ni2);
 
 					for(var j = 0; j < 3; j++)
-					{	
+					{
 						colors.push(currentMaterial.Kd[0], currentMaterial.Kd[1], currentMaterial.Kd[2], currentMaterial.d);
 						//colors.push(0.0, 0.0, 0.0, 1.0);
 					}
@@ -297,7 +297,7 @@ function initMeshFromObj(meshName)
 			shaders[this.shaderName].sendVec3("lightSources["+ i +"].color", lightSources[i].color);
 			shaders[this.shaderName].sendFloat("lightSources["+ i +"].intensity", lightSources[i].intensity);
 		}
-		
+
 		var in_Vertex = gl.getAttribLocation(shaders[this.shaderName].shaderProgram, "in_Vertex");
 		if(in_Vertex >= 0)
 		{
@@ -308,7 +308,7 @@ function initMeshFromObj(meshName)
 
 		var in_Normal = gl.getAttribLocation(shaders[this.shaderName].shaderProgram, "in_Normal");
 		if(in_Normal >= 0)
-		{	
+		{
 			gl.bindBuffer(gl.ARRAY_BUFFER, this.normalsBuffer);
 			gl.enableVertexAttribArray(in_Normal);
 			gl.vertexAttribPointer(in_Normal, 3, gl.FLOAT, false, 0, 0);
@@ -344,12 +344,12 @@ function initMeshFromObj(meshName)
 		{
 			gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
 			gl.enable(gl.BLEND);
-			gl.disable(gl.DEPTH_TEST);	
+			gl.disable(gl.DEPTH_TEST);
 			gl.drawArrays(gl.TRIANGLES, 0, this.size);
 			gl.disable(gl.BLEND);
 			gl.enable(gl.DEPTH_TEST);
 		}
-		
+
 	}
 
 
@@ -378,9 +378,9 @@ function initMeshFromObj(meshName)
 
 		gl.drawArrays(gl.TRIANGLES, 0, this.size);
 
-		
+
 	}
 
 
 
-} 
+}

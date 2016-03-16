@@ -1,15 +1,15 @@
-// Initialization of browserproof mouse-grabbing 
+// Initialization of browserproof mouse-grabbing
 function initWindowCapture()
 {
 	canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
 
-	document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock || document.webkitExitPointerLock; 
+	document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock || document.webkitExitPointerLock;
 
 	canvas.onclick = function()
 	{
 		canvas.requestPointerLock()
 	}
-	
+
 	document.addEventListener('pointerlockchange', lockChangeAlert, false);
 	document.addEventListener('mozpointerlockchange', lockChangeAlert, false);
 	document.addEventListener('webkitpointerlockchange', lockChangeAlert, false);
@@ -25,7 +25,7 @@ function initWindowCapture()
 			document.removeEventListener("mousemove", mouseFunction, false);
 		}
 	}
-	
+
 	mouseFunction = function(e)
 	{
 		var relX = e.movementX || e.mozMovementX || e.webkitMovementX || 0;
@@ -41,7 +41,7 @@ function getParameters()
 {
 	var query = window.location.search.substring(1);
 	var parameters = {};
-	
+
 	if(query != "")
 	{
 		var params = query.split("&");
@@ -49,7 +49,7 @@ function getParameters()
 		for(var i = 0; i < params.length; i++)
 		{
 			var pair = params[i].split('=');
-			parameters[pair[0]] = pair[1];		
+			parameters[pair[0]] = pair[1];
 		}
 	}
 

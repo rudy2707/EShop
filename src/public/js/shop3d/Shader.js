@@ -3,7 +3,7 @@ function Shader(shaderName)
 	// Get source codes from file name
 	var vShaderSource = getFileContent("Shaders/" + shaderName + ".vert");
 	var fShaderSource = getFileContent("Shaders/" + shaderName + ".frag");
-	
+
 	// Compile vertex shader
 	var vertexShader = gl.createShader(gl.VERTEX_SHADER);
 	gl.shaderSource(vertexShader, vShaderSource);

@@ -23,4 +23,3 @@ function LightSource(position)
 		this.intensity = intensity;
 	}
 }
-

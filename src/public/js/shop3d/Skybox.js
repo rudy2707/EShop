@@ -9,7 +9,7 @@ function Skybox(slices, stacks)
 	this.textureName = "SkyboxV2.jpg";
 	textures[this.textureName] = initTexture(this.textureName);
 
-	
+
 	this.shaderName = "Skybox";
 
 	var vector = new Vector3();
@@ -116,6 +116,3 @@ function Skybox(slices, stacks)
 		}
 	}
 }
-
-
-

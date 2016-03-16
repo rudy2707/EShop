@@ -21,12 +21,12 @@ function Shelf(width, height, position, id)
 	{
 		this.position = position;
 	}
-	
+
 
 	// Place item at given position
 	this.emplace = function(x, y, item)
 	{
-		this.spots[x][y] = item;	
+		this.spots[x][y] = item;
 	}
 
 	// Place item at the first non-null position
@@ -100,7 +100,7 @@ function Shelf(width, height, position, id)
 			{
 
 				model.set(modelBak);
-				
+
 				model.translate(this.position[0] + x * 0.5, this.position[1] + y * 0.5, this.position[2]);
 
 				model.translate(0, 0.25, 0);
@@ -149,5 +149,3 @@ function Shelf(width, height, position, id)
 		}
 	}
 }
-
-

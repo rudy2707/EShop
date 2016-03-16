@@ -10,7 +10,7 @@ function Shop()
 	meshes["CashDesk"] = new initMeshFromObj("CashDesk.obj");
 
     this.shelves = [];
-    this.shelves.push(new Shelf(14, 2, [-4, 0, -7.9], this.shelves.length));	
+    this.shelves.push(new Shelf(14, 2, [-4, 0, -7.9], this.shelves.length));
 
 	var request = new XMLHttpRequest();
 	request.open("GET", EShop.siteUrl + "/shop3d/productList", false);  // `false` makes the request synchronous
@@ -22,7 +22,7 @@ function Shop()
 
         for (var id in EShop.productList)
         {
-            meshes[id] = new initMeshFromObj(EShop.productList[id].meshName); 
+            meshes[id] = new initMeshFromObj(EShop.productList[id].meshName);
 
 	        this.shelves[0].push(id);
         }
@@ -152,8 +152,8 @@ function Shop()
 
 	var light4 = new LightSource([-5.0, 3.0, -5.0]);
 	light4.setColor(1.0, 1.0, 0.8);
-    light4.setIntensity(5.0);	
-	
+    light4.setIntensity(5.0);
+
 	lightSources.push(light1);
 	lightSources.push(light2);
 	lightSources.push(light3);
