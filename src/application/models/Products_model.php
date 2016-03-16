@@ -10,7 +10,9 @@ class Products_model extends CI_Model
 
     function getProductsList()
     {
-        $query = $this->db->query("SELECT * FROM tblProduct;");
+        $query = $this->db->query("SELECT * FROM tblProduct
+                                            INNER JOIN tblCategory
+                                            ON prodCategory = catId;");
         $result = array();
 
         foreach ($query->result() as $row)
@@ -18,6 +20,7 @@ class Products_model extends CI_Model
             $result[$row->prodId] = new stdClass();
             $result[$row->prodId]->name = $row->prodName;
             $result[$row->prodId]->description = $row->prodDescription;
+            $result[$row->prodId]->category = $row->catLabel;
             $result[$row->prodId]->stock = $row->prodStock;
             $result[$row->prodId]->price = $row->prodPrice;
             $result[$row->prodId]->meshName = $row->prodMeshName;
