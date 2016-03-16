@@ -218,11 +218,6 @@ function initCube()
 	mesh.shaderName = "Color3D";
 	mesh.size = 36;
 
-	console.log(vertices.length);
-	console.log(indices.length);
-	console.log(normals.length);
-
-
 	return mesh;
 }
 

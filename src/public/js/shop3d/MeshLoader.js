@@ -76,7 +76,7 @@ function getMaterials(meshName)
 			}
 			else
 			{
-				console.log("Warning : unhandled parameter : \"" + line[0] + "\" in file \"" + meshName + ".mtl\" on line " + parseInt(i + 1));
+				console.warn("Warning : unhandled parameter : \"" + line[0] + "\" in file \"" + meshName + ".mtl\" on line " + parseInt(i + 1));
 			}
 		}
 	}
@@ -88,10 +88,9 @@ function getMaterials(meshName)
 // Parse object file
 function initMeshFromObj(meshName)
 {
-	console.log("test");
 	if(typeof meshes[meshName] !== "undefined")
 	{
-		console.log("Warning : ignoring already loaded mesh : " + meshName);
+		console.warn("Warning : ignoring already loaded mesh : " + meshName);
 		return meshes[meshName];
 	}
 
@@ -220,12 +219,12 @@ function initMeshFromObj(meshName)
 				}
 				else
 				{
-					console.log("Unhandled "+ nData +"-goned face");
+					console.warn("Unhandled "+ nData +"-goned face");
 				}
 			}
 			else
 			{
-				console.log("Warning : unhandled parameter : \"" + line[0] + "\" in file \"" + meshName + ".obj\" on line " + parseInt(i + 1));
+				console.warn("Warning : unhandled parameter : \"" + line[0] + "\" in file \"" + meshName + ".obj\" on line " + parseInt(i + 1));
 			}
 		}
 	}
@@ -269,7 +268,6 @@ function initMeshFromObj(meshName)
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
 	this.colorsBuffer = gl.createBuffer();
-	console.log(colors);
 	gl.bindBuffer(gl.ARRAY_BUFFER, this.colorsBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
 
