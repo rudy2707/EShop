@@ -9,9 +9,25 @@
                 siteUrl: '<?php echo(site_url()); ?>'
             };
         </script>
+        <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/css/style.css')); ?>" >
+        <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/bower_components/font-awesome/css/font-awesome.min.css')); ?>" >
+        <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/bower_components/angular-material/angular-material.min.css')); ?>">
+        <!-- <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/bower_components/materialize/dist/css/materialize.min.css')); ?>" > -->
     </head>
 
-    <body>
-        <header>
+    <body ng-app="app" ng-cloak>
+        <!-- <header>
             EShop
-        </header>
+        </header> -->
+        <div class="app" id="shop" ui-view>
+        </div>
+        <!-- <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+            <div layout="row" flex class="fill-height layout-row flex">
+                <h2 class="md-toolbar-item md-breadcrumb md-headline">
+                    <span class="md-breadcrumb">Introduction</span>
+                </h2>
+                <span flex class="flex"></span>
+            </div>
+        </md-toolbar>
+        <md-content md-scroll-y layout="column" flex class="layout-column flex" ui-view>
+        </md-content> -->

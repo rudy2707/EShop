@@ -24,3 +24,4 @@ Please use a browser that supports "canvas"
 <script src="<?php echo(base_url('public/js/shop3d/Shop.js')); ?>"></script>
 <script src="<?php echo(base_url('public/js/shop3d/Scene.js')); ?>"></script>
 
+<script src="<?php echo(base_url('public/js/lib/Filter.js')); ?>"></script>
