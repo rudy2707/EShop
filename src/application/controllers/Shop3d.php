@@ -18,25 +18,4 @@ class Shop3d extends CI_Controller {
         echo(json_encode($this->Products_model->getProductsList()));
         $this->output->set_content_type('application/json');
     }
-
-    public function checkPassword()
-    {
-        if (isset($_POST['USER']) and isset($_POST['PWD']))
-        {
-            $email = $_POST['USER'];
-            $password = $_POST['PWD'];
-
-            $this->load->model('Customers_model');
-
-            if ($this->Customers_model->getPasswordFromCustomer($email) == $password)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return false;
-    }
 }
