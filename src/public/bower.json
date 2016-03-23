@@ -9,7 +9,7 @@
     "font-awesome": "~4.5.0",
     "angular": "~1.5.0",
     "angular-ui-router": "~0.2.18",
-    "angular-material": "~1.1.0",
+    "angular-material": "~1.1.0-rc1",
     "angular-aria": "~1.5.0",
     "angular-messages": "~1.5.0",
     "angular-animate": "~1.5.0",
