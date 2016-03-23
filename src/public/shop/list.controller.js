@@ -5,16 +5,16 @@
     .module('app.shop')
     .controller('ListController', ListController);
 
-    ListController.$inject = [];
+    ListController.$inject = ['ShopServices'];
 
-    function ListController() {
+    function ListController(ShopServices) {
 
         var vm = this;
 
         vm.init = init;
 
         function init() {
-        
+            ShopServices.listProduct();
         }
 
         vm.init();

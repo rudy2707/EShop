@@ -14,10 +14,15 @@
 <script src="<?php echo(base_url('public/js/shop/constants.js')); ?>"></script>
 
 
-<!-- Login -->
+<!-- Auth -->
 <script src="<?php echo(base_url('public/auth/auth.module.js')); ?>"></script>
 <script src="<?php echo(base_url('public/auth/login.controller.js')); ?>"></script>
 <script src="<?php echo(base_url('public/auth/register.controller.js')); ?>"></script>
 <script src="<?php echo(base_url('public/auth/auth.services.js')); ?>"></script>
+
+<!-- Shop -->
+<script src="<?php echo(base_url('public/shop/shop.module.js')); ?>"></script>
+<script src="<?php echo(base_url('public/shop/list.controller.js')); ?>"></script>
+<script src="<?php echo(base_url('public/shop/shop.services.js')); ?>"></script>
 
 <!-- ... -->
