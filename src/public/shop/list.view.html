@@ -1,9 +1,13 @@
 <div ng-controller="ListController as vm" layout="column" layout-padding ng-cloak>
     <br/>
     <div class="container">
-        <md-list>
-            <md-list-item ng-repeat="product in vm.listProduct()">
-                <p>{{ product.name }}</p>
+        <p>List of products</p>
+        <md-list ng-cloak>
+            <md-list-item ng-repeat="product in vm.products">
+                <p>{{ product.name }}
+                    - {{ product.description }}
+                    - {{ product.stock }}
+                    - {{ product.price }}</p>
             </md-list-item>
         </md-list>
     </div>

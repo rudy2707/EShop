@@ -14,7 +14,10 @@
         vm.init = init;
 
         function init() {
-            ShopServices.listProduct();
+            ShopServices.listProduct()
+            .then(function(data) {
+                vm.products = data;
+            });
         }
 
         vm.init();

@@ -18,10 +18,13 @@
         var ShopServices = {};
 
         ShopServices.listProduct = function() {
+            var deffered = $q.defer();
+
             $http.post(urlBase + '/productList')
             .then(function(result) {
-                $log.debug(result);
+                deffered.resolve(result.data);
             });
+            return deffered.promise;
         }
 
         return ShopServices;
