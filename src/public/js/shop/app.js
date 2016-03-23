@@ -49,6 +49,15 @@
                 url: '/register',
                 templateUrl: 'public/auth/register.view.html'
             })
+            .state('shop', {
+                abstract: true,
+                url: '/shop',
+                templateUrl: 'public/shop.html'
+            })
+            .state('shop.list', {
+                url: '/list',
+                templateUrl: 'public/shop/list.view.html'
+            })
         }
       ]
     )
