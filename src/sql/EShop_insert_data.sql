@@ -1,16 +1,5 @@
--- -----------------------------------------------------
--- Data for table `shop_test`.`tblCategory`
--- -----------------------------------------------------
-DELETE FROM `shop_test`.`tblCategory`;
-INSERT INTO `shop_test`.`tblCategory` (`catId`, `catLabel`) VALUES
-(1, 'Bakery'),
-(2, 'Beverages'),
-(3, 'Dairy'),
-(4, 'Meat and fish'),
-(5, 'Fruits and vegetables'),
-(6, 'Candy'),
-(7, 'Personal Care'),
-(8, 'Alcool');
+-- Disable check for foreign keys
+SET FOREIGN_KEY_CHECKS=0;
 
 -- -----------------------------------------------------
 -- Data for table `shop_test`.`tblProduct`
@@ -47,8 +36,26 @@ INSERT INTO `shop_test`.`tblProduct` (`prodName`, `prodDescription`, `prodCatego
 ('YoghurtVanilla', 'Vanilla Ice yoghurt', 3, 1, 1, 'YoghurtVanilla.obj');
 
 -- -----------------------------------------------------
+-- Data for table `shop_test`.`tblCategory`
+-- -----------------------------------------------------
+DELETE FROM `shop_test`.`tblCategory`;
+INSERT INTO `shop_test`.`tblCategory` (`catId`, `catLabel`) VALUES
+(1, 'Bakery'),
+(2, 'Beverages'),
+(3, 'Dairy'),
+(4, 'Meat and fish'),
+(5, 'Fruits and vegetables'),
+(6, 'Candy'),
+(7, 'Personal Care'),
+(8, 'Alcool');
+
+-- -----------------------------------------------------
 -- Data for table `shop_test`.`tblCustomer`
 -- -----------------------------------------------------
 DELETE FROM `shop_test`.`tblCustomer`;
 INSERT INTO `shop_test`.`tblCustomer` (`cusFirstName`, `cusLastName`, `cusGender`, `cusEmail`, `cusPhone`, `cusPassword`) VALUES
-('Tux', 'Torvalds', 'M', 'root', '007', 'root');
+('Tux', 'Torvalds', 'M', 'root@root.io', '007-007-007', '63a9f0ea7bb98050796b649e85481845'),
+('Fire', 'Fox', 'M', 'fire@fox.xyz', '1337-1337-666', '21232f297a57a5a743894a0e4a801fc3');
+
+-- Enable check for foreign keys
+SET FOREIGN_KEY_CHECKS=0;
