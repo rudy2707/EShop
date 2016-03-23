@@ -7,6 +7,7 @@
 <script src="<?php echo(base_url('public/bower_components/angular-animate/angular-animate.min.js')); ?>"></script>
 <script src="<?php echo(base_url('public/bower_components/angular-aria/angular-aria.min.js')); ?>"></script>
 <script src="<?php echo(base_url('public/bower_components/angular-messages/angular-messages.min.js')); ?>"></script>
+<script src="<?php echo(base_url('public/bower_components/angular-md5/angular-md5.min.js')); ?>"></script>
 
 <!-- Angular app -->
 <script src="<?php echo(base_url('public/js/shop/app.js')); ?>"></script>
@@ -14,7 +15,9 @@
 
 
 <!-- Login -->
-<script src="<?php echo(base_url('public/login/login.module.js')); ?>"></script>
-<script src="<?php echo(base_url('public/login/login.controller.js')); ?>"></script>
+<script src="<?php echo(base_url('public/auth/auth.module.js')); ?>"></script>
+<script src="<?php echo(base_url('public/auth/login.controller.js')); ?>"></script>
+<script src="<?php echo(base_url('public/auth/register.controller.js')); ?>"></script>
+<script src="<?php echo(base_url('public/auth/auth.services.js')); ?>"></script>
 
 <!-- ... -->

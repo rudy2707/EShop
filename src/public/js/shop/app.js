@@ -6,7 +6,7 @@
         'ui.router',
         'ngMaterial',
         'constants',
-        'app.login'
+        'app.auth'
     ])
 
     .run(
@@ -34,16 +34,20 @@
     [ '$stateProvider', '$urlRouterProvider', '$provide',
     function ($stateProvider,   $urlRouterProvider, $provide) {
         $urlRouterProvider
-            .otherwise('/shop/login');
+            .otherwise('/auth/login');
         $stateProvider
-            .state('shop', {
+            .state('auth', {
                 abstract: true,
-                url: '/shop',
-                templateUrl: 'public/app.html'
+                url: '/auth',
+                templateUrl: 'public/auth.html'
             })
-            .state('shop.login', {
+            .state('auth.login', {
                 url: '/login',
-                templateUrl: 'public/login/login.view.html'
+                templateUrl: 'public/auth/login.view.html'
+            })
+            .state('auth.register', {
+                url: '/register',
+                templateUrl: 'public/auth/register.view.html'
             })
         }
       ]
