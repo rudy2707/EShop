@@ -6,7 +6,8 @@
         'ui.router',
         'ngMaterial',
         'constants',
-        'app.auth'
+        'app.auth',
+        'app.shop'
     ])
 
     .run(
