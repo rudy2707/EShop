@@ -20,4 +20,6 @@
 <script src="<?php echo(base_url('public/auth/register.controller.js')); ?>"></script>
 <script src="<?php echo(base_url('public/auth/auth.services.js')); ?>"></script>
 
-<!-- ... -->
+<!-- shop -->
+<script src="<?php echo(base_url('public/shop.js')); ?>"></script>
+<script src="<?php echo(base_url('public/shop/shop.module.js')); ?>"></script>

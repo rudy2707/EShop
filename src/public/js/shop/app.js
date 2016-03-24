@@ -6,7 +6,8 @@
         'ui.router',
         'ngMaterial',
         'constants',
-        'app.auth'
+        'app.auth',
+        'app.shop'
     ])
 
     .run(
@@ -39,24 +40,24 @@
             .state('auth', {
                 abstract: true,
                 url: '/auth',
-                templateUrl: 'public/auth.html'
+                templateUrl: EShop.baseUrl + 'public/auth.html'
             })
             .state('auth.login', {
                 url: '/login',
-                templateUrl: 'public/auth/login.view.html'
+                templateUrl: EShop.baseUrl + 'public/auth/login.view.html'
             })
             .state('auth.register', {
                 url: '/register',
-                templateUrl: 'public/auth/register.view.html'
+                templateUrl: EShop.baseUrl + 'public/auth/register.view.html'
             })
             .state('shop', {
                 abstract: true,
                 url: '/shop',
-                templateUrl: 'public/shop.html'
+                templateUrl: EShop.baseUrl + 'public/shop.html'
             })
             .state('shop.list', {
                 url: '/list',
-                templateUrl: 'public/shop/list.view.html'
+                templateUrl: EShop.baseUrl +  'public/shop/list.view.html'
             })
         }
       ]
