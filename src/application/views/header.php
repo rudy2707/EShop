@@ -10,9 +10,10 @@
             };
         </script>
         <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/css/style.css')); ?>" >
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/bower_components/font-awesome/css/font-awesome.min.css')); ?>" >
         <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/bower_components/angular-material/angular-material.min.css')); ?>">
-        <!-- <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/bower_components/materialize/dist/css/materialize.min.css')); ?>" > -->
+        <link rel="stylesheet" type="text/css" href="<?php echo(base_url('public/bower_components/angular-material-data-table/dist/md-data-table.min.css')); ?>">
     </head>
 
     <body ng-app="app" ng-cloak>

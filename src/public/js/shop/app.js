@@ -68,6 +68,9 @@
         // $mdThemingProvider.setDefaultTheme('altTheme');
     })
 
+    .config(function($mdIconProvider) {
+      $mdIconProvider.fontSet('md', 'material-icons');
+    })
     ;
 
 })();

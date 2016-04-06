@@ -1,3 +1,7 @@
+<!-- ngTable -->
+<!-- <link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/v1.0.0/dist/ng-table.min.css">
+<script src="https://cdn.rawgit.com/esvit/ng-table/v1.0.0/dist/ng-table.js"></script>
+ -->
 <!-- Librairies -->
 <script src="<?php echo(base_url('public/bower_components/angular/angular.min.js')); ?>"></script>
 <!-- <script src="<?php echo(base_url('public/bower_components/materialize/dist/css/materialize.min.js')); ?>"></script> -->
@@ -8,6 +12,7 @@
 <script src="<?php echo(base_url('public/bower_components/angular-aria/angular-aria.min.js')); ?>"></script>
 <script src="<?php echo(base_url('public/bower_components/angular-messages/angular-messages.min.js')); ?>"></script>
 <script src="<?php echo(base_url('public/bower_components/angular-md5/angular-md5.min.js')); ?>"></script>
+<script src="<?php echo(base_url('public/bower_components/angular-material-data-table/dist/md-data-table.min.js')); ?>"></script>
 
 <!-- Angular app -->
 <script src="<?php echo(base_url('public/js/shop/app.js')); ?>"></script>

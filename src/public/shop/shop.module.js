@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.shop', ['ngMaterial'])
+        .module('app.shop', ['ngMaterial', 'md.data.table'])
         ;
 
 })();

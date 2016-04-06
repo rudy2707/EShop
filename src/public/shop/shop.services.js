@@ -12,17 +12,21 @@
     function ShopServices(REST_SERVER, $http, $q, $log) {
 
         // Base URL used for REST calls
-        var urlBase = REST_SERVER + '/shop3d';
+        var urlBase = REST_SERVER + '/shop';
 
         // Factory object
         var ShopServices = {};
 
-        ShopServices.listProduct = function() {
+        ShopServices.listProduct = function(filter) {
             var deffered = $q.defer();
 
-            $http.post(urlBase + '/productList')
+            $http.post(urlBase + '/productList', "FILTER="+filter)
             .then(function(result) {
-                deffered.resolve(result.data);
+                var ar = [];
+                for (var item in result.data) {
+                    ar.push(result.data[item]);
+                }
+                deffered.resolve(ar);
             });
             return deffered.promise;
         }
