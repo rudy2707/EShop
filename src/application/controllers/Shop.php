@@ -13,9 +13,16 @@ class Shop extends CI_Controller {
 
     public function productList()
     {
-        $this->load->model('Products_model');
+        if (isset($_POST['FILTER']))
+        {
+            $filter = $_POST['FILTER'];
+            $this->load->model('Products_model');
 
-        echo(json_encode($this->Products_model->getProductsList()));
+            echo(json_encode($this->Products_model->getProductsList($filter)));
+            $this->output->set_content_type('application/json');
+            return;
+        }
+        echo(json_encode(array('success' => 'false')));
         $this->output->set_content_type('application/json');
     }
 }

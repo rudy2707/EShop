@@ -8,11 +8,12 @@ class Products_model extends CI_Model
         $this->load->database();
     }
 
-    function getProductsList()
+    function getProductsList($filter='')
     {
         $query = $this->db->query("SELECT * FROM tblProduct
                                             INNER JOIN tblCategory
-                                            ON prodCategory = catId;");
+                                            ON prodCategory = catId
+                                            WHERE prodName LIKE '%{$filter}%';");
         $result = array();
 
         foreach ($query->result() as $row)
