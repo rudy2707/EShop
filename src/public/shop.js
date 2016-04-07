@@ -33,7 +33,6 @@ angular.module('app')
           .ok('oui')
       );
       originatorEv = null;
-      // This never happens.
     };
 
 });
