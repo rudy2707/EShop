@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Products_model extends CI_Model
 {
-    function __construct()
+    public function __construct()
     {
         $this->load->database();
     }
 
-    function getProductsList($filter='')
+    public function getProductsList($filter='')
     {
         $query = $this->db->query("SELECT * FROM tblProduct
                                             INNER JOIN tblCategory
@@ -28,5 +28,12 @@ class Products_model extends CI_Model
         }
 
         return $result;
+    }
+
+    public function decrementQuantity($id, $n)
+    {
+        $this->db->set('quantity', 'quantity-'.intval($n), false);
+        $this->db->where('id', $id);
+        $this->db->update('tblProduct');
     }
 }
