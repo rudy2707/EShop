@@ -1,48 +1,48 @@
 <div ng-controller="RegisterController as vm" layout="column" layout-padding ng-cloak>
-  <br/>
-  <div class="container">
-      <md-content class="md-no-momentum">
-        <md-input-container class="md-block">
-          <input ng-model="vm.user.first_name" type="text" placeholder="First name" ng-required="true">
-        </md-input-container>
-        <md-input-container class="md-block">
-          <input ng-model="vm.user.last_name" type="text" placeholder="Last name" ng-required="true">
-        </md-input-container>
-        <md-input-container class="md-block">
-          <label>Gender</label>
-          <md-select ng-model="vm.user.gender">
-              <md-option value="F">
-                F
-              </md-option>
-              <md-option value="M">
-                M
-              </md-option>
-          </md-select>
-        </md-input-container>
-        <md-input-container class="md-block">
-          <input ng-model="vm.user.phone" type="text" placeholder="Phone" ng-required="true">
-        </md-input-container>
-        <md-input-container class="md-block">
-          <input ng-model="vm.user.street" type="text" placeholder="Street" ng-required="true">
-        </md-input-container>
-        <md-input-container class="md-block">
-          <input ng-model="vm.user.city" type="text" placeholder="City" ng-required="true">
-        </md-input-container>
-        <md-input-container class="md-block">
-          <input ng-model="vm.user.zip" type="text" placeholder="Zip" ng-required="true">
-        </md-input-container>
-        <md-input-container class="md-block">
-          <input ng-model="vm.user.email" type="email" placeholder="Email" ng-required="true">
-        </md-input-container>
-        <md-input-container class="md-block">
-          <input ng-model="vm.user.password" type="password" placeholder="Password" ng-required="true">
-        </md-input-container>
-    	<md-input-container layout-align="center center">
-    	  <div layout="row" layout-sm="column" layout-margin>
-            <md-button ui-sref="auth.login" class="md-raised" flex="50" flex-sm="100">Cancel</md-button>
-    	    <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.register(vm.user)">Register</md-button>
-    	  </div>
-    	</md-input-container>
-      </md-content>
-  </div>
+    <br/>
+    <div class="container">
+        <md-content class="md-no-momentum">
+            <md-input-container class="md-block">
+                <input ng-model="vm.user.first_name" type="text" placeholder="First name" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input ng-model="vm.user.last_name" type="text" placeholder="Last name" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Gender</label>
+                <md-select ng-model="vm.user.gender">
+                    <md-option value="F">
+                        F
+                    </md-option>
+                    <md-option value="M">
+                        M
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input ng-model="vm.user.phone" type="text" placeholder="Phone" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input ng-model="vm.user.street" type="text" placeholder="Street" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input ng-model="vm.user.city" type="text" placeholder="City" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input ng-model="vm.user.zip" type="text" placeholder="Zip" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input ng-model="vm.user.email" type="email" placeholder="Email" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input ng-model="vm.user.password" type="password" placeholder="Password" ng-required="true">
+            </md-input-container>
+            <md-input-container layout-align="center center">
+                <div layout="row" layout-sm="column" layout-margin>
+                    <md-button ui-sref="auth.login" class="md-raised" flex="50" flex-sm="100">Cancel</md-button>
+                    <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.register(vm.user)">Register</md-button>
+                </div>
+            </md-input-container>
+        </md-content>
+    </div>
 </div>
