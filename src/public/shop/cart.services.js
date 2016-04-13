@@ -66,7 +66,7 @@
 
             for (var i = 0; i < cart.length; i++) {
                 if (cart[i].name == product.name) {
-                    cart.pop(product);
+                    cart.splice(i, 1);
                     storeCart(cart);
                     return true;
                 }
