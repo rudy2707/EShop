@@ -29,6 +29,7 @@
 <!-- Shop -->
 <script src="<?php echo(base_url('public/shop/shop.module.js')); ?>"></script>
 <script src="<?php echo(base_url('public/shop/list.controller.js')); ?>"></script>
+<script src="<?php echo(base_url('public/shop/profile.controller.js')); ?>"></script>
 <script src="<?php echo(base_url('public/shop/shop.services.js')); ?>"></script>
 <script src="<?php echo(base_url('public/shop/cart.services.js')); ?>"></script>
 <script src="<?php echo(base_url('public/shop/cart.controller.js')); ?>"></script>

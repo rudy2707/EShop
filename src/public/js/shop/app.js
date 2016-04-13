@@ -63,6 +63,10 @@
                 url: '/cart',
                 templateUrl: 'public/shop/cart.view.html'
             })
+            .state('shop.profile', {
+                url: '/profile',
+                templateUrl: 'public/shop/profile.view.html'
+            })
         }
       ]
     )
