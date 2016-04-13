@@ -1,7 +1,7 @@
-<div ng-controller="ListController as vm" layout="column" layout-padding>
+<div ng-controller="CartController as vm" layout="column" layout-padding>
     <br/>
-    <div layout="row">
-        <div flex="65">
+    <div layout="row" layout-sm="column">
+        <div flex-gt-sm="65">
             <md-content layout="column" flex>
                 <md-card>
                     <md-toolbar class="md-table-toolbar md-default" ng-hide="vm.selected.length || vm.filter.show">
@@ -22,13 +22,13 @@
                                 </tr>
                             </thead>
                             <tbody md-body>
-                                <tr md-row ng-repeat="product in vm.products">
+                                <tr md-row ng-repeat="product in vm.cart">
                                     <td md-cell>{{product.name}}</td>
                                     <td md-cell>{{product.price}} CHF</td>
                                     <td md-cell>
-                                        <input type="number" style="width: 40px;" min="0" step="1" ng-model="product.quantity">
+                                        <input type="number" style="width: 40px;" min="0" step="1" ng-model="product.quantity" ng-click="vm.loadSumCart()">
                                     </td>
-                                    <td md-cell>{{product.price * products.quantity}} CHF</td>
+                                    <td md-cell>{{product.price * product.quantity}} CHF</td>
                                     <td md-cell>
                                         <md-button ng-click="vm.deleteProduct(product)">
                                             <md-icon>delete</md-icon>
@@ -42,14 +42,14 @@
                 </md-card>
             </md-content>
         </div>
-        <div flex="35">
+        <div flex-gt-sm="35">
             <md-content layout="column" flex>
                 <md-card>
                     <md-list ng-cloak>
                         <md-subheader class="md-no-sticky">Summary</md-subheader>
                         <md-list-item>
                             <p>Cart Subtotal</p>
-                            <p style="text-align:right">1'000 CHF</p>
+                            <p style="text-align:right">{{vm.sumCart}} CHF</p>
                         </md-list-item>
                         <md-list-item>
                             <p>Shipping cost</p>
@@ -57,7 +57,7 @@
                         </md-list-item>
                         <md-list-item>
                             <p><b>Total</b></p>
-                            <p style="text-align:right"><b>1'010 CHF</b></p>
+                            <p style="text-align:right"><b>{{vm.sumCart + 10}} CHF</b></p>
                         </md-list-item>
                     </md-list>
                     <md-divider></md-divider>

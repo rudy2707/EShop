@@ -57,13 +57,14 @@
             return loadCart();
         }
 
+        // Remove a product from the cart
         CartServices.DeleteProduct = function(product) {
             var cart = loadCart();
 
             if (!cart)
                 return false;
 
-            for (var i = 0; i < cart.size; i++) {
+            for (var i = 0; i < cart.length; i++) {
                 if (cart[i].name == product.name) {
                     cart.pop(product);
                     storeCart(cart);
