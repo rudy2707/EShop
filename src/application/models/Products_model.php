@@ -29,4 +29,11 @@ class Products_model extends CI_Model
 
         return $result;
     }
+
+    public function decrementQuantity($id, $n)
+    {
+        $this->db->set('quantity', 'quantity-'.intval($n), false);
+        $this->db->where('id', $id);
+        $this->db->update('tblProduct');
+    }
 }
