@@ -17,6 +17,7 @@
 <!-- Angular app -->
 <script src="<?php echo(base_url('public/js/shop/app.js')); ?>"></script>
 <script src="<?php echo(base_url('public/js/shop/constants.js')); ?>"></script>
+<script src="<?php echo(base_url('public/shop.js')); ?>"></script>
 
 
 <!-- Auth -->
@@ -28,6 +29,7 @@
 <!-- Shop -->
 <script src="<?php echo(base_url('public/shop/shop.module.js')); ?>"></script>
 <script src="<?php echo(base_url('public/shop/list.controller.js')); ?>"></script>
+<script src="<?php echo(base_url('public/shop/profile.controller.js')); ?>"></script>
 <script src="<?php echo(base_url('public/shop/shop.services.js')); ?>"></script>
 <script src="<?php echo(base_url('public/shop/cart.services.js')); ?>"></script>
 <script src="<?php echo(base_url('public/shop/cart.controller.js')); ?>"></script>

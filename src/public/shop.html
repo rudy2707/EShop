@@ -1,3 +1,58 @@
-<div layout="column" ui-view>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-</div>
+<div ng-controller="AppCtrl as ctrl" ng-cloak>
+    <md-content>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>EShop</span>
+                </h2>
+                <!-- <span flex></span> -->
+                <md-menu-bar>
+                    <md-menu>
+                        <button ui-sref="shop.list">
+                            <span class="md-display-1">List of products</span>
+                        </button>
+                    </md-menu>
+                    <md-menu>
+                        <button ui-sref="shop.cart">
+                            <span>Cart</span>
+                        </button>
+                    </md-menu>
+                    <md-menu>
+                        <button>
+                            <span>3D</span>
+                        </button>
+                    </md-menu>
+                </md-menu-bar>
+                <span flex></span>
+                <!-- buton profil -->
+                <md-menu>
+                    <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdOpenMenu, $event)">
+                        <i class="material-icons md-dark">face</i>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <!-- <md-button ng-click="ctrl.profil($event)"> -->
+                            <md-button ui-sref="shop.profile">
+                                <md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>
+                                Profil
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button ng-click="ctrl.LogOut($event)">
+                                <md-icon md-svg-icon="call:voicemail"></md-icon>
+                                Log out
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <!-- fin buton profil -->
+
+            </div>
+        </md-toolbar>
+    </div>
+    <div layout="column" ui-view>
+
+    </div>
