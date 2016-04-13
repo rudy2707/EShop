@@ -12,6 +12,7 @@
 
             vm.init = init;
             vm.deleteProduct = deleteProduct;
+            vm.order = orderCart;
             vm.loadSumCart = loadSumCart;
 
             function init() {
@@ -38,6 +39,10 @@
                     $mdToast.show($mdToast.simple().textContent("Error when removing the product from the cart"));
                 }
                 loadCart();
+            }
+
+            function orderCart() {
+                // TODO : ORDER REQUEST
             }
 
             // Calculate the sum of the cart
