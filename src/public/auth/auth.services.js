@@ -55,10 +55,12 @@
             return deffered.promise;
         }
 
-        AuthServices.register = function(email, password, first_name, last_name, gender, phone) {
+        AuthServices.register = function(email, password, first_name, last_name, gender, phone, street, city, zip) {
             var deffered = $q.defer();
 
-            $http.post(urlBase + '/create', "EMAIL="+email+"&PASSWORD="+md5.createHash(password)+"&FIRST_NAME="+first_name+"&LAST_NAME="+last_name+"&GENDER="+gender+"&PHONE="+phone)
+            // Creation of the customer
+            $http.post(urlBase + '/create', "EMAIL="+email+"&PASSWORD="+md5.createHash(password)+"&FIRST_NAME="+first_name+"&LAST_NAME="+last_name
+                       +"&GENDER="+gender+"&PHONE="+phone+"&STREET="+street+"&CITY="+city+"&ZIP="+zip)
                 .then(function(response) {
                     if (response.data.success) {
                         deffered.resolve({"status": true, "msg": "Registering OK !"});

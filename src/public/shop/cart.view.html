@@ -1,5 +1,69 @@
-<div ng-controller="CartController as vm" layout="column" layout-padding>
+<div ng-controller="ListController as vm" layout="column" layout-padding>
+    <br/>
+    <div layout="row">
+        <div flex="65">
+            <md-content layout="column" flex>
+                <md-card>
+                    <md-toolbar class="md-table-toolbar md-default" ng-hide="vm.selected.length || vm.filter.show">
+                        <div class="md-toolbar-tools">
+                            <h2 class="md-title">Review</h2>
+                            <div flex></div>
+                        </div>
+                    </md-toolbar>
 
-
-    
+                    <md-table-container>
+                        <table md-table ng-model="vm.selected">
+                            <thead md-head md-order="vm.query.order">
+                                <tr md-row>
+                                    <th md-column md-order-by="nameToLower"><span>Name</span></th>
+                                    <th md-column md-numeric>Price per unit (CHF)</th>
+                                    <th md-column md-numeric>Quantity</th>
+                                    <th md-column md-numeric>Total (CHF)</th>
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-repeat="product in vm.products">
+                                    <td md-cell>{{product.name}}</td>
+                                    <td md-cell>{{product.price}} CHF</td>
+                                    <td md-cell>
+                                        <input type="number" style="width: 40px;" min="0" step="1" ng-model="product.quantity">
+                                    </td>
+                                    <td md-cell>{{product.price * products.quantity}} CHF</td>
+                                    <td md-cell>
+                                        <md-button ng-click="vm.deleteProduct(product)">
+                                            <md-icon>delete</md-icon>
+                                        </md-button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+                    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.allProducts.length}}" md-on-paginate="vm.getProducts" md-page-select></md-table-pagination>
+                </md-card>
+            </md-content>
+        </div>
+        <div flex="35">
+            <md-content layout="column" flex>
+                <md-card>
+                    <md-list ng-cloak>
+                        <md-subheader class="md-no-sticky">Summary</md-subheader>
+                        <md-list-item>
+                            <p>Cart Subtotal</p>
+                            <p style="text-align:right">1'000 CHF</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p>Shipping cost</p>
+                            <p style="text-align:right">10 CHF</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p><b>Total</b></p>
+                            <p style="text-align:right"><b>1'010 CHF</b></p>
+                        </md-list-item>
+                    </md-list>
+                    <md-divider></md-divider>
+                    <md-button class="md-raised md-primary" ng-click="">Check Out</md-button>
+                </md-card>
+            </md-content>
+        </div>
+    </div>
 </div>
