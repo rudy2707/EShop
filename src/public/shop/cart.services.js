@@ -18,7 +18,7 @@
         }
 
         function storeCart(cart) {
-            window.localStorage.setItem(LOCAL_CART, token);
+            window.localStorage.setItem(LOCAL_CART, cart);
         }
 
         // Base URL used for REST calls
@@ -29,7 +29,6 @@
 
         CartServices.AddProduct = function(product) {
             var cart = loadCart();
-
 
             storeCart(cart);
         }

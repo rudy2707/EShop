@@ -1,12 +1,9 @@
 <div ng-controller="ListController as vm" layout="column" layout-padding>
     <br/>
-    <!-- <div class="container"> -->
     <md-content layout="column" flex>
-        <!-- <p>List of products</p> -->
         <md-card>
         <md-toolbar class="md-table-toolbar md-default" ng-hide="vm.selected.length || vm.filter.show">
           <div class="md-toolbar-tools">
-            <!-- <span>List of Products</span> -->
             <h2 class="md-title">Products</h2>
             <div flex></div>
             <button type="button" class="md-icon-button md-button md-ink-ripple" ng-click="vm.filter.show = true" aria-label="filter_list">
@@ -27,17 +24,16 @@
             </md-button>
           </div>
         </md-toolbar>
-        <!-- exact table from live demo -->
+
         <md-table-container>
-          <!-- <table md-table md-row-select multiple ng-model="vm.selected" md-progress="promise"> -->
           <table md-table md-row-select multiple ng-model="vm.selected">
-            <!-- <thead md-head md-order="vm.query.order" md-on-reorder="getProducts"> -->
             <thead md-head md-order="vm.query.order">
               <tr md-row>
                 <th md-column md-order-by="nameToLower"><span>Name</span></th>
                 <th md-column><span>Description</span></th>
                 <th md-column md-numeric>Stock</th>
                 <th md-column md-numeric>Price (CHF)</th>
+                <th md-column md-numeric>Quantity</th>
               </tr>
             </thead>
             <tbody md-body>
@@ -46,25 +42,19 @@
                 <td md-cell>{{product.description}}</td>
                 <td md-cell>{{product.stock}}</td>
                 <td md-cell>{{product.price}} CHF</td>
-                <!-- <td md-cell>{{dessert.protein.value | number: 1}}</td>
-                <td md-cell>{{dessert.sodium.value}}</td>
-                <td md-cell>{{dessert.calcium.value}}{{dessert.calcium.unit}}</td>
-                <td md-cell>{{dessert.iron.value}}{{dessert.iron.unit}}</td> -->
+                <td md-cell>
+                  <input type="number" style="width: 40px;" min="0" step="1" ng-model="product.quantity">
+                </td>
+                <td md-cell>
+                  <md-button class="md-fab md-mini" ng-click="vm.addProduct(product)">
+                    <md-icon>add_shopping_cart</md-icon>
+                  </md-button>
+                </td>
               </tr>
             </tbody>
           </table>
         </md-table-container>
-        <!-- <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.allProducts.length}}" md-page-select></md-table-pagination> -->
         <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.allProducts.length}}" md-on-paginate="vm.getProducts" md-page-select></md-table-pagination>
-        <!-- <md-list ng-cloak>
-            <md-list-item ng-repeat="product in vm.products">
-                <p>{{ product.name }}
-                    - {{ product.description }}
-                    - {{ product.stock }}
-                    - {{ product.price }}</p>
-            </md-list-item>
-        </md-list> -->
         </md-card>
-    <!-- </div> -->
     </md-content>
 </div>
