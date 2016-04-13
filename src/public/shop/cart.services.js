@@ -21,16 +21,22 @@
             window.localStorage.setItem(LOCAL_CART, token);
         }
 
-
         // Base URL used for REST calls
         // var urlBase = REST_SERVER + '/shop';
 
         // Factory object
         var CartServices = {};
 
-        // CartServices.AddProduct = function() {
-        //
-        // }
+        CartServices.AddProduct = function(product) {
+            var cart = loadCart();
+
+
+            storeCart(cart);
+        }
+
+        CartServices.GetCart = function() {
+            return loadCart();
+        }
 
         return CartServices;
     }

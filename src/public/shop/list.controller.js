@@ -27,7 +27,7 @@
         function getProducts() {
             ShopServices.listProduct(vm.query.filter)
             .then(function(data) {
-
+                $log.debug(data);    
                 vm.allProducts = data;
                 vm.products = data;
 
