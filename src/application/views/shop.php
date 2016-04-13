@@ -17,6 +17,7 @@
 <!-- Angular app -->
 <script src="<?php echo(base_url('public/js/shop/app.js')); ?>"></script>
 <script src="<?php echo(base_url('public/js/shop/constants.js')); ?>"></script>
+<script src="<?php echo(base_url('public/shop.js')); ?>"></script>
 
 
 <!-- Auth -->
