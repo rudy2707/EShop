@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Customers_model extends CI_Model
 {
-    function __construct()
+    public function __construct()
     {
         $this->load->database();
     }
 
-    function getPasswordFromCustomer($email)
+    public function getPasswordFromCustomer($email)
     {
         $this->db->select('cusPassword');
         $this->db->from('tblCustomer');
@@ -23,7 +23,7 @@ class Customers_model extends CI_Model
         }
     }
 
-    function insertCustomer($firstName, $lastName, $gender, $email, $phone, $password)
+    public function insertCustomer($firstName, $lastName, $gender, $email, $phone, $password)
     {
         $data = array(
             'cusFirstName' => $firstName,
