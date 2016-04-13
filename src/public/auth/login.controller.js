@@ -5,9 +5,9 @@
     .module('app.auth')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = [ 'AuthServices', '$log', '$mdToast'];
+    LoginController.$inject = [ 'AuthServices', '$log', '$mdToast', '$state'];
 
-    function LoginController(AuthServices, $log, $mdToast) {
+    function LoginController(AuthServices, $log, $mdToast, $state) {
         var vm = this;
 
         vm.init = init;
@@ -25,6 +25,7 @@
             .then(function(res) {
                 $log.debug(res);
                 $mdToast.show($mdToast.simple().textContent(res.msg));
+                $state.go('shop.list');
             }, function(res) {
                 $log.debug(res);
                 $mdToast.show($mdToast.simple().textContent(res.msg));
