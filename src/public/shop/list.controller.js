@@ -15,6 +15,7 @@
         vm.getProducts = getProducts;
         vm.removeFilter = removeFilter;
         vm.addProduct = addProduct;
+        vm.deleteProduct = deleteProduct;
         vm.selected = [];
         vm.products = [];
         vm.filter = {show: false, options: {debounce: 500}};
@@ -55,6 +56,15 @@
             }
             else {
                 $mdToast.show($mdToast.simple().textContent("Error when adding the product to the cart"));
+            }
+        }
+
+        function deleteProduct(product) {
+            if (CartServices.DeleteProduct(product)) {
+                $mdToast.show($mdToast.simple().textContent("Product remove from cart"));
+            }
+            else {
+                $mdToast.show($mdToast.simple().textContent("Error when removing the product from the cart"));
             }
         }
 
