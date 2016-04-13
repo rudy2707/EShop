@@ -27,6 +27,7 @@
 
             function loadSumCart() {
                 vm.sumCart = getTotalCart();
+                vm.shippingCost = getShippingCost(vm.sumCart);
             }
 
             // Delete a product from the cart and print a toast message
@@ -47,6 +48,11 @@
                     sum += vm.cart[i].price * vm.cart[i].quantity;
                 }
                 return sum;
+            }
+
+            // Shipping cost increase with the price
+            function getShippingCost(sum) {
+                return window.Math.ceil(sum / 20);
             }
 
             vm.init();

@@ -53,11 +53,11 @@
                         </md-list-item>
                         <md-list-item>
                             <p>Shipping cost</p>
-                            <p style="text-align:right">10 CHF</p>
+                            <p style="text-align:right">{{vm.shippingCost}} CHF</p>
                         </md-list-item>
                         <md-list-item>
                             <p><b>Total</b></p>
-                            <p style="text-align:right"><b>{{vm.sumCart + 10}} CHF</b></p>
+                            <p style="text-align:right"><b>{{vm.sumCart + vm.shippingCost}} CHF</b></p>
                         </md-list-item>
                     </md-list>
                     <md-divider></md-divider>
