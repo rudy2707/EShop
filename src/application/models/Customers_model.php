@@ -46,7 +46,7 @@ class Customers_model extends CI_Model
         }
         else
         {
-            return true;
+            return $this->db->insert_id();
         }
     }
 
