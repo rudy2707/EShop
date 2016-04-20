@@ -6,15 +6,15 @@
         .factory('CartServices', CartServices);
 
     // Inject dependecies
-    CartServices.$inject = ['REST_SERVER', '$http', '$q', '$log'];
+    CartServices.$inject = ['REST_SERVER', 'AuthServices', '$http', '$q', '$log'];
 
     // Services
-    function CartServices(REST_SERVER, $http, $q, $log) {
+    function CartServices(REST_SERVER, AuthServices, $http, $q, $log) {
 
         var LOCAL_CART = 'cart_eshop';
 
         // Base URL used for REST calls
-        var urlBase = REST_SERVER + '/shop';
+        var urlBase = REST_SERVER + 'shop';
 
         function loadCart() {
             return JSON.parse(window.localStorage.getItem(LOCAL_CART));
@@ -77,7 +77,9 @@
         CartServices.MakeOrder = function(cart) {
             var deffered = $q.defer();
 
-            $http.post(urlBase + '/makeOrder/', cart)
+            //$http.post(urlBase + '/makeOrder/', "CART="+cart+"&EMAIL="+AuthServices.getUser().email)
+            //$http.post(urlBase + '/makeOrder', "CART="+cart+"&EMAIL="+"root@root.io")
+            $http.post(urlBase + '/makeOrder', {'cart': cart, 'email': 'axel@root.io'})
                 .then(function(response) {
                     if (response.data.success == "true") {
                         deffered.resolve({"status": true, "msg": "Order OK !"});

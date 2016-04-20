@@ -19,6 +19,7 @@ class Products_model extends CI_Model
         foreach ($query->result() as $row)
         {
             $result[$row->prodId] = new stdClass();
+            $result[$row->prodId]->id = $row->prodId;
             $result[$row->prodId]->name = $row->prodName;
             $result[$row->prodId]->description = $row->prodDescription;
             $result[$row->prodId]->category = $row->catLabel;
@@ -32,8 +33,8 @@ class Products_model extends CI_Model
 
     public function decrementQuantity($id, $n)
     {
-        $this->db->set('quantity', 'quantity-'.intval($n), false);
-        $this->db->where('id', $id);
+        $this->db->set('prodStock', 'prodStock-'.intval($n), false);
+        $this->db->where('prodId', $id);
         $this->db->update('tblProduct');
     }
 }

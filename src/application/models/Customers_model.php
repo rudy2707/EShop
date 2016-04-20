@@ -23,6 +23,39 @@ class Customers_model extends CI_Model
         }
     }
 
+    public function getCusIdFromCustomer($email)
+    {
+        $this->db->select('cusId');
+        $this->db->from('tblCustomer');
+        $this->db->where('cusEmail', $email);
+        $query = $this->db->get();
+
+        // Get only one row (we shouln't have more than one password)
+        $row = $query->row();
+        if (isset($row))
+        {
+            return $row->cusId;
+        }
+    }
+
+    public function getAddrIdFromCustomer($email)
+    {
+        // Get customer ID
+        $cusId = $this->getCusIdFromCustomer($email);
+
+        $this->db->select('linkAddrId');
+        $this->db->from('linkCustomerAddress');
+        $this->db->where('linkCusId', $cusId);
+        $query = $this->db->get();
+
+        // Get only one row (we shouln't have more than one password)
+        $row = $query->row();
+        if (isset($row))
+        {
+            return $row->linkAddrId;
+        }
+    }
+
     public function insertCustomer($firstName, $lastName, $gender, $email, $phone, $password)
     {
         $data = array(

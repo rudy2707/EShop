@@ -28,24 +28,31 @@ class Shop extends CI_Controller {
 
 	public function makeOrder()
 	{
-		$cart = json_decode(isset($_POST['cart']) ? $_POST['cart'] : "-");
+        $data = json_decode(file_get_contents('php://input'), true);
 
-		if ($cart === null)
-		{
-			$this->output->set_status_header(400);
-			return;
-		}
+        if ($data === null)
+        {
+            echo(json_encode(array('success' => 'false')));
+            $this->output->set_content_type('application/json');
 
-		$userId = $_POST['userId'];
-		$addressId = $_POST['addressId'];
+            $this->output->set_status_header(400);
+            return;
+        }
 
-		$this->load->model('Customers_model');
-		$this->Customers_model->insertOrder($userId, $addressId, $cart);
+        $this->load->model('Customers_model');
 
-		$this->load->model('Products_model');
-		foreach ($cart as $product)
-		{
-			$this->Products_model->decrementQuantity($product['id'], $product['quantity']);
-		}
+        $userId = $this->Customers_model->getCusIdFromCustomer($data['email']);
+        $addressId = $this->Customers_model->getAddrIdFromCustomer($data['email']);
+
+        $this->Customers_model->insertOrder($userId, $addressId, $data['cart']);
+
+        $this->load->model('Products_model');
+        foreach ($data['cart'] as $product)
+        {
+            $this->Products_model->decrementQuantity($product['id'], $product['quantity']);
+        }
+        echo(json_encode(array('success' => 'true')));
+        $this->output->set_content_type('application/json');
+        return;
 	}
 }
