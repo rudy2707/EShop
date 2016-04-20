@@ -14,6 +14,7 @@
             vm.deleteProduct = deleteProduct;
             vm.order = orderCart;
             vm.loadSumCart = loadSumCart;
+            vm.makeOrder = makeOrder;
 
             function init() {
                 loadCart();
@@ -28,6 +29,7 @@
 
             function loadSumCart() {
                 vm.sumCart = getTotalCart();
+                vm.shippingCost = getShippingCost(vm.sumCart);
             }
 
             // Delete a product from the cart and print a toast message
@@ -52,6 +54,23 @@
                     sum += vm.cart[i].price * vm.cart[i].quantity;
                 }
                 return sum;
+            }
+
+            // Shipping cost increase with the price
+            function getShippingCost(sum) {
+                return window.Math.ceil(sum / 20);
+            }
+
+            // Register the order in the database
+            function makeOrder() {
+                if (CartServices.MakeOrder(vm.cart)) {
+                    $mdToast.show($mdToast.simple().textContent("Order register successfully"));
+                    CartServices.EmptyCart();
+                    loadCart();
+                }
+                else {
+                    $mdToast.show($mdToast.simple().textContent("Error when registering the order"));
+                }
             }
 
             vm.init();

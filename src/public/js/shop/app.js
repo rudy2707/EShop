@@ -63,6 +63,14 @@
                 url: '/cart',
                 templateUrl: 'public/shop/cart.view.html'
             })
+            .state('shop.profile', {
+                url: '/profile',
+                templateUrl: 'public/shop/profile.view.html'
+            })
+            .state('shop.3d', {
+                url: '/3d',
+                templateUrl: 'public/shop3d.html'
+            })
         }
       ]
     )

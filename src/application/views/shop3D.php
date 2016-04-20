@@ -1,6 +1,6 @@
 
 <canvas id="webgl" width="1280" height="720">
-Please use a browser that supports "canvas"
+    Please use a browser that supports "canvas"
 </canvas>
 
 <script src="<?php echo(base_url('public/js/shop3d/utils/webgl-utils.js')); ?>"></script>

@@ -4,26 +4,29 @@
     <md-content>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>
-                    <span>EShop</span>
-                </h2>
+                <!-- <h2> -->
+                <!-- </h2> -->
                 <!-- <span flex></span> -->
                 <md-menu-bar>
-                    <md-menu>
-                        <button ui-sref="shop.list">
-                            <span class="md-display-1">List of products</span>
-                        </button>
-                    </md-menu>
-                    <md-menu>
-                        <button ui-sref="shop.cart">
-                            <span>Cart</span>
-                        </button>
-                    </md-menu>
-                    <md-menu>
-                        <button>
-                            <span>3D</span>
-                        </button>
-                    </md-menu>
+                    <!-- <span class="md-headline">EShop</span> -->
+                    <md-button ui-sref="shop.list">
+                        <span>EShop</span>
+                    </md-button>
+                    <!-- <md-menu> -->
+                    <md-button ui-sref="shop.list">
+                        <span>List of products</span>
+                    </md-button>
+                    <!-- </md-menu>
+                    <md-menu> -->
+                    <md-button ui-sref="shop.cart">
+                        <span>Cart</span>
+                    </md-button>
+                    <!-- </md-menu>
+                    <md-menu> -->
+                    <md-button ui-sref="shop.3d">
+                        <span>3D</span>
+                    </md-button>
+                    <!-- </md-menu> -->
                 </md-menu-bar>
                 <span flex></span>
                 <!-- buton profil -->
@@ -33,18 +36,22 @@
                     </md-button>
                     <md-menu-content width="4">
                         <md-menu-item>
-                            <md-button ng-click="ctrl.profil($event)">
+                            <!-- <md-button ng-click="ctrl.profil($event)"> -->
+                            <md-button ui-sref="shop.profile">
                                 <md-icon md-svg-icon="call:dialpad" md-menu-align-target></md-icon>
-                                Profil
+                                Profile
                             </md-button>
                         </md-menu-item>
                         <md-menu-divider></md-menu-divider>
-                        <md-menu-item>
-                            <md-button ng-click="ctrl.LogOut($event)">
-                                <md-icon md-svg-icon="call:voicemail"></md-icon>
-                                Log out
-                            </md-button>
-                        </md-menu-item>
+                        <div ng-controller="LogoutController as vm">
+
+                            <md-menu-item>
+                                <md-button ng-click="vm.logout()">
+                                    <md-icon md-svg-icon="call:voicemail"></md-icon>
+                                    Log out
+                                </md-button>
+                            </md-menu-item>
+                        </div>
                     </md-menu-content>
                 </md-menu>
                 <!-- fin buton profil -->

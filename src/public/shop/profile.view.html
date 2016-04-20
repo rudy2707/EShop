@@ -1,0 +1,132 @@
+<div ng-controller="ProfileController as vm" layout="column" layout-padding>
+    <br/>
+    <div layout="row" layout-sm="column">
+        <div flex-gt-sm="50">
+            <md-content layout="column" flex>
+                <md-card>
+                    <md-toolbar class="md-table-toolbar md-default" ng-hide="vm.selected.length || vm.filter.show">
+                        <div class="md-toolbar-tools">
+                            <h2 class="md-title">Profile</h2>
+                            <div flex></div>
+                        </div>
+                    </md-toolbar>
+                    <md-list ng-cloak>
+                        <md-list-item>
+                            <p>First name</p>
+                            <p style="text-align:right">John</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p>Last name</p>
+                            <p style="text-align:right">Doe</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p>Gender</p>
+                            <p style="text-align:right">Male</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p>Email</p>
+                            <p style="text-align:right">john.doe@mail.com</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p>Phone</p>
+                            <p style="text-align:right">012 345 67 89</p>
+                        </md-list-item>
+                    </md-list>
+                    <md-divider></md-divider>
+                    <md-button class="md-raised" ng-click="">Edit profile</md-button>
+                </md-card>
+            </md-content>
+        </div>
+        <div flex-gt-sm="50">
+            <md-content layout="column" flex>
+                <md-card>
+                    <md-toolbar class="md-table-toolbar md-default" ng-hide="vm.selected.length || vm.filter.show">
+                        <div class="md-toolbar-tools">
+                            <h2 class="md-title">Current address</h2>
+                            <div flex></div>
+                        </div>
+                    </md-toolbar>
+                    <md-list ng-cloak>
+                        <md-list-item>
+                            <p>Street</p>
+                            <p style="text-align:right">4 Rue de la Prairie</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p>City</p>
+                            <p style="text-align:right">Genève</p>
+                        </md-list-item>
+                        <md-list-item>
+                            <p>ZIP</p>
+                            <p style="text-align:right">1234</p>
+                        </md-list-item>
+                    </md-list>
+                    <md-divider></md-divider>
+                    <md-button class="md-raised" ng-click="">Change address</md-button>
+                </md-card>
+            </md-content>
+        </div>
+    </div>
+    <md-content layout="column" flex>
+        <md-card>
+            <md-toolbar class="md-table-toolbar md-default" ng-hide="vm.selected.length || vm.filter.show">
+                <div class="md-toolbar-tools">
+                    <h2 class="md-title">Orders history</h2>
+                    <div flex></div>
+                    <button type="button" class="md-icon-button md-button md-ink-ripple" ng-click="vm.filter.show = true" aria-label="filter_list">
+                        <md-icon>filter_list</md-icon>
+                        <div class="md-ripple-container"></div>
+                    </button>
+                </div>
+            </md-toolbar>
+
+            <md-table-container>
+                <table md-table md-row-select multiple ng-model="vm.selected">
+                    <thead md-head md-order="vm.query.order">
+                        <tr md-row>
+                            <th md-column md-order-by="nameToLower">Order N°</th>
+                            <th md-column>State</th>
+                            <th md-column md-numeric>Date</th>
+                            <th md-column md-numeric>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="product" md-select-id="name" md-auto-select>
+                            <td md-cell>12345</td>
+                            <td md-cell>Delivred</td>
+                            <td md-cell>1.1.2015</td>
+                            <td md-cell>4 rue de la Prairie</td>
+                            <td md-cell>
+                                <md-button class="md-fab md-mini" ng-click="vm.addProduct(product)">
+                                    <md-icon>chevron_right</md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                        <tr md-row md-select="product" md-select-id="name" md-auto-select>
+                            <td md-cell>43215</td>
+                            <td md-cell>Delivred</td>
+                            <td md-cell>1.1.2016</td>
+                            <td md-cell>4 rue de la Prairie</td>
+                            <td md-cell>
+                                <md-button class="md-fab md-mini" ng-click="vm.addProduct(product)">
+                                    <md-icon>chevron_right</md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                        <tr md-row md-select="product" md-select-id="name" md-auto-select>
+                            <td md-cell>54321</td>
+                            <td md-cell>Pending...</td>
+                            <td md-cell>13.4.2016</td>
+                            <td md-cell>4 rue de la Prairie</td>
+                            <td md-cell>
+                                <md-button class="md-fab md-mini" ng-click="vm.addProduct(product)">
+                                    <md-icon>chevron_right</md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.allProducts.length}}" md-on-paginate="vm.getProducts" md-page-select></md-table-pagination>
+        </md-card>
+    </md-content>
+</div>
