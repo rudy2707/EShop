@@ -13,18 +13,17 @@
     .run(
     //   [ '$rootScope', '$state', '$stateParams', 'AuthServices', 'AUTH_EVENTS',
     //     function ($rootScope,   $state,   $stateParams, AuthServices, AUTH_EVENTS) {
-      [ '$rootScope', '$state', '$stateParams',
-        function ($rootScope,   $state,   $stateParams) {
+      [ '$rootScope', '$state', '$stateParams', 'AuthServices',
+        function ($rootScope,   $state,   $stateParams, AuthServices) {
 
-            // $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
-            //     if (!AuthServices.isAuthenticated()) {
-            //         console.log(next.name);
-            //         if (next.name !== 'survey.login' && next.name !== 'survey.thankyou') {
-            //             event.preventDefault();
-            //             $state.go('survey.login');
-            //         }
-            //     }
-            // });
+            $rootScope.$on('$stateChangeStart', function (event,next, nextParams, fromState) {
+                if (!AuthServices.isAuthenticated()) {
+                    if (next.name !== 'auth.login' && next.name !== 'auth.register') {
+                        event.preventDefault();
+                        $state.go('auth.login');
+                    }
+                }
+            });
 
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;

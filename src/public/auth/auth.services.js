@@ -23,6 +23,7 @@
 
     // Services
     function AuthServices(REST_SERVER, $http, $q, md5, $log) {
+        var LOCAL_TOKEN_KEY = 'x5sTW0dIJslab';
 
         // Base URL used for REST calls
         var urlBase = REST_SERVER + '/customer';
@@ -31,13 +32,29 @@
         var AuthServices = {};
 
         var isAuthenticated = false;
+        var currentUser = undefined;
 
-        function useCredentials() {
-            isAuthenticated = true;
+        function loadUserCredentials() {
+            var user = window.localStorage.getItem(LOCAL_TOKEN_KEY);
+            if (user) {
+                useCredentials(user);
+            }
         }
 
-        function destroyCredentials() {
+        function storeUserCredentials(user) {
+            window.localStorage.setItem(LOCAL_TOKEN_KEY, user);
+            useCredentials(user);
+        }
+
+        function useCredentials(user) {
+            isAuthenticated = true;
+            currentUser = user;
+        }
+
+        function destroyUserCredentials() {
+            user = undefined;
             isAuthenticated = false;
+            window.localStorage.removeItem(LOCAL_TOKEN_KEY);
         }
 
         AuthServices.login = function(email, password) {
@@ -47,6 +64,7 @@
                 .then(function(response) {
                     if (response.data.success == "true") {
                         deffered.resolve({"status": true, "msg": "Login OK !"});
+                        storeUserCredentials({'email': email});
                     } else {
                         deffered.reject({"status": false, "msg": "Login NOT OK !"});
                     }
@@ -79,6 +97,12 @@
         AuthServices.isAuthenticated = function() {
             return isAuthenticated;
         }
+
+        AuthServices.getUser = function() {
+            return currentUser;
+        }
+
+        loadUserCredentials();
 
         return AuthServices;
     }
