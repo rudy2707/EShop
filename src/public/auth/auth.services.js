@@ -35,14 +35,14 @@
         var currentUser = undefined;
 
         function loadUserCredentials() {
-            var user = window.localStorage.getItem(LOCAL_TOKEN_KEY);
+            var user = JSON.parse(window.localStorage.getItem(LOCAL_TOKEN_KEY));
             if (user) {
                 useCredentials(user);
             }
         }
 
         function storeUserCredentials(user) {
-            window.localStorage.setItem(LOCAL_TOKEN_KEY, user);
+            window.localStorage.setItem(LOCAL_TOKEN_KEY, JSON.stringify(user));
             useCredentials(user);
         }
 
@@ -52,7 +52,7 @@
         }
 
         function destroyUserCredentials() {
-            user = undefined;
+            currentUser = undefined;
             isAuthenticated = false;
             window.localStorage.removeItem(LOCAL_TOKEN_KEY);
         }
@@ -91,7 +91,7 @@
         }
 
         AuthServices.logout = function() {
-            destroyCredentials();
+            destroyUserCredentials();
         }
 
         AuthServices.isAuthenticated = function() {

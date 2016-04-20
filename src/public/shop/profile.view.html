@@ -80,45 +80,23 @@
             </md-toolbar>
 
             <md-table-container>
-                <table md-table md-row-select multiple ng-model="vm.selected">
+                <table md-table md-row-select multiple>
                     <thead md-head md-order="vm.query.order">
                         <tr md-row>
-                            <th md-column md-order-by="nameToLower">Order N°</th>
-                            <th md-column>State</th>
-                            <th md-column md-numeric>Date</th>
-                            <th md-column md-numeric>Address</th>
+                            <th md-column md-order-by="nameToLower"><span>Order N°</span></th>
+                            <th md-column><span>State</span></th>
+                            <th md-column><span>Date</span></th>
+                            <th md-column><span>Address</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row md-select="product" md-select-id="name" md-auto-select>
-                            <td md-cell>12345</td>
-                            <td md-cell>Delivred</td>
-                            <td md-cell>1.1.2015</td>
-                            <td md-cell>4 rue de la Prairie</td>
+                        <tr md-row md-select="order" md-select-id="id" md-auto-select ng-repeat="order in vm.orders">
+                            <td md-cell>{{order.id}}</td>
+                            <td md-cell>{{(order.status == 1 ? "Pending" : "Delivered")}}</td>
+                            <td md-cell>{{order.date | date:'dd/MM/yyyy'}}</td>
+                            <td md-cell>{{order.street}}</td>
                             <td md-cell>
-                                <md-button class="md-fab md-mini" ng-click="vm.addProduct(product)">
-                                    <md-icon>chevron_right</md-icon>
-                                </md-button>
-                            </td>
-                        </tr>
-                        <tr md-row md-select="product" md-select-id="name" md-auto-select>
-                            <td md-cell>43215</td>
-                            <td md-cell>Delivred</td>
-                            <td md-cell>1.1.2016</td>
-                            <td md-cell>4 rue de la Prairie</td>
-                            <td md-cell>
-                                <md-button class="md-fab md-mini" ng-click="vm.addProduct(product)">
-                                    <md-icon>chevron_right</md-icon>
-                                </md-button>
-                            </td>
-                        </tr>
-                        <tr md-row md-select="product" md-select-id="name" md-auto-select>
-                            <td md-cell>54321</td>
-                            <td md-cell>Pending...</td>
-                            <td md-cell>13.4.2016</td>
-                            <td md-cell>4 rue de la Prairie</td>
-                            <td md-cell>
-                                <md-button class="md-fab md-mini" ng-click="vm.addProduct(product)">
+                                <md-button class="md-fab md-mini" ng-click="">
                                     <md-icon>chevron_right</md-icon>
                                 </md-button>
                             </td>
@@ -126,7 +104,7 @@
                     </tbody>
                 </table>
             </md-table-container>
-            <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.allProducts.length}}" md-on-paginate="vm.getProducts" md-page-select></md-table-pagination>
+            <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.allOrders.length}}" md-on-paginate="vm.getOrders" md-page-select></md-table-pagination>
         </md-card>
     </md-content>
 </div>

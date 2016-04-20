@@ -6,10 +6,10 @@
         .factory('ShopServices', ShopServices);
 
     // Inject dependecies
-    ShopServices.$inject = [ 'REST_SERVER', '$http', '$q', '$log'];
+    ShopServices.$inject = [ 'REST_SERVER', 'AuthServices', '$http', '$q', '$log'];
 
     // Services
-    function ShopServices(REST_SERVER, $http, $q, $log) {
+    function ShopServices(REST_SERVER, AuthServices, $http, $q, $log) {
 
         // Base URL used for REST calls
         var urlBase = REST_SERVER + '/shop';
@@ -21,6 +21,20 @@
             var deffered = $q.defer();
 
             $http.post(urlBase + '/productList', "FILTER="+filter)
+            .then(function(result) {
+                var ar = [];
+                for (var item in result.data) {
+                    ar.push(result.data[item]);
+                }
+                deffered.resolve(ar);
+            });
+            return deffered.promise;
+        }
+
+        ShopServices.listOrder = function() {
+            var deffered = $q.defer();
+
+            $http.post(urlBase + '/orderList', "EMAIL="+AuthServices.getUser().email)
             .then(function(result) {
                 var ar = [];
                 for (var item in result.data) {

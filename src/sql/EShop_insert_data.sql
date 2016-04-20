@@ -53,9 +53,25 @@ INSERT INTO `shop_test`.`tblCategory` (`catId`, `catLabel`) VALUES
 -- Data for table `shop_test`.`tblCustomer`
 -- -----------------------------------------------------
 DELETE FROM `shop_test`.`tblCustomer`;
-INSERT INTO `shop_test`.`tblCustomer` (`cusFirstName`, `cusLastName`, `cusGender`, `cusEmail`, `cusPhone`, `cusPassword`) VALUES
-('Tux', 'Torvalds', 'M', 'root@root.io', '007-007-007', '63a9f0ea7bb98050796b649e85481845'),
-('Fire', 'Fox', 'M', 'fire@fox.xyz', '1337-1337-666', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `shop_test`.`tblCustomer` (`cusId`, `cusFirstName`, `cusLastName`, `cusGender`, `cusEmail`, `cusPhone`, `cusPassword`) VALUES
+(1, 'Tux', 'Torvalds', 'M', 'root@root.io', '007-007-007', '63a9f0ea7bb98050796b649e85481845'),
+(2, 'Fire', 'Fox', 'M', 'fire@fox.xyz', '1337-1337-666', '21232f297a57a5a743894a0e4a801fc3');
+
+-- -----------------------------------------------------
+-- Data for table `shop_test`.`tblAddress`
+-- -----------------------------------------------------
+DELETE FROM `shop_test`.`tblAddress`;
+INSERT INTO `shop_test`.`tblAddress` (`addrId`, `addrStreet`, `addrCity`, `addrZip`) VALUES
+(1, 'Street 1', 'City A', '1212'),
+(2, 'Street 2', 'City B', '1213');
+
+-- -----------------------------------------------------
+-- Data for table `shop_test`.`linkCustomerAddress`
+-- -----------------------------------------------------
+DELETE FROM `shop_test`.`linkCustomerAddress`;
+INSERT INTO `shop_test`.`linkCustomerAddress` (`linkCusId`, `linkAddrId`) VALUES
+(1, 1),
+(2, 2);
 
 -- Enable check for foreign keys
 SET FOREIGN_KEY_CHECKS=0;

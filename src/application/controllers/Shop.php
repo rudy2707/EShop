@@ -55,4 +55,20 @@ class Shop extends CI_Controller {
         $this->output->set_content_type('application/json');
         return;
 	}
+
+    public function orderList()
+    {
+        if (isset($_POST['EMAIL']))
+        {
+            $this->load->model('Customers_model');
+
+            $userId = $this->Customers_model->getCusIdFromCustomer($_POST['EMAIL']);
+
+            echo(json_encode($this->Customers_model->getListOrderWithAddress($userId)));
+            $this->output->set_content_type('application/json');
+            return;
+        }
+        echo(json_encode(array('success' => 'false')));
+        $this->output->set_content_type('application/json');
+    }
 }

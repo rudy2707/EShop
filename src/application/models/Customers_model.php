@@ -132,4 +132,29 @@ class Customers_model extends CI_Model
             ));
         }
     }
+
+    public function getListOrderWithAddress($userId)
+    {
+        $query = $this->db->query("SELECT * FROM tblOrder
+                                            INNER JOIN tblAddress
+                                            ON ordAddrId = addrId
+                                            INNER JOIN tblCustomer
+                                            ON ordCusId = cusId
+                                            WHERE cusId = '".$userId."';");
+        $result = array();
+
+        foreach ($query->result() as $row)
+        {
+            $result[$row->ordId] = new stdClass();
+            $result[$row->ordId]->id = $row->ordId;
+            $result[$row->ordId]->cusId = $row->ordCusId;
+            $result[$row->ordId]->date = $row->ordDate;
+            $result[$row->ordId]->status = $row->ordStatus;
+            $result[$row->ordId]->street = $row->addrStreet;
+            $result[$row->ordId]->city = $row->addrCity;
+            $result[$row->ordId]->zip = $row->addrZip;
+        }
+
+        return $result;
+    }
 }
