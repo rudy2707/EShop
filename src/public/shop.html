@@ -23,7 +23,7 @@
                     </md-button>
                     <!-- </md-menu>
                     <md-menu> -->
-                    <md-button ui-sref="shop.cart">
+                    <md-button ui-sref="shop.3d">
                         <span>3D</span>
                     </md-button>
                     <!-- </md-menu> -->
@@ -43,12 +43,15 @@
                             </md-button>
                         </md-menu-item>
                         <md-menu-divider></md-menu-divider>
-                        <md-menu-item>
-                            <md-button ng-click="ctrl.LogOut($event)">
-                                <md-icon md-svg-icon="call:voicemail"></md-icon>
-                                Log out
-                            </md-button>
-                        </md-menu-item>
+                        <div ng-controller="LogoutController as vm">
+
+                            <md-menu-item>
+                                <md-button ng-click="vm.logout()">
+                                    <md-icon md-svg-icon="call:voicemail"></md-icon>
+                                    Log out
+                                </md-button>
+                            </md-menu-item>
+                        </div>
                     </md-menu-content>
                 </md-menu>
                 <!-- fin buton profil -->

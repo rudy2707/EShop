@@ -1,4 +1,24 @@
 <!-- ngTable -->
+<script src="<?php echo(base_url('public/js/shop3d/utils/webgl-utils.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/utils/webgl-debug.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/utils/cuon-utils.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/utils/cuon-matrix.js')); ?>"></script>
+
+<!-- our stuff -->
+<script src="<?php echo(base_url('public/js/shop3d/GlobalVariables.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Inputs.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Camera.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Reticle.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Shader.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Init.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/GetFile.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/TextureLoader.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Skybox.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/LightSource.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/MeshLoader.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Shelf.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Shop.js')); ?>"></script>
+<script src="<?php echo(base_url('public/js/shop3d/Scene.js')); ?>"></script>
 <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/v1.0.0/dist/ng-table.min.css">
 <script src="https://cdn.rawgit.com/esvit/ng-table/v1.0.0/dist/ng-table.js"></script>
  -->
@@ -23,6 +43,7 @@
 <!-- Auth -->
 <script src="<?php echo(base_url('public/auth/auth.module.js')); ?>"></script>
 <script src="<?php echo(base_url('public/auth/login.controller.js')); ?>"></script>
+<script src="<?php echo(base_url('public/auth/logout.controller.js')); ?>"></script>
 <script src="<?php echo(base_url('public/auth/register.controller.js')); ?>"></script>
 <script src="<?php echo(base_url('public/auth/auth.services.js')); ?>"></script>
 
