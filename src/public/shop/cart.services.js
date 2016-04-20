@@ -77,9 +77,7 @@
         CartServices.MakeOrder = function(cart) {
             var deffered = $q.defer();
 
-            //$http.post(urlBase + '/makeOrder/', "CART="+cart+"&EMAIL="+AuthServices.getUser().email)
-            //$http.post(urlBase + '/makeOrder', "CART="+cart+"&EMAIL="+"root@root.io")
-            $http.post(urlBase + '/makeOrder', {'cart': cart, 'email': 'axel@root.io'})
+            $http.post(urlBase + '/makeOrder/', "CART="+cart+"&EMAIL="+AuthServices.getUser().email)
                 .then(function(response) {
                     if (response.data.success == "true") {
                         deffered.resolve({"status": true, "msg": "Order OK !"});
