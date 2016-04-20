@@ -16,6 +16,14 @@
         function init() {
         }
 
+        function saveProfile() {
+
+        }
+
+        function saveAddress() {
+
+        }
+
         vm.init();
     }
 })();
