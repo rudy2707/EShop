@@ -1,0 +1,179 @@
+\documentclass[11pt]{beamer}
+\usetheme{Rochester}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listingsutf8}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{lmodern}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{bggray}{rgb}{0.95, 0.95, 0.95}
+\lstset{inputencoding=utf8/latin1}
+% JavaScript
+\lstdefinelanguage{JavaScript}{
+morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+morecomment=[s]{/*}{*/},
+morecomment=[l]//,
+morestring=[b]",
+morestring=[b]'
+}
+\lstdefinelanguage{HTML5}{
+language=html,
+sensitive=true,
+alsoletter={<>=-},
+morecomment=[s]{<!-}{-->},
+tag=[s],
+otherkeywords={
+% General
+>,
+% Standard tags
+<!DOCTYPE,
+</html, <html, <head, <title, </title, <style, </style, <link, </head, <meta, />,
+% body
+</body, <body,
+% Divs
+</div, <div, </div>,
+% Paragraphs
+</p, <p, </p>,
+% scripts
+</script, <script,
+% More tags...
+<canvas, /canvas>, <svg, <rect, <animateTransform, </rect>, </svg>, <video, <source, <iframe, </iframe>, </video>, <image, </image>, <header, </header, <article, </article
+},
+ndkeywords={
+% General
+=,
+% HTML attributes
+charset=, src=, id=, width=, height=, style=, type=, rel=, href=,
+% SVG attributes
+fill=, attributeName=, begin=, dur=, from=, to=, poster=, controls=, x=, y=, repeatCount=, xlink:href=,
+% properties
+margin:, padding:, background-image:, border:, top:, left:, position:, width:, height:, margin-top:, margin-bottom:, font-size:, line-height:,
+% CSS3 properties
+transform:, -moz-transform:, -webkit-transform:,
+animation:, -webkit-animation:,
+transition:,  transition-duration:, transition-property:, transition-timing-function:,
+}
+}
+\lstset{ %
+backgroundcolor=\color{bggray},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+breaklines=true,                 % sets automatic line breaking
+captionpos=b,                    % sets the caption-position to bottom
+commentstyle=\color{mygreen},    % comment style
+deletekeywords={...},            % if you want to delete keywords from the given language
+escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+frame=single,                    % adds a frame around the code
+frameround=tttt                  % tttt for having the corner round.
+keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+keywordstyle=\color{blue},       % keyword style
+language=JavaScript,                   % the language of the code
+morekeywords={*,...},            % if you want to add more keywords to the set
+numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+numbersep=5pt,                   % how far the line-numbers are from the code
+numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+showstringspaces=false,          % underline spaces within strings only
+showtabs=false,                  % show tabs within strings adding particular underscores
+stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+stringstyle=\color{mymauve},     % string literal style
+tabsize=2,                       % sets default tabsize to 2 spaces
+title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\author{ Fahy - Höhn - Ganty - Chappatte - Kugler }
+\title{Projet logiciel - EShop}
+%\setbeamercovered{transparent}
+%\setbeamertemplate{navigation symbols}{}
+%\logo{}
+\institute{ Génie logiciel II\\hepia}
+%\date{}
+%\subject{}
+\begin{document}
+
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \section{Auto-évaluation}
+    \begin{frame}{Présentation du projet}
+        \begin{itemize}
+            \item Equipe de 5 personnes
+            \item Magasin en ligne avec une partie 3D
+            \item Gestion de projet SCRUM (Agile)
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Organisation}
+        \begin{itemize}
+            \item Outil SCRUM : Taiga.io
+            \item Versioning : Github
+            \item Communication : Telegram Messenger
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Déroulement du projet}
+        \begin{itemize}
+            \item 3 sprints de 2 semaines
+            \item 1 sprint de 1 semaine
+            \item Gestion du SCRUM par toute l'équipe
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Application du SCRUM}
+        \begin{itemize}
+            \item Mêlée "quotidienne"
+            \item Attribution autonomes des tâches via Taiga.io
+            \item Proximité géographique entre les membres de l'équipe
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{État du projet}
+        \begin{itemize}
+            \item Cahier des charges complété à 80\%
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Difficultés rencontrés}
+        \begin{itemize}
+
+            \item Absences
+            \item Petite équipe
+            \item Changement de cap pour le 3D
+        \end{itemize}
+    \end{frame}
+
+    \section{Démo}
+    \begin{frame}{Démo}
+
+    \end{frame}
+
+    \section{Conclusion}
+    \begin{frame}{Conclusion}
+        \begin{itemize}
+            \item Amélioration du travail en équipe
+            \item Apprentissage de nouvelles technologies
+            \item Expérience pour le monde professionnel
+        \end{itemize}
+    \end{frame}
+
+\end{document}
